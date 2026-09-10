@@ -11,6 +11,15 @@ This repository is a static, content-first investigative publication. Preserve i
 - Never invent allegations about real people or organizations.
 - Keep `CONFIRMED`, `SUPPORTED`, `ALLEGED` and `UNRESOLVED` semantically explicit; colour is supporting information only.
 
+## Production investigations
+
+- Before creating or substantially updating a real investigation, read and follow `docs/EDITORIAL_WORKFLOW.md`.
+- Treat user-supplied claims and links as leads. Verify them independently and create the case file and claim ledger before drafting the article.
+- Use `docs/ARTICLE_BRIEF.md` when a reporting brief is needed; do not require every field to be filled before beginning safe research.
+- Keep a new investigation `draft: true` until the workflow's publication gates are satisfied. Never imply that a response was requested, an appeal was checked or an article was published unless that action occurred.
+- Give every production investigation a hyper-concise findings summary and a verified civic-action section. Use official representative/contact links, include petitions only when their status and relevance are clear, and record link-check dates in the case file.
+- Publishing, deploying, contacting sources and sending requests for comment require explicit user direction. Draft the questions and identify the correct recipients without taking those external actions on your own.
+
 ## Technical boundaries
 
 - Do not add a backend, database, authentication, CMS, client framework, Tailwind or a component library without a concrete requirement and written justification.

@@ -1,0 +1,154 @@
+---
+import { formatDate } from "../utils/investigations";
+
+interface Action {
+  category: "contact" | "petition" | "records" | "oversight" | "meeting" | "other";
+  title: string;
+  organization: string;
+  description: string;
+  url: string;
+  verifiedDate: Date;
+}
+
+interface Props {
+  actions: Action[];
+}
+
+const { actions } = Astro.props;
+const categoryLabels: Record<Action["category"], string> = {
+  contact: "Contact",
+  petition: "Petition",
+  records: "Public records",
+  oversight: "Oversight",
+  meeting: "Public meeting",
+  other: "Take action",
+};
+---
+
+<section class="action-list" aria-labelledby="action-list-title">
+  <div class="action-label"><span>Act on this</span><span>Verified links</span></div>
+  <h2 id="action-list-title">What you can do now</h2>
+  <p class="action-intro">
+    Use these official or clearly identified links to ask questions, request action, or use the
+    process yourself.
+  </p>
+  <ul>
+    {
+      actions.map((action) => (
+        <li>
+          <span class="action-kind">{categoryLabels[action.category]}</span>
+          <div>
+            <a href={action.url} rel="external">{action.title} ↗</a>
+            <p>{action.description}</p>
+            <small>
+              {action.organization} · Link checked {formatDate(action.verifiedDate)}
+            </small>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="action-note">
+    Be specific and respectful. A listed petition or campaign is a reader resource, not an
+    endorsement by UR NOT MAD ENOUGH.
+  </p>
+</section>
+
+<style>
+  .action-list {
+    margin: 0 0 2.8rem;
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--ink);
+    border-top-width: 0.4rem;
+    background: var(--color-accent-soft);
+    font-family: var(--sans);
+  }
+
+  .action-label {
+    display: flex;
+    gap: 0.5rem 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 1rem 0 0.55rem !important;
+    font-family: var(--serif) !important;
+    font-size: clamp(1.7rem, 4vw, 2.35rem) !important;
+    letter-spacing: -0.04em;
+  }
+
+  .action-intro {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  ul {
+    margin: 1.2rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 0.28fr) minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .action-kind {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  a {
+    font-weight: 800;
+    overflow-wrap: anywhere;
+  }
+
+  li p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  small {
+    display: block;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .action-note {
+    margin: 1rem 0 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 32rem) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

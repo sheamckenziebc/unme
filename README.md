@@ -28,18 +28,25 @@ The production site is generated in `dist/`.
 
 Add one `.md` or `.mdx` file to `src/content/investigations/`. Copy one of the demonstration investigations as a starting point, then replace every frontmatter value and the article body. Normal publication does not require application-code changes.
 
+For a real investigation, follow [`docs/EDITORIAL_WORKFLOW.md`](docs/EDITORIAL_WORKFLOW.md). The workflow requires a case file and claim ledger before drafting, a fair account of contrary evidence, a response opportunity, explicit appeal and review checks, and technical validation. [`docs/ARTICLE_BRIEF.md`](docs/ARTICLE_BRIEF.md) is a reusable brief that can be handed directly to Codex. Repository agents are directed to this process by `AGENTS.md`.
+
 Required frontmatter is validated at build time:
 
 - `title`, `slug`, `description`, `publishedDate`, `authors`
 - `jurisdiction`, `topics`, `organizations`
 - `featured`, `draft`, `summary`, `sources`
+- `actions` for published production investigations
 - optional `updatedDate`, hero image fields and SEO overrides
 
-Set `draft: true` to keep an investigation out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional sample reporting; real articles default to an “Investigation” label. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
+Set `draft: true` to keep an investigation out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional sample reporting; real articles default to an “Investigation” label. The `summary` is a validated 2–4 point, 30-second findings digest. Before a production investigation can be published, `actions` must include at least one current official contact route; relevant petition and public-process links should also be supplied when verified. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
 
 ## Project map
 
 - `src/content/investigations/` — investigation Markdown and MDX
+- `docs/EDITORIAL_WORKFLOW.md` — production reporting and publication gates
+- `docs/WORKFLOW_AMENDMENTS.md` — dated record of editorial workflow changes
+- `docs/ARTICLE_BRIEF.md` — reusable human/Codex investigation brief
+- `docs/case-files/` — source inventories, chronologies, claim ledgers and open checks
 - `src/content.config.ts` — the validated investigation schema
 - `src/config/site.ts` — publication name, tagline and global metadata
 - `src/components/` — small presentation and editorial components

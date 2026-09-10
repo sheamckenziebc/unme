@@ -2,6 +2,7 @@
 import type { Investigation } from '../utils/investigations';
 import BaseLayout from './BaseLayout.astro';
 import ClaimStatus from '../components/ClaimStatus.astro';
+import ActionList from '../components/ActionList.astro';
 import InvestigationCard from '../components/InvestigationCard.astro';
 import SourceList from '../components/SourceList.astro';
 import { formatDate } from '../utils/investigations';
@@ -30,12 +31,12 @@ const { data } = investigation;
 
     <div class="article-grid shell">
       <aside class="summary" aria-labelledby="summary-title">
-        <div class="summary-label"><span>Executive summary</span><span>Read first</span></div>
-        <h2 id="summary-title">Findings memo</h2>
+        <div class="summary-label"><span>The short version</span><span>30-second read</span></div>
+        <h2 id="summary-title">Findings, fast</h2>
         <ul>{data.summary.map((item) => <li>{item}</li>)}</ul>
         <div class="status-key"><span>Evidence language key</span><ClaimStatus status="confirmed" /><ClaimStatus status="supported" /><ClaimStatus status="alleged" /><ClaimStatus status="unresolved" /></div>
       </aside>
-      <div class="prose"><slot /><SourceList sources={data.sources} /></div>
+      <div class="prose">{data.actions.length > 0 && <ActionList actions={data.actions} />}<slot /><SourceList sources={data.sources} /></div>
     </div>
     {related.length > 0 && <section class="related shell" aria-labelledby="related-title"><div class="section-heading"><h2 id="related-title">Related investigations</h2></div><div class="listing-grid">{related.map((item) => <InvestigationCard investigation={item} />)}</div></section>}
   </article>
@@ -46,8 +47,8 @@ const { data } = investigation;
   .file-reference { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; margin-bottom: 4rem; padding-block: 0.42rem; border-block: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .file-reference strong { color: var(--ink); text-align: center; }
   .eyebrow span { padding: 0.12rem 0.28rem; background: var(--accent); color: var(--ink); }
-  h1 { max-width: 20ch; margin: 0; font-family: var(--serif); font-size: clamp(2.6rem, 6.4vw, 6rem); font-weight: 700; letter-spacing: -0.055em; line-height: 0.94; }
-  .dek { max-width: 50rem; margin: 1.5rem 0 2.2rem; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.55rem); line-height: 1.45; }
+  h1 { max-width: 20ch; margin: 0; font-family: var(--serif); font-size: clamp(2.6rem, 6.4vw, 6rem); font-weight: 700; letter-spacing: -0.055em; line-height: 0.94; overflow-wrap: anywhere; }
+  .dek { max-width: 50rem; margin: 1.5rem 0 2.2rem; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.55rem); line-height: 1.45; overflow-wrap: anywhere; }
   .article-meta { display: grid; grid-template-columns: repeat(4, minmax(8rem, 1fr)); gap: 0; margin: 0; border: 1px solid var(--rule); border-right: 0; }
   .article-meta div { padding: 0.6rem 0.75rem; border-right: 1px solid var(--rule); }
   .article-meta dt { color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
@@ -57,12 +58,12 @@ const { data } = investigation;
   .topics a:hover { background: var(--accent); }
   .article-grid { display: grid; min-width: 0; grid-template-columns: minmax(15rem, 0.36fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-block: 3.5rem 6rem; }
   .article-grid > * { min-width: 0; }
-  .summary { position: sticky; top: 1rem; padding: 0 1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
+  .summary { position: sticky; top: 1rem; min-width: 0; padding: 0 1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
   .summary::before { display: block; width: 5rem; height: 0.75rem; margin: -0.42rem 1rem 1rem auto; content: ""; background: var(--accent); opacity: 0.8; }
   .summary-label { display: flex; justify-content: space-between; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .summary h2 { margin: 1rem 0 0; font-family: var(--serif); font-size: 1.55rem; letter-spacing: -0.035em; }
   .summary ul { margin: 1rem 0 0; padding: 0; list-style: none; counter-reset: finding; }
-  .summary li { display: grid; grid-template-columns: 1.5rem 1fr; gap: 0.35rem; margin-bottom: 0.8rem; font-family: var(--serif); line-height: 1.45; counter-increment: finding; }
+  .summary li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: 0.35rem; margin-bottom: 0.8rem; font-family: var(--serif); line-height: 1.45; overflow-wrap: anywhere; counter-increment: finding; }
   .summary li::before { content: counter(finding, decimal-leading-zero); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; }
   .status-key { display: flex; gap: 0.45rem; margin-top: 1.5rem; flex-wrap: wrap; }
   .status-key > span { width: 100%; color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; text-transform: uppercase; }

@@ -12,6 +12,22 @@ const sourceSchema = z.object({
   note: z.string().optional(),
 });
 
+const actionSchema = z.object({
+  category: z.enum([
+    "contact",
+    "petition",
+    "records",
+    "oversight",
+    "meeting",
+    "other",
+  ]),
+  title: z.string().min(1).max(100),
+  organization: z.string().min(1).max(120),
+  description: z.string().min(1).max(240),
+  url: z.url(),
+  verifiedDate: z.coerce.date(),
+});
+
 const investigations = defineCollection({
   loader: glob({
     base: "./src/content/investigations",
@@ -33,7 +49,8 @@ const investigations = defineCollection({
       demonstration: z.boolean().default(false),
       heroImage: z.string().optional(),
       heroImageAlt: z.string().optional(),
-      summary: z.array(z.string()).min(1),
+      summary: z.array(z.string().min(1).max(180)).min(2).max(4),
+      actions: z.array(actionSchema).default([]),
       sources: z.array(sourceSchema).default([]),
       seo: z
         .object({
@@ -52,6 +69,18 @@ const investigations = defineCollection({
       {
         message: "updatedDate cannot be earlier than publishedDate.",
         path: ["updatedDate"],
+      },
+    )
+    .refine(
+      (data) =>
+        data.draft ||
+        data.demonstration ||
+        (data.actions.length > 0 &&
+          data.actions.some((action) => action.category === "contact")),
+      {
+        message:
+          "Published investigations require civic actions, including an official contact route.",
+        path: ["actions"],
       },
     ),
 });
