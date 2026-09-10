@@ -60,9 +60,7 @@ After the repository is pushed to GitHub, open **Settings → Pages → Build an
 For a domain such as `urnotmadenough.ca`:
 
 1. Configure the required DNS records with the domain provider.
-2. Add `public/CNAME` containing only `urnotmadenough.ca`.
-3. In GitHub, add the repository variable `PUBLIC_SITE_URL` with the value `https://urnotmadenough.ca`.
-4. Add the repository variable `PUBLIC_BASE_PATH` with the value `/`.
-5. Configure and verify the custom domain under **Settings → Pages**.
+2. Add `public/CNAME` containing only the domain name, such as `urnotmadenough.ca`.
+3. Configure and verify the custom domain under **Settings → Pages**.
 
-Site URL behavior is centralized in `astro.config.mjs`; editorial identity and default metadata are centralized in `src/config/site.ts`.
+Astro reads `public/CNAME` automatically and switches canonical URLs and internal links to the domain root. Optional `PUBLIC_SITE_URL` and `PUBLIC_BASE_PATH` repository variables can override this behavior for an unusual deployment. Site URL behavior is centralized in `astro.config.mjs`; editorial identity and default metadata are centralized in `src/config/site.ts`.
