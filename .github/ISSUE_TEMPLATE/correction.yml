@@ -1,0 +1,44 @@
+name: Correction request
+description: Identify a factual statement and provide evidence supporting a correction.
+title: "[Correction]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the record. This request and anything attached to it will be public. Do not include confidential sources, private contact details, personal identifiers, or sensitive records.
+  - type: input
+    id: article
+    attributes:
+      label: Article URL
+      description: Link directly to the UR NOT MAD ENOUGH article.
+      placeholder: https://urnotmadenough.ca/investigations/...
+    validations:
+      required: true
+  - type: textarea
+    id: statement
+    attributes:
+      label: Disputed statement
+      description: Quote the exact wording or identify its location precisely.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: Explain what is inaccurate and what the record should say instead.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: Link to the strongest available primary records and include page or paragraph references where possible.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public-submission acknowledgement
+      options:
+        - label: I understand this request is public and contains no confidential or sensitive information.
+          required: true

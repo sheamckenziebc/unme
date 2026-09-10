@@ -9,7 +9,7 @@ The repository uses Astro, TypeScript, Astro Content Collections, MDX and plain 
 Use Node.js 22.19 or newer (Node 24 is used in CI).
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
@@ -19,6 +19,7 @@ Useful checks:
 npm run format:check
 npm run check
 npm run build
+npm run validate:build
 npm run preview
 ```
 
@@ -36,9 +37,12 @@ Required frontmatter is validated at build time:
 - `jurisdiction`, `topics`, `organizations`
 - `featured`, `draft`, `summary`, `sources`
 - `actions` for published production investigations
+- `publicationReview` for published production investigations
 - optional `updatedDate`, hero image fields and SEO overrides
 
-Set `draft: true` to keep an investigation out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional sample reporting; real articles default to an “Investigation” label. The `summary` is a validated 2–4 point, 30-second findings digest. Before a production investigation can be published, `actions` must include at least one current official contact route; relevant petition and public-process links should also be supplied when verified. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
+Set `draft: true` to keep an investigation out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional fixtures; demonstrations are also excluded from every public route and feed. Real articles default to an “Investigation” label. The `summary` is a validated 2–4 point, 30-second findings digest. Before a production investigation can be published, `actions` must include at least one current official contact route; relevant petition and public-process links should also be supplied when verified. Published production investigations must carry at least one source and `publicationReview` metadata pointing to an existing, slug-matched case file and recording editor approval, right-of-reply status, fairness review and final fact-check completion. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
+
+This repository is public. Tracked case files must be publication-safe: use opaque source IDs and omit private contact details, confidential identities, restricted documents and unpublished legal advice. Store sensitive working material under `.unme-private/`, which Git ignores, or in another approved secure system. Never rely on Git deletion to erase material that was already committed.
 
 ## Project map
 
@@ -46,7 +50,11 @@ Set `draft: true` to keep an investigation out of generated pages and the RSS fe
 - `docs/EDITORIAL_WORKFLOW.md` — production reporting and publication gates
 - `docs/WORKFLOW_AMENDMENTS.md` — dated record of editorial workflow changes
 - `docs/ARTICLE_BRIEF.md` — reusable human/Codex investigation brief
+- `docs/CASE_FILE_TEMPLATE.md` — required publication-safe investigation dossier
+- `docs/RESPONSE_REQUEST_TEMPLATE.md` — right-of-reply request and response log
 - `docs/case-files/` — source inventories, chronologies, claim ledgers and open checks
+- `.unme-private/` — ignored local working area for sensitive reporting material
+- `scripts/validate-build.mjs` — generated-route, metadata, link and draft-leakage checks
 - `src/content.config.ts` — the validated investigation schema
 - `src/config/site.ts` — publication name, tagline and global metadata
 - `src/components/` — small presentation and editorial components
@@ -58,7 +66,7 @@ Set `draft: true` to keep an investigation out of generated pages and the RSS fe
 
 ## GitHub Pages deployment
 
-The workflow follows Astro’s official GitHub Pages deployment approach. A push to `main` builds and deploys the static site. The Astro configuration derives the temporary Pages URL and repository base path from GitHub Actions automatically, so a project repository works at `https://OWNER.github.io/REPOSITORY/` without hard-coded owner details.
+The workflow follows GitHub Pages’ artifact deployment approach. A push to `main` installs the locked dependencies, checks formatting and types, builds the site, validates generated metadata and links, checks that drafts and demonstrations did not leak, and deploys only if every stage passes. The Astro configuration derives the temporary Pages URL and repository base path from GitHub Actions automatically, so a project repository works at `https://OWNER.github.io/REPOSITORY/` without hard-coded owner details.
 
 After the repository is pushed to GitHub, open **Settings → Pages → Build and deployment** and select **GitHub Actions** as the source.
 

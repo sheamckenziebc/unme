@@ -9,6 +9,11 @@ const navigation = [
   { href: '/methodology/', label: 'Methodology' },
   { href: '/about/', label: 'About' },
 ];
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => {
+  const resolved = withBase(href);
+  return currentPath === resolved || (href !== '/' && currentPath.startsWith(resolved));
+};
 ---
 
 <header class="site-header">
@@ -21,7 +26,7 @@ const navigation = [
     </a>
     <nav aria-label="Primary navigation">
       <ul>
-        {navigation.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+        {navigation.map((item) => <li><a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>)}
       </ul>
     </nav>
   </div>
@@ -37,6 +42,7 @@ const navigation = [
   nav ul { display: flex; gap: 0.2rem 1.3rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
   nav a { display: inline-flex; min-height: 2.25rem; align-items: center; font-family: var(--mono); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
   nav a:hover { background: var(--accent); }
+  nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 0.35rem; text-underline-offset: 0.16rem; }
   @media (max-width: 48rem) { .header-inner { grid-template-columns: 1fr; gap: 1rem; } nav ul { justify-content: flex-start; } }
   @media (max-width: 35rem) { .filing-strip span:last-child { display: none; } .wordmark { display: flex; align-items: flex-start; flex-direction: column; line-height: 0.72; } nav ul { gap-inline: 0.9rem; } nav a { min-height: 2.75rem; font-size: 0.875rem; } }
 </style>

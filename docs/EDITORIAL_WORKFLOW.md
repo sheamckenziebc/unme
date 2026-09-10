@@ -8,11 +8,26 @@ The purpose is repeatability: a new article should be produced from a documented
 
 For a new investigation, produce these three things:
 
-1. A case file in `docs/case-files/` containing the chronology, claim ledger, source links, contrary evidence, reader-action inventory, response questions and open checks.
+1. A case file in `docs/case-files/` containing the source register, chronology, claim ledger, current-status checks, disconfirming evidence, reader-action inventory, response log, hostile read, readiness decision and open checks.
 2. A production MDX draft in `src/content/investigations/` that follows the site's schema and editorial components, including the 30-second findings summary and verified civic actions.
-3. A short handoff stating what was verified, what remains unresolved, whether comment was sought, whether an appeal or review is possible, and the results of `npm run format`, `npm run check` and `npm run build`.
+3. A standardized handoff copied from the case file's final readiness section: decision, current thesis, strongest complication, material gaps, response status, current-status result, exceptions, approval and technical checks.
 
 Do not publish merely because the prose is finished. Keep `draft: true` until the publication gates in this document are satisfied or the editor explicitly accepts a documented exception.
+
+## Workflow stages and exit conditions
+
+Start the dossier from `docs/CASE_FILE_TEMPLATE.md`. A stage is complete only when its evidence is recorded in that case file.
+
+| Stage            | Required output                                                                                  | Exit condition                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Intake           | Lead, public-interest reason, testable hypothesis, defeat condition, scope and sensitivity notes | The lead is specific enough to test without assuming its truth.                                         |
+| Evidence         | Source register, chronology, claim ledger and current-status plan                                | Material claims have primary support or are explicitly unresolved.                                      |
+| Red team         | Disconfirming-evidence record and strongest fair contrary account                                | The thesis survives, is narrowed, or is abandoned based on recorded results.                            |
+| Draft            | Schema-valid MDX, fast summary, actions and reporting-status disclosure                          | Draft accurately reflects the dossier and remains `draft: true`.                                        |
+| Right of reply   | Verified contacts, authorized delivery log, responses and incorporation record                   | Responses are fairly included, the deadline passed, or an exception is documented.                      |
+| Final review     | Current-status refresh, hostile read, fact check, copy edit and link check                       | All gates are checked or each exception has a named approver, reason and mitigation.                    |
+| Publication      | `publicationReview`, explicit editor approval, passing build and deployment authorization        | The deployed URL is verified and the commit, deployment run and live checks are recorded.               |
+| Post-publication | Correction/update intake and source monitoring appropriate to the story                          | Material new evidence is verified and handled through the update or correction workflow when it arises. |
 
 ## Ground rules
 
@@ -25,6 +40,15 @@ Do not publish merely because the prose is finished. Keep `draft: true` until th
 - Name individuals only when identification materially helps the public understand responsibility. Never imply personal wrongdoing from an institution's litigation position.
 - Use exact calendar dates. Distinguish an event date, decision date, release date, retrieval date and article publication date.
 - Preserve meaningful caveats near the claim they qualify, not only at the end.
+
+### Public repository safety
+
+This code repository and its history are public. The tracked case file is therefore a publication-safe accountability record, not a secure newsroom vault.
+
+- Never commit confidential source identities, private contact details, unpublished legal advice, credentials, embargoed material, unlawfully obtained records or information covered by a publication ban or sealing order.
+- Store sensitive working material under the ignored `.unme-private/<article-slug>/` directory or another editor-approved secure system. Use opaque IDs in the tracked dossier.
+- Before staging changes, inspect the exact file list and diff for accidental disclosures. Removing a secret in a later commit does not remove it from Git history.
+- Public transparency yields to source safety, privacy, legal duties and the security of the reporting process.
 
 ## Evidence states
 
@@ -98,7 +122,13 @@ This boundary should control the search and the headline.
 
 Do not claim a story is “undercovered” from intuition. Describe the evidence that has been overlooked or not assembled, or omit the coverage claim.
 
-### 3. Build the chronology before drafting
+### 3. Create the source register and current-status plan
+
+Use the source-register table in `docs/CASE_FILE_TEMPLATE.md`. Record issuer, version or date, retrieval time, pinpoint locators, authentication state, preservation location and evidentiary limits. A URL alone is not a source review.
+
+Before relying on a historical condition, identify the authoritative place that could show whether it changed: a live docket, judgments index, registry, officeholder directory, policy page, current dataset, later decision or direct response. Record what was checked, when it was checked and what that check cannot establish. Schedule a fresh check close to publication.
+
+### 4. Build the chronology before drafting
 
 Create a dated table in the case file. Include:
 
@@ -111,7 +141,7 @@ Create a dated table in the case file. Include:
 
 Chronology catches conflated incidents, superseded rulings and impossible causal claims.
 
-### 4. Build a claim ledger
+### 5. Build a claim ledger
 
 For every claim likely to appear in the title, description, summary or key-finding boxes, record:
 
@@ -126,13 +156,13 @@ No headline claim should exist only in the prose draft.
 
 Create a reader-action inventory beside the claim ledger. For each contact, petition or process, record the official or sponsoring organization, URL, purpose, geographic relevance, status or deadline, last-check date and any privacy or endorsement caveat.
 
-### 5. Separate proceedings and people
+### 6. Separate proceedings and people
 
 When records concern similar events, explicitly test whether they involve the same requester, contract, incident, employee, time period and legal question. If the public record does not establish identity, say they are separate matters and do not imply otherwise.
 
 Keep institutional and personal responsibility distinct. A department's position is not automatically the position or misconduct of every named employee.
 
-### 6. Stress-test the thesis
+### 7. Stress-test the thesis
 
 Before writing, answer:
 
@@ -147,7 +177,9 @@ Before writing, answer:
 
 If the thesis survives only by omitting one of those answers, discard or narrow it.
 
-### 7. Draft in the standard article anatomy
+Record the tests, searches, contrary records and effect on the thesis in the case file's disconfirming-evidence section. “No contrary evidence found” is not sufficient without a description of where and how it was sought.
+
+### 8. Draft in the standard article anatomy
 
 Use this order unless the evidence requires a clearer alternative:
 
@@ -169,15 +201,15 @@ Use this order unless the evidence requires a clearer alternative:
 
 Use `KeyFinding` sparingly for decisive propositions. Use `EvidenceBox` to make evidence state explicit. Frontmatter `sources` are rendered automatically, so body document links should be reserved for central records rather than every citation.
 
-### 8. Write the title and description last
+### 9. Write the title and description last
 
 The title may be forceful, but each verb must be proved by the strongest source. Prefer precise actions such as “filed,” “withheld,” “rejected,” “dismissed” or “found” over motive words such as “hid,” “targeted” or “covered up.”
 
 The description should contain the strongest finding and its most important qualification. Do not make the reader reach the final section to learn that the underlying allegation was never adjudicated.
 
-### 9. Request a response
+### 10. Request and track a response
 
-Anyone facing material criticism should receive:
+Prepare each request and delivery log from `docs/RESPONSE_REQUEST_TEMPLATE.md`, storing completed working copies outside Git. Add only a publication-safe status summary to the tracked case file. Anyone facing material criticism should receive:
 
 - the central factual proposition;
 - the primary records supporting it;
@@ -187,12 +219,28 @@ Anyone facing material criticism should receive:
 
 Ask the institution to separate factual corrections, legal position and policy explanation. Ask whether an appeal or review has been filed. Request itemized costs when expense is relevant.
 
-Do not use `ResponseBox` until a request was actually sent. If no response arrives, say when and how the request was made and that the deadline passed. Accurately include explanations that weaken or complicate the thesis.
+Verify the recipient and contact channel from an official source. Set a deadline that accounts for urgency, question complexity, working hours, holidays and timezone. Preserve the exact message, delivery evidence, follow-ups, full response and supporting records. Sending or following up requires explicit user authorization; drafting and identifying recipients does not.
 
-### 10. Pass the publication gates
+Do not use `ResponseBox` until a request was actually sent. If delivery fails, do not describe the subject as having received an opportunity. If no response arrives, say when and how the request was made and that the deadline passed. Independently check corrective facts where possible and accurately include explanations that weaken or complicate the thesis.
+
+### 11. Run the hostile read and make a readiness decision
+
+Use the case-file checklist to review the complete package as:
+
+- the criticized subject, looking for omitted context and unfair implication;
+- a skeptical lawyer, looking for unsupported defamatory meaning, privacy harm, bans, sealed material and ambiguous attribution; and
+- an ordinary reader, looking for a headline, summary, image, SEO description or action prompt that overstates the underlying evidence.
+
+This review is an editorial risk control, not a substitute for qualified legal advice when the stakes require it. Record the issues found, changes made and whether specialist review was obtained or considered unnecessary.
+
+Write the standardized readiness decision in the case file. “Ready” must state the current thesis, strongest complication, unresolved gaps, response status, current-status result, exceptions and named approval. Do not silently treat an unchecked box as inapplicable.
+
+### 12. Pass the publication gates
 
 Keep `draft: true` until all applicable gates are recorded in the case file:
 
+- the case file follows `docs/CASE_FILE_TEMPLATE.md` and identifies its current stage;
+- source-register entries identify version, retrieval, locators, authentication and limits;
 - every title and findings-memo claim appears in the claim ledger;
 - the 30-second summary contains 2–4 concise, ledgered findings and preserves the central limit;
 - civic actions include an official representative or government contact route, are jurisdictionally relevant and have current verification dates;
@@ -203,11 +251,12 @@ Keep `draft: true` until all applicable gates are recorded in the case file:
 - a fresh right-of-reply opportunity was provided, or a documented editor approved an exception;
 - appeal, review, publication-ban and correction status were checked;
 - privacy and source-safety issues were reviewed;
+- the legal, privacy and fairness hostile read was completed and recorded;
 - direct links work;
 - dates, names, figures, quotations and procedural descriptions received a second pass; and
 - formatting, type checking and a production build pass.
 
-Only then change `draft` to `false`. Publishing or pushing to a remote repository still requires the user's explicit direction.
+Only then record the readiness decision, add matching `publicationReview` frontmatter and change `draft` to `false`. The build rejects a published production investigation without that approval metadata. Never invent a review status, approver, response event or exception. Publishing or pushing to a remote repository still requires the user's explicit direction.
 
 ## Court-reporting checklist
 
@@ -232,7 +281,7 @@ When directed to create an article:
 1. Read `AGENTS.md`, this file, `src/content.config.ts`, the editorial component interfaces and one current production article.
 2. Inspect the working tree and preserve unrelated changes.
 3. Research current sources. Treat supplied claims as leads and verify them independently.
-4. Create or update the case file first, including the reader-action inventory.
+4. Copy or update `docs/CASE_FILE_TEMPLATE.md` first. Build the source register, chronology, claim ledger, current-status checks, disconfirming-evidence record and reader-action inventory there.
 5. Add one MDX file with the concise `summary` and verified `actions`. Ordinary article publication should not require application-code changes.
 6. Reuse existing components and schema fields. Do not add dependencies for article styling.
 7. Run:
@@ -241,10 +290,26 @@ When directed to create an article:
    npm run format
    npm run check
    npm run build
+   npm run validate:build
    ```
 
 8. Inspect the generated article, including its summary, civic-action links, source list, tables and narrow-screen behavior when layout changed.
-9. Report the article path, publication state, material caveats, response status and check results. Do not claim publication unless the site was actually deployed.
+9. Copy the standardized readiness/handoff fields from the case file into the final report. Do not claim publication unless the site was actually deployed and the live URL was verified.
+
+## Publication and post-deployment verification
+
+After every editorial gate is satisfied, publication still requires explicit user authorization. Then:
+
+1. Fetch the remote branch and reconcile newer work without discarding unrelated changes.
+2. Recheck sources whose status can change, all civic-action links and every time-sensitive statement.
+3. Record the completed readiness decision and editor approval in the case file.
+4. Add `publicationReview` frontmatter with the matching case-file path, approver, approval date, right-of-reply state, fairness-review state and final fact-check state.
+5. Change `draft` to `false`, run formatting, diagnostics and a production build, and inspect the generated page at desktop and 320px mobile width.
+6. Commit and push only the intended files, then monitor the configured deployment to completion.
+7. Verify the live URL returns success and check its canonical URL, investigation index entry, RSS entry, sitemap inclusion and critical source/action links.
+8. Record the commit SHA, deployment run, live URL, verification time and any failure or rollback in the case file.
+
+A successful local build is “ready to deploy,” not “published.” A successful deployment without a reachable, correct article URL is a deployment incident, not completed publication.
 
 ## Naming conventions
 

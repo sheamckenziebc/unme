@@ -14,9 +14,12 @@ This repository is a static, content-first investigative publication. Preserve i
 ## Production investigations
 
 - Before creating or substantially updating a real investigation, read and follow `docs/EDITORIAL_WORKFLOW.md`.
-- Treat user-supplied claims and links as leads. Verify them independently and create the case file and claim ledger before drafting the article.
+- Start production work from `docs/CASE_FILE_TEMPLATE.md`; use `docs/RESPONSE_REQUEST_TEMPLATE.md` to prepare and track right-of-reply requests.
+- Treat user-supplied claims and links as leads. Verify them independently and create the source register, chronology, claim ledger and disconfirming-evidence record before drafting the article.
+- Treat tracked case files as public. Never commit confidential sources, private contact details, unpublished legal advice, restricted records, secrets or embargoed material; keep sensitive working files under the ignored `.unme-private/` directory or another approved secure location.
 - Use `docs/ARTICLE_BRIEF.md` when a reporting brief is needed; do not require every field to be filled before beginning safe research.
 - Keep a new investigation `draft: true` until the workflow's publication gates are satisfied. Never imply that a response was requested, an appeal was checked or an article was published unless that action occurred.
+- Do not add `publicationReview` metadata or change `draft` to `false` without a completed case-file readiness decision and explicit editor approval. Record any gate exception, its reason and its approver.
 - Give every production investigation a hyper-concise findings summary and a verified civic-action section. Use official representative/contact links, include petitions only when their status and relevance are clear, and record link-check dates in the case file.
 - Publishing, deploying, contacting sources and sending requests for comment require explicit user direction. Draft the questions and identify the correct recipients without taking those external actions on your own.
 
@@ -33,5 +36,5 @@ This repository is a static, content-first investigative publication. Preserve i
 - Mobile layouts must remain usable from 320px upward.
 - Preserve visible focus styles, strong contrast, semantic landmarks, meaningful image alt text and reduced-motion support.
 - Long articles, tables, citations and URLs must not break narrow screens.
-- Run `npm run format`, `npm run check` and `npm run build` after meaningful changes.
+- Run `npm run format`, `npm run check`, `npm run build` and `npm run validate:build` after meaningful changes.
 - Update README instructions when publication or deployment workflows change.

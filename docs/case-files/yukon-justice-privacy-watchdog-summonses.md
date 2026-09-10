@@ -88,6 +88,17 @@ These points must appear in the article. They do not change the final dispositio
 - No verified total for either office's legal costs.
 - No conclusion about why Justice selected litigation rather than another process.
 
+## Disconfirming-evidence record
+
+| Test                                                                            | Evidence checked           | Result                                                                                                                   | Effect on thesis                                                                                        |
+| ------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Was the first petition plainly baseless from the outset?                        | S2, paras. 1–4 and 35–45   | The interim court found a reasonable chance of success and an appropriate procedure.                                     | Do not call either petition frivolous or abusive merely because the final merits decision dismissed it. |
+| Did Justice obtain any point or accommodation?                                  | S1, paras. 46–68           | The court permitted amendment of the records demand and recommended estimated interview lengths and possible sequencing. | Include these results in the strongest fair account of Justice's position.                              |
+| Can the broader annual-report legal-cost figure be assigned to these petitions? | S3, page 4 and IPC section | The report does not itemize the figure by case.                                                                          | Do not state or imply that this litigation alone cost the reported amount.                              |
+| Did the summons judgment decide the underlying access request?                  | S1, paras. 1 and 61; S7    | It did not decide ATIPPA compliance, and no completed own-motion report was found on the checked index.                  | Keep the access-law result and any bad-faith inference explicitly unresolved.                           |
+
+The final red-team search must be refreshed after responses and registry checks; this preliminary record does not complete the hostile-read gate.
+
 ## Reporting gaps
 
 1. Confirm with the Supreme Court and Court of Appeal registries whether a notice of appeal, extension application, costs order or supplementary reasons exist.
@@ -136,6 +147,44 @@ Ask the IPC:
 
 Provide a specific response deadline and timezone. Invite both offices to identify factual errors and supply records. Do not represent these questions as sent until delivery actually occurs.
 
+### Delivery status
+
+| Recipient                                  | Contact verified | Authorization | Sent | Deadline | Delivery evidence | Response status      |
+| ------------------------------------------ | ---------------- | ------------- | ---- | -------- | ----------------- | -------------------- |
+| Department of Justice                      | Not yet recorded | Not granted   | No   | Not set  | None              | Draft questions only |
+| Yukon Information and Privacy Commissioner | Not yet recorded | Not granted   | No   | Not set  | None              | Draft questions only |
+
+Use `docs/RESPONSE_REQUEST_TEMPLATE.md` before any delivery. Sending requires explicit user authorization.
+
+## Legal, privacy and fairness hostile read
+
+Status: **Not complete.** The existing caveats and disconfirming-evidence record reduce risk but do not replace the required final review after responses and current-status checks.
+
+- [ ] Recheck every damaging factual implication against the claim ledger.
+- [ ] Incorporate the strongest responses and contrary records prominently.
+- [ ] Recheck appeal, supplementary-order, publication-ban and sealing status.
+- [ ] Confirm that institutional criticism does not imply personal misconduct.
+- [ ] Perform the final title, summary, SEO, privacy, quotation and action-prompt review.
+- [ ] Obtain specialist legal review or record why it was not required.
+
+## Final readiness decision
+
+**Decision:** Not ready
+
+**Current thesis:** The final judgment establishes that Justice unsuccessfully challenged five relevant IPC summonses; it does not establish an underlying access-law breach or improper motive.
+
+**Strongest complication:** The first petition survived an interim strike application, and the final court allowed a technical amendment and recommended interview accommodations.
+
+**Material gaps:** Registry status, post-judgment events, both responses, itemized costs, final hostile read and final fact check.
+
+**Right-of-reply status:** Questions drafted; no request sent.
+
+**Current-status result:** Public indexes were checked September 10, 2026, but registry confirmation remains outstanding.
+
+**Exceptions:** None approved.
+
+**Approval:** None; `publicationReview` must not be added and `draft` must remain `true`.
+
 ## Publication gates
 
 - [x] Controlling final judgment reviewed.
@@ -146,11 +195,14 @@ Provide a specific response deadline and timezone. Invite both offices to identi
 - [x] Official representative, department, petition-process and oversight links recorded with verification dates.
 - [x] Current IPC reports index checked.
 - [x] Current Court of Appeal judgments index checked.
+- [x] Preliminary disconfirming-evidence record completed.
 - [ ] Registry confirms appeal and supplementary-order status.
 - [ ] Justice receives a fair response opportunity.
 - [ ] IPC receives a fair response opportunity.
 - [ ] Responses are incorporated and checked against supporting records.
 - [ ] Costs are itemized or the limits of the annual-report figure remain prominent.
-- [ ] Final copy and legal-risk review completed.
-- [ ] `npm run format`, `npm run check` and `npm run build` pass after final response edits.
+- [ ] Final legal, privacy and fairness hostile read completed.
+- [ ] Final fact check and copy edit completed.
+- [ ] `npm run format`, `npm run check`, `npm run build` and `npm run validate:build` pass after final response edits.
+- [ ] Editor records the readiness decision and matching `publicationReview` metadata.
 - [ ] Editor changes article to `draft: false` and explicitly authorizes publication.

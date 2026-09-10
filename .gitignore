@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# private reporting material (never commit)
+.unme-private/
+
 # macOS-specific files
 .DS_Store
 

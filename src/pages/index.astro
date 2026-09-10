@@ -8,27 +8,28 @@ import { slugify, withBase } from '../utils/paths';
 const investigations = newestFirst((await getCollection('investigations')).filter(isPublished));
 const featured = investigations.find((item) => item.data.featured) ?? investigations[0];
 const recent = investigations.filter((item) => item.id !== featured?.id).slice(0, 3);
-const topics = [...new Set(investigations.flatMap((item) => item.data.topics))];
-const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdiction))];
+const topics = [...new Set(investigations.flatMap((item) => item.data.topics))].sort();
+const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdiction))].sort();
+const publishedCount = investigations.length;
 ---
 
 <BaseLayout>
   <section class="hero shell">
     <div class="manifesto">
-      <div class="file-line"><span>Publication file / 001</span><span>Status / Active</span></div>
+      <div class="file-line"><span>Publication system / Live</span><span>Published files / {String(publishedCount).padStart(2, '0')}</span></div>
       <p class="kicker">Independent accountability reporting</p>
       <h1><span>UR NOT</span><mark>MAD ENOUGH</mark></h1>
       <p>Evidence worth paying attention to.</p>
     </div>
     <div class="principle"><span>Editorial position</span><strong>We do not manufacture outrage.</strong><p>We assemble the evidence clearly enough that readers can decide for themselves how angry they should be.</p></div>
   </section>
-  {featured && <section class="featured shell" aria-labelledby="featured-title"><div class="section-heading"><h2 id="featured-title">Featured investigation</h2><span>01</span></div><InvestigationCard investigation={featured} prominent /></section>}
-  <section class="recent shell" aria-labelledby="recent-title"><div class="section-heading"><h2 id="recent-title">Recent investigations</h2><a href={withBase('/investigations/')}>View all →</a></div><div class="listing-grid">{recent.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></section>
+  {featured ? <section class="featured shell" aria-labelledby="featured-title"><div class="section-heading"><h2 id="featured-title">Featured investigation</h2><span>01</span></div><InvestigationCard investigation={featured} prominent /></section> : <section class="launch shell" aria-labelledby="launch-title"><div class="section-heading"><h2 id="launch-title">First investigation</h2><span>Reporting in progress</span></div><div class="launch-copy"><p>No production investigation is public yet.</p><p>The first file will appear only after its evidence, current status, right of reply, fairness review and technical checks are recorded. Fictional demonstrations are kept out of the public archive.</p><a href={withBase('/methodology/')}>See the publication standard →</a></div></section>}
+  {recent.length > 0 && <section class="recent shell" aria-labelledby="recent-title"><div class="section-heading"><h2 id="recent-title">Recent investigations</h2><a href={withBase('/investigations/')}>View all →</a></div><div class="listing-grid">{recent.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></section>}
   <section class="method shell" aria-labelledby="method-title"><div><p class="kicker">How we report</p><h2 id="method-title">Aggressive curiosity.<br />Restrained conclusions.<br />Primary evidence.</h2></div><div><p>Public records can be technically available while remaining practically invisible. We find them, connect them and explain what they establish—and what they do not.</p><a href={withBase('/methodology/')}>Read our methodology →</a></div></section>
-  <section class="browse shell" aria-label="Browse reporting">
+  {(topics.length > 0 || jurisdictions.length > 0) && <section class="browse shell" aria-label="Browse reporting">
     <div><div class="section-heading"><h2>Topics</h2><a href={withBase('/topics/')}>All topics →</a></div><ul>{topics.slice(0, 4).map((topic) => <li><a href={withBase(`/topics/${slugify(topic)}/`)}>{topic}</a></li>)}</ul></div>
     <div><div class="section-heading"><h2>Jurisdictions</h2><a href={withBase('/jurisdictions/')}>All jurisdictions →</a></div><ul>{jurisdictions.slice(0, 4).map((jurisdiction) => <li><a href={withBase(`/jurisdictions/${slugify(jurisdiction)}/`)}>{jurisdiction}</a></li>)}</ul></div>
-  </section>
+  </section>}
 </BaseLayout>
 
 <style>
@@ -45,6 +46,12 @@ const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdi
   .principle p { margin: 0.5rem 0 0; color: var(--muted); font-family: var(--serif); }
   .featured, .recent { padding-block: 4rem; }
   .featured { border-bottom: 1px solid var(--rule); }
+  .launch { padding-block: 4rem; border-bottom: 1px solid var(--rule); }
+  .launch-copy { display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 1rem 3rem; align-items: start; }
+  .launch-copy p { margin: 0; }
+  .launch-copy p:first-child { max-width: 18ch; font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.05em; line-height: 0.95; }
+  .launch-copy p:nth-child(2) { max-width: 48rem; color: var(--muted); font-family: var(--serif); font-size: 1.15rem; }
+  .launch-copy a { grid-column: 2; width: fit-content; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
   .method { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; padding: 5rem 0 5rem 1.5rem; border-block: 0.24rem solid var(--ink); border-left: 0.65rem solid var(--accent); }
   .method h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.2rem); letter-spacing: -0.055em; line-height: 0.95; }
   .method > div:last-child { max-width: 32rem; align-self: end; font-family: var(--serif); font-size: 1.2rem; }
@@ -53,6 +60,6 @@ const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdi
   .browse ul { margin: 0; padding: 0; border-top: 1px solid var(--rule); list-style: none; }
   .browse li { border-bottom: 1px solid var(--rule); }
   .browse li a { display: block; padding: 0.8rem 0; font-size: 1.1rem; font-weight: 700; text-decoration: none; }
-  @media (max-width: 52rem) { .hero { grid-template-columns: 1fr; min-height: 36rem; } .principle { max-width: 28rem; } .method, .browse { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 52rem) { .hero { grid-template-columns: 1fr; min-height: 36rem; } .principle { max-width: 28rem; } .method, .browse, .launch-copy { grid-template-columns: 1fr; gap: 2rem; } .launch-copy a { grid-column: auto; } }
   @media (max-width: 35rem) { .hero { min-height: 31rem; padding-top: 2rem; } h1 { font-size: clamp(3.25rem, 20vw, 6.1rem); } .file-line span:last-child { display: none; } }
 </style>

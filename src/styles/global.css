@@ -301,6 +301,28 @@ img {
   text-transform: uppercase;
 }
 
+.empty-state {
+  max-width: 48rem;
+  margin: 3rem 0 6rem;
+  padding: 2rem;
+  border: 1px solid var(--ink);
+  border-left-width: 0.5rem;
+  background: var(--surface);
+}
+
+.empty-state h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.empty-state > p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .policy-page {
   display: grid;
   grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1fr);

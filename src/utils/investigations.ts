@@ -3,7 +3,7 @@ import type { CollectionEntry } from "astro:content";
 export type Investigation = CollectionEntry<"investigations">;
 
 export function isPublished(entry: Investigation) {
-  return !entry.data.draft;
+  return !entry.data.draft && !entry.data.demonstration;
 }
 
 export function newestFirst(entries: Investigation[]) {

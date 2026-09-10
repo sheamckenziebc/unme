@@ -1,10 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
 import InvestigationLayout from '../../layouts/InvestigationLayout.astro';
-import { isPublished } from '../../utils/investigations';
+import { isPublished, newestFirst } from '../../utils/investigations';
 
 export async function getStaticPaths() {
-  const investigations = (await getCollection('investigations')).filter(isPublished);
+  const investigations = newestFirst((await getCollection('investigations')).filter(isPublished));
   return investigations.map((investigation) => ({
     params: { slug: investigation.data.slug },
     props: {
