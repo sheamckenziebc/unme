@@ -5,14 +5,15 @@ const { title, status = 'confirmed' } = Astro.props;
 ---
 
 <aside class="evidence-box" aria-label={`Evidence: ${title}`}>
-  <div class="evidence-label"><span>Evidence</span><ClaimStatus status={status} /></div>
+  <div class="evidence-label"><span>Evidence note</span><ClaimStatus status={status} /></div>
   <h3>{title}</h3>
   <div class="evidence-body"><slot /></div>
 </aside>
 
 <style>
-  .evidence-box { margin: 2.4rem 0; padding: 1.25rem; border-top: 0.3rem solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--surface); font-family: var(--sans); }
-  .evidence-label { display: flex; gap: 1rem; align-items: center; justify-content: space-between; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-  h3 { margin: 1rem 0 0.6rem !important; font-size: 1.45rem !important; }
-  .evidence-body :global(p) { margin: 0; }
+  .evidence-box { position: relative; margin: 2.6rem 0; padding: 1.3rem 1.4rem 1.4rem 1.8rem; border: 1px solid var(--ink); border-left-width: 0.4rem; background: var(--surface); font-family: var(--sans); }
+  .evidence-box::after { position: absolute; top: -0.42rem; right: 1.4rem; width: 3.8rem; height: 0.75rem; content: ""; background: var(--accent); opacity: 0.78; }
+  .evidence-label { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding-bottom: 0.65rem; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  h3 { margin: 1rem 0 0.6rem !important; font-family: var(--serif) !important; font-size: 1.55rem !important; letter-spacing: -0.025em; }
+  .evidence-body :global(p) { margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.55; }
 </style>

@@ -15,24 +15,25 @@ const { data } = investigation;
 <BaseLayout title={data.seo?.title ?? data.title} description={data.seo?.description ?? data.description} image={data.seo?.image ?? data.heroImage} type="article" publishedDate={data.publishedDate} updatedDate={data.updatedDate}>
   <article>
     <header class="article-header shell">
-      <p class="eyebrow">Investigation · Demonstration</p>
+      <div class="file-reference"><span>Investigation file</span><strong>{data.slug.replaceAll('-', ' / ')}</strong><span>Public record</span></div>
+      <p class="eyebrow"><span>Demonstration</span> · Evidence review</p>
       <h1>{data.title}</h1>
       <p class="dek">{data.description}</p>
-      <div class="article-meta">
-        <div><span>Published</span><time datetime={data.publishedDate.toISOString()}>{formatDate(data.publishedDate)}</time></div>
-        {data.updatedDate && <div><span>Updated</span><time datetime={data.updatedDate.toISOString()}>{formatDate(data.updatedDate)}</time></div>}
-        <div><span>By</span><strong>{data.authors.join(', ')}</strong></div>
-        <div><span>Jurisdiction</span><a href={withBase(`/jurisdictions/${slugify(data.jurisdiction)}/`)}>{data.jurisdiction}</a></div>
-      </div>
+      <dl class="article-meta">
+        <div><dt>Published</dt><dd><time datetime={data.publishedDate.toISOString()}>{formatDate(data.publishedDate)}</time></dd></div>
+        {data.updatedDate && <div><dt>Updated</dt><dd><time datetime={data.updatedDate.toISOString()}>{formatDate(data.updatedDate)}</time></dd></div>}
+        <div><dt>Filed by</dt><dd>{data.authors.join(', ')}</dd></div>
+        <div><dt>Jurisdiction</dt><dd><a href={withBase(`/jurisdictions/${slugify(data.jurisdiction)}/`)}>{data.jurisdiction}</a></dd></div>
+      </dl>
       <ul class="topics" aria-label="Topics">{data.topics.map((topic) => <li><a href={withBase(`/topics/${slugify(topic)}/`)}>{topic}</a></li>)}</ul>
     </header>
 
     <div class="article-grid shell">
       <aside class="summary" aria-labelledby="summary-title">
-        <p class="eyebrow">At a glance</p>
-        <h2 id="summary-title">What we found</h2>
+        <div class="summary-label"><span>Executive summary</span><span>Read first</span></div>
+        <h2 id="summary-title">Findings memo</h2>
         <ul>{data.summary.map((item) => <li>{item}</li>)}</ul>
-        <div class="status-key"><span>Evidence language</span><ClaimStatus status="confirmed" /><ClaimStatus status="supported" /><ClaimStatus status="alleged" /><ClaimStatus status="unresolved" /></div>
+        <div class="status-key"><span>Evidence language key</span><ClaimStatus status="confirmed" /><ClaimStatus status="supported" /><ClaimStatus status="alleged" /><ClaimStatus status="unresolved" /></div>
       </aside>
       <div class="prose"><slot /><SourceList sources={data.sources} /></div>
     </div>
@@ -41,22 +42,31 @@ const { data } = investigation;
 </BaseLayout>
 
 <style>
-  .article-header { padding-block: 4rem 2.5rem; border-bottom: 0.15rem solid var(--ink); }
-  h1 { max-width: 19ch; margin: 0; font-size: clamp(2.7rem, 7vw, 6.6rem); letter-spacing: -0.065em; line-height: 0.92; }
-  .dek { max-width: 50rem; margin: 1.5rem 0 2rem; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.55rem); line-height: 1.45; }
-  .article-meta { display: flex; gap: 1rem 2rem; flex-wrap: wrap; }
-  .article-meta div { display: flex; min-width: 8rem; flex-direction: column; }
-  .article-meta span { color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; text-transform: uppercase; }
-  .article-meta time, .article-meta strong, .article-meta a { font-size: 0.88rem; font-weight: 700; }
+  .article-header { padding-block: 2.4rem 2.8rem; border-bottom: 0.35rem solid var(--ink); }
+  .file-reference { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; margin-bottom: 4rem; padding-block: 0.42rem; border-block: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .file-reference strong { color: var(--ink); text-align: center; }
+  .eyebrow span { padding: 0.12rem 0.28rem; background: var(--accent); color: var(--ink); }
+  h1 { max-width: 20ch; margin: 0; font-family: var(--serif); font-size: clamp(2.6rem, 6.4vw, 6rem); font-weight: 700; letter-spacing: -0.055em; line-height: 0.94; }
+  .dek { max-width: 50rem; margin: 1.5rem 0 2.2rem; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.55rem); line-height: 1.45; }
+  .article-meta { display: grid; grid-template-columns: repeat(4, minmax(8rem, 1fr)); gap: 0; margin: 0; border: 1px solid var(--rule); border-right: 0; }
+  .article-meta div { padding: 0.6rem 0.75rem; border-right: 1px solid var(--rule); }
+  .article-meta dt { color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+  .article-meta dd { margin: 0.15rem 0 0; font-size: 0.86rem; font-weight: 700; line-height: 1.35; }
   .topics { display: flex; gap: 0.6rem; margin: 1.2rem 0 0; padding: 0; flex-wrap: wrap; list-style: none; }
-  .topics a { padding: 0.2rem 0.42rem; border: 1px solid var(--ink); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
-  .article-grid { display: grid; grid-template-columns: minmax(14rem, 0.38fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-block: 3rem 6rem; }
-  .summary { position: sticky; top: 1rem; padding-top: 1rem; border-top: 0.3rem solid var(--ink); }
-  .summary h2 { margin: 0; font-size: 1.4rem; letter-spacing: -0.035em; }
-  .summary ul { margin: 1rem 0 0; padding-left: 1.2rem; }
-  .summary li { margin-bottom: 0.7rem; font-family: var(--serif); line-height: 1.45; }
+  .topics a { padding: 0.2rem 0.42rem; border: 1px solid var(--ink); background: var(--surface); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+  .topics a:hover { background: var(--accent); }
+  .article-grid { display: grid; grid-template-columns: minmax(15rem, 0.36fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-block: 3.5rem 6rem; }
+  .summary { position: sticky; top: 1rem; padding: 0 1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
+  .summary::before { display: block; width: 5rem; height: 0.75rem; margin: -0.42rem 1rem 1rem auto; content: ""; background: var(--accent); opacity: 0.8; }
+  .summary-label { display: flex; justify-content: space-between; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .summary h2 { margin: 1rem 0 0; font-family: var(--serif); font-size: 1.55rem; letter-spacing: -0.035em; }
+  .summary ul { margin: 1rem 0 0; padding: 0; list-style: none; counter-reset: finding; }
+  .summary li { display: grid; grid-template-columns: 1.5rem 1fr; gap: 0.35rem; margin-bottom: 0.8rem; font-family: var(--serif); line-height: 1.45; counter-increment: finding; }
+  .summary li::before { content: counter(finding, decimal-leading-zero); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; }
   .status-key { display: flex; gap: 0.45rem; margin-top: 1.5rem; flex-wrap: wrap; }
   .status-key > span { width: 100%; color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; text-transform: uppercase; }
   .related { padding-bottom: 6rem; }
-  @media (max-width: 49rem) { .article-grid { grid-template-columns: 1fr; } .summary { position: static; } }
+  @media (max-width: 58rem) { .article-meta { grid-template-columns: 1fr 1fr; } .article-meta div { border-bottom: 1px solid var(--rule); } }
+  @media (max-width: 49rem) { .file-reference { grid-template-columns: 1fr auto; margin-bottom: 2.5rem; } .file-reference strong { display: none; } .article-grid { grid-template-columns: 1fr; } .summary { position: static; } }
+  @media (max-width: 35rem) { .article-meta { grid-template-columns: 1fr; } }
 </style>

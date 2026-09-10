@@ -3,12 +3,14 @@ interface Props { organization: string; received?: string; }
 const { organization, received } = Astro.props;
 ---
 
-<aside class="response-box"><p class="label">Response requested</p><h3>{organization}</h3>{received && <p class="received">Received {received}</p>}<div><slot /></div></aside>
+<aside class="response-box"><header><p class="label">Institutional response</p><span>Right of reply</span></header><h3>{organization}</h3>{received && <p class="received">Response received / {received}</p>}<div><slot /></div></aside>
 
 <style>
-  .response-box { margin: 2.5rem 0; padding: 1.25rem; border: 1px solid var(--ink); font-family: var(--sans); }
-  .label { margin: 0; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-  h3 { margin: 0.5rem 0 0 !important; font-size: 1.4rem !important; }
-  .received { margin: 0; color: var(--muted); font-size: 0.8rem; }
-  div :global(p) { margin-bottom: 0; }
+  .response-box { margin: 2.8rem 0; padding: 0; border: 1px solid var(--ink); background: var(--surface); font-family: var(--sans); }
+  header { display: flex; justify-content: space-between; padding: 0.55rem 0.85rem; background: var(--ink); color: var(--surface); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .label { margin: 0; font: inherit; font-weight: 700; }
+  h3 { margin: 1rem 1.2rem 0 !important; font-family: var(--serif) !important; font-size: 1.55rem !important; }
+  .received { margin: 0.15rem 1.2rem 0; color: var(--muted); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; }
+  div { padding: 0 1.2rem 1.2rem; }
+  div :global(p) { margin-bottom: 0; color: var(--muted); }
 </style>

@@ -3,5 +3,5 @@ interface Props { date: string; }
 const { date } = Astro.props;
 ---
 
-<aside class="note"><strong>Update · {date}</strong><div><slot /></div></aside>
-<style>.note { margin: 2rem 0; padding: 1rem; border-left: 0.3rem solid #265c8f; background: #e9eef2; font-family: var(--sans); }.note strong { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; }.note div :global(p) { margin: 0.35rem 0 0; }</style>
+<aside class="note"><strong>Update note / {date}</strong><div><slot /></div></aside>
+<style>.note { position: relative; margin: 2.2rem 0; padding: 1rem 1.1rem 1rem 1.6rem; border-block: 1px solid var(--ink); background: var(--color-accent-soft); font-family: var(--sans); }.note::before { position: absolute; top: 0; bottom: 0; left: 0.45rem; width: 1px; content: ""; background: var(--ink); }.note strong { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }.note div :global(p) { margin: 0.35rem 0 0; color: var(--muted); }</style>

@@ -9,22 +9,28 @@ const { data } = investigation;
 ---
 
 <article class:list={['investigation-card', { prominent }]}>
-  <p class="eyebrow">{data.jurisdiction} · {formatDate(data.publishedDate)}</p>
-  <h2><a href={withBase(`/investigations/${data.slug}/`)}>{data.title}</a></h2>
-  <p class="description">{data.description}</p>
-  <ul aria-label="Topics">
-    {data.topics.map((topic) => <li>{topic}</li>)}
-  </ul>
+  <div class="record-meta"><p class="eyebrow">Filed {formatDate(data.publishedDate)}</p><p>{data.jurisdiction}</p></div>
+  <div class="record-copy"><h2><a href={withBase(`/investigations/${data.slug}/`)}>{data.title}</a></h2><p class="description">{data.description}</p></div>
+  <ul aria-label="Topics">{data.topics.map((topic) => <li>{topic}</li>)}</ul>
 </article>
 
 <style>
-  .investigation-card { display: flex; min-height: 24rem; padding: 1.35rem; flex-direction: column; }
-  h2 { margin: 0; font-size: clamp(1.55rem, 3vw, 2.4rem); letter-spacing: -0.045em; line-height: 1.02; }
-  h2 a { text-decoration: none; }
-  .description { margin: 1rem 0 auto; color: var(--muted); font-family: var(--serif); font-size: 1.05rem; line-height: 1.5; }
-  ul { display: flex; gap: 0.45rem 0.8rem; margin: 1.5rem 0 0; padding: 0; flex-wrap: wrap; list-style: none; }
-  li { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-  .prominent { min-height: 32rem; padding: 0; }
-  .prominent h2 { max-width: 17ch; font-size: clamp(2.8rem, 6.8vw, 6.2rem); letter-spacing: -0.065em; line-height: 0.9; }
-  .prominent .description { max-width: 40rem; margin: 1.4rem 0 0; font-size: clamp(1.12rem, 2vw, 1.45rem); }
+  .investigation-card { position: relative; display: grid; grid-template-columns: minmax(9rem, 0.26fr) minmax(0, 1fr) minmax(10rem, 0.25fr); gap: 1.5rem; min-height: 0; padding: 1.5rem 3.8rem 1.5rem 0; align-items: start; counter-increment: archive-record; }
+  .investigation-card::after { position: absolute; top: 1.5rem; right: 0; content: "R-" counter(archive-record, decimal-leading-zero); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; }
+  .investigation-card:not(.prominent):hover { background: rgb(255 241 163 / 35%); }
+  .record-meta p { margin: 0; }
+  .record-meta p:last-child { max-width: 19ch; color: var(--muted); font-size: 0.85rem; line-height: 1.35; }
+  h2 { margin: 0; font-family: var(--serif); font-size: clamp(1.55rem, 3vw, 2.35rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
+  h2 a { text-decoration-color: transparent; }
+  h2 a:hover { text-decoration-color: var(--ink); }
+  .description { max-width: 45rem; margin: 0.75rem 0 0; color: var(--muted); font-family: var(--serif); font-size: 1.02rem; line-height: 1.5; }
+  ul { display: flex; gap: 0.45rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
+  li { padding: 0.12rem 0.32rem; border: 1px solid var(--rule); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; }
+  .prominent { grid-template-columns: minmax(9rem, 0.25fr) minmax(0, 1fr); min-height: 24rem; padding: 1.8rem 0 0; counter-increment: none; }
+  .prominent::after { content: "CASE / 001"; }
+  .prominent .record-copy { padding-right: 1rem; }
+  .prominent h2 { max-width: 17ch; font-family: var(--sans); font-size: clamp(2.7rem, 6.5vw, 6.4rem); font-weight: 900; letter-spacing: -0.065em; line-height: 0.9; }
+  .prominent .description { max-width: 44rem; margin: 1.4rem 0 0; font-size: clamp(1.1rem, 2vw, 1.4rem); }
+  .prominent ul { grid-column: 2; justify-content: flex-start; }
+  @media (max-width: 46rem) { .investigation-card, .prominent { grid-template-columns: 1fr; gap: 0.8rem; padding-right: 0; padding-top: 2.5rem; } .investigation-card::after { top: 1rem; } .investigation-card ul, .prominent ul { grid-column: auto; justify-content: flex-start; } .prominent { min-height: 0; } }
 </style>

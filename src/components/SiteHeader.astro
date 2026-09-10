@@ -12,10 +12,12 @@ const navigation = [
 ---
 
 <header class="site-header">
+  <div class="filing-strip">
+    <div class="shell"><span>Independent accountability publication</span><span>Public record · Evidence first</span></div>
+  </div>
   <div class="shell header-inner">
     <a class="wordmark" href={withBase('/')} aria-label={`${siteConfig.name}, home`}>
-      <span>UR NOT</span>
-      <span>MAD ENOUGH</span>
+      <span>UR NOT</span> <mark>MAD ENOUGH</mark>
     </a>
     <nav aria-label="Primary navigation">
       <ul>
@@ -26,12 +28,15 @@ const navigation = [
 </header>
 
 <style>
-  .site-header { background: var(--ink); color: var(--surface); border-bottom: 0.35rem solid var(--accent); }
-  .header-inner { display: grid; grid-template-columns: minmax(13rem, 0.8fr) minmax(0, 1.5fr); gap: 2rem; align-items: end; padding-block: 1.2rem 1rem; }
-  .wordmark { display: inline-flex; width: fit-content; flex-direction: column; font-size: clamp(1.55rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.07em; line-height: 0.78; text-decoration: none; }
-  .wordmark span:last-child { color: #ff3340; }
+  .site-header { background: var(--surface); border-bottom: 0.22rem solid var(--ink); }
+  .filing-strip { padding: 0.32rem 0; background: var(--ink); color: var(--surface); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .filing-strip .shell { display: flex; justify-content: space-between; }
+  .header-inner { display: grid; grid-template-columns: minmax(19rem, 1fr) minmax(0, 1.2fr); gap: 2rem; align-items: center; padding-block: 1.35rem; }
+  .wordmark { display: inline-flex; gap: 0.28em; width: fit-content; align-items: baseline; font-size: clamp(1.55rem, 3.6vw, 3.15rem); font-weight: 900; letter-spacing: -0.075em; line-height: 0.82; text-decoration: none; }
+  .wordmark mark { padding: 0.04em 0.12em 0.02em; background: var(--accent); color: var(--ink); }
   nav ul { display: flex; gap: 0.2rem 1.3rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
   nav a { font-family: var(--mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
-  nav a:hover { color: #ff6a73; }
-  @media (max-width: 43rem) { .header-inner { grid-template-columns: 1fr; } nav ul { justify-content: flex-start; } }
+  nav a:hover { background: var(--accent); }
+  @media (max-width: 48rem) { .header-inner { grid-template-columns: 1fr; gap: 1rem; } nav ul { justify-content: flex-start; } }
+  @media (max-width: 35rem) { .filing-strip span:last-child { display: none; } .wordmark { display: flex; align-items: flex-start; flex-direction: column; line-height: 0.72; } nav ul { gap-inline: 0.9rem; } }
 </style>

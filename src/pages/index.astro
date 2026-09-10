@@ -15,11 +15,12 @@ const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdi
 <BaseLayout>
   <section class="hero shell">
     <div class="manifesto">
+      <div class="file-line"><span>Publication file / 001</span><span>Status / Active</span></div>
       <p class="kicker">Independent accountability reporting</p>
-      <h1><span>UR NOT</span><span>MAD ENOUGH</span></h1>
+      <h1><span>UR NOT</span><mark>MAD ENOUGH</mark></h1>
       <p>Evidence worth paying attention to.</p>
     </div>
-    <div class="principle"><strong>We do not manufacture outrage.</strong><p>We show people the evidence and let the facts earn the reaction.</p></div>
+    <div class="principle"><span>Editorial position</span><strong>We do not manufacture outrage.</strong><p>We assemble the evidence clearly enough that readers can decide for themselves how angry they should be.</p></div>
   </section>
   {featured && <section class="featured shell" aria-labelledby="featured-title"><div class="section-heading"><h2 id="featured-title">Featured investigation</h2><span>01</span></div><InvestigationCard investigation={featured} prominent /></section>}
   <section class="recent shell" aria-labelledby="recent-title"><div class="section-heading"><h2 id="recent-title">Recent investigations</h2><a href={withBase('/investigations/')}>View all →</a></div><div class="listing-grid">{recent.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></section>
@@ -31,17 +32,20 @@ const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdi
 </BaseLayout>
 
 <style>
-  .hero { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(16rem, 0.35fr); min-height: 42rem; padding-block: 4rem 3rem; border-bottom: 0.4rem solid var(--ink); }
-  .manifesto { display: flex; flex-direction: column; justify-content: space-between; }
-  h1 { display: flex; margin: 1.5rem 0; flex-direction: column; font-size: clamp(4.2rem, 12.5vw, 11.5rem); font-weight: 900; letter-spacing: -0.09em; line-height: 0.7; text-transform: uppercase; }
-  h1 span:last-child { color: var(--accent); }
-  .manifesto > p:last-child { margin: 0; font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.25rem); }
-  .principle { align-self: end; padding: 1.2rem 0 0 1.2rem; border-top: 0.15rem solid var(--ink); border-left: 0.15rem solid var(--ink); }
-  .principle strong { font-size: 1.15rem; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(16rem, 0.4fr); gap: clamp(2rem, 5vw, 5rem); min-height: 30rem; padding-block: 3rem; border-bottom: 0.45rem solid var(--ink); }
+  .manifesto { display: flex; flex-direction: column; justify-content: flex-end; }
+  .file-line { display: flex; gap: 1rem; justify-content: space-between; margin-bottom: auto; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  h1 { display: flex; margin: 1.2rem 0; flex-direction: column; align-items: flex-start; font-size: clamp(4rem, 11vw, 10.5rem); font-weight: 900; letter-spacing: -0.09em; line-height: 0.72; text-transform: uppercase; }
+  h1 mark { padding: 0.03em 0.09em 0.015em; background: var(--accent); color: var(--ink); }
+  .manifesto > p:last-child { margin: 0; font-family: var(--serif); font-size: clamp(1.35rem, 2.8vw, 2.1rem); font-style: italic; }
+  .principle { position: relative; align-self: end; padding: 1.4rem 1.1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
+  .principle::before { position: absolute; top: -0.45rem; right: 1.2rem; width: 4.5rem; height: 0.8rem; content: ""; background: var(--accent); opacity: 0.85; }
+  .principle span { display: block; margin-bottom: 1.25rem; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .principle strong { display: block; font-size: 1.12rem; line-height: 1.25; }
   .principle p { margin: 0.5rem 0 0; color: var(--muted); font-family: var(--serif); }
   .featured, .recent { padding-block: 4rem; }
   .featured { border-bottom: 1px solid var(--rule); }
-  .method { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; padding-block: 5rem; border-block: 0.2rem solid var(--ink); }
+  .method { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; padding: 5rem 0 5rem 1.5rem; border-block: 0.24rem solid var(--ink); border-left: 0.65rem solid var(--accent); }
   .method h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.2rem); letter-spacing: -0.055em; line-height: 0.95; }
   .method > div:last-child { max-width: 32rem; align-self: end; font-family: var(--serif); font-size: 1.2rem; }
   .method a { font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
@@ -49,6 +53,6 @@ const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdi
   .browse ul { margin: 0; padding: 0; border-top: 1px solid var(--rule); list-style: none; }
   .browse li { border-bottom: 1px solid var(--rule); }
   .browse li a { display: block; padding: 0.8rem 0; font-size: 1.1rem; font-weight: 700; text-decoration: none; }
-  @media (max-width: 52rem) { .hero { grid-template-columns: 1fr; min-height: 36rem; } .principle { max-width: 24rem; } .method, .browse { grid-template-columns: 1fr; gap: 2rem; } }
-  @media (max-width: 35rem) { .hero { min-height: 31rem; padding-top: 2.5rem; } h1 { font-size: clamp(3.4rem, 21vw, 6.4rem); } }
+  @media (max-width: 52rem) { .hero { grid-template-columns: 1fr; min-height: 36rem; } .principle { max-width: 28rem; } .method, .browse { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 35rem) { .hero { min-height: 31rem; padding-top: 2rem; } h1 { font-size: clamp(3.25rem, 20vw, 6.1rem); } .file-line span:last-child { display: none; } }
 </style>

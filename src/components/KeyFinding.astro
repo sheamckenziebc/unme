@@ -6,8 +6,9 @@ const { number, title } = Astro.props;
 <aside class="key-finding"><p>{number ? `Finding ${String(number).padStart(2, '0')}` : 'Key finding'}</p><h3>{title}</h3><div><slot /></div></aside>
 
 <style>
-  .key-finding { margin: 2.5rem 0; padding: 1.4rem; border-left: 0.45rem solid var(--accent); background: var(--ink); color: var(--surface); font-family: var(--sans); }
-  p { margin: 0; color: #ff7078; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-  h3 { margin: 0.65rem 0 !important; font-size: clamp(1.5rem, 4vw, 2.3rem) !important; }
-  div :global(p) { margin: 0; color: #dddddd; }
+  .key-finding { position: relative; margin: 2.8rem 0; padding: 1.4rem 1.5rem 1.5rem; border-block: 0.22rem solid var(--ink); background: var(--color-accent-soft); color: var(--ink); font-family: var(--sans); }
+  .key-finding::before { position: absolute; top: 0; bottom: 0; left: 0.45rem; width: 1px; content: ""; background: var(--ink); }
+  p { margin: 0; font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  h3 { margin: 0.65rem 0 !important; max-width: 24ch; font-family: var(--serif) !important; font-size: clamp(1.55rem, 4vw, 2.4rem) !important; letter-spacing: -0.03em; }
+  div :global(p) { margin: 0; max-width: 52ch; color: var(--muted); }
 </style>
