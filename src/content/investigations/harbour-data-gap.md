@@ -13,6 +13,7 @@ organizations:
   - "Coastal Harbour Authority (fictional)"
 featured: false
 draft: false
+demonstration: true
 summary:
   - "Fourteen months are absent from a fictional public inspection dashboard."
   - "The missing entries could reflect a publishing failure rather than missed inspections."

@@ -12,11 +12,11 @@ const { investigation, related = [] } = Astro.props;
 const { data } = investigation;
 ---
 
-<BaseLayout title={data.seo?.title ?? data.title} description={data.seo?.description ?? data.description} image={data.seo?.image ?? data.heroImage} type="article" publishedDate={data.publishedDate} updatedDate={data.updatedDate}>
+<BaseLayout title={data.seo?.title ?? data.title} description={data.seo?.description ?? data.description} image={data.seo?.image ?? data.heroImage} type="article" publishedDate={data.publishedDate} updatedDate={data.updatedDate} authors={data.authors}>
   <article>
     <header class="article-header shell">
       <div class="file-reference"><span>Investigation file</span><strong>{data.slug.replaceAll('-', ' / ')}</strong><span>Public record</span></div>
-      <p class="eyebrow"><span>Demonstration</span> · Evidence review</p>
+      <p class="eyebrow"><span>{data.demonstration ? 'Demonstration' : 'Investigation'}</span> · Evidence review</p>
       <h1>{data.title}</h1>
       <p class="dek">{data.description}</p>
       <dl class="article-meta">
@@ -55,7 +55,8 @@ const { data } = investigation;
   .topics { display: flex; gap: 0.6rem; margin: 1.2rem 0 0; padding: 0; flex-wrap: wrap; list-style: none; }
   .topics a { padding: 0.2rem 0.42rem; border: 1px solid var(--ink); background: var(--surface); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
   .topics a:hover { background: var(--accent); }
-  .article-grid { display: grid; grid-template-columns: minmax(15rem, 0.36fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-block: 3.5rem 6rem; }
+  .article-grid { display: grid; min-width: 0; grid-template-columns: minmax(15rem, 0.36fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-block: 3.5rem 6rem; }
+  .article-grid > * { min-width: 0; }
   .summary { position: sticky; top: 1rem; padding: 0 1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
   .summary::before { display: block; width: 5rem; height: 0.75rem; margin: -0.42rem 1rem 1rem auto; content: ""; background: var(--accent); opacity: 0.8; }
   .summary-label { display: flex; justify-content: space-between; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -67,6 +68,6 @@ const { data } = investigation;
   .status-key > span { width: 100%; color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; text-transform: uppercase; }
   .related { padding-bottom: 6rem; }
   @media (max-width: 58rem) { .article-meta { grid-template-columns: 1fr 1fr; } .article-meta div { border-bottom: 1px solid var(--rule); } }
-  @media (max-width: 49rem) { .file-reference { grid-template-columns: 1fr auto; margin-bottom: 2.5rem; } .file-reference strong { display: none; } .article-grid { grid-template-columns: 1fr; } .summary { position: static; } }
+  @media (max-width: 49rem) { .file-reference { grid-template-columns: minmax(0, 1fr) auto; margin-bottom: 2.5rem; } .file-reference strong { display: none; } .article-grid { grid-template-columns: minmax(0, 1fr); } .summary { position: static; } }
   @media (max-width: 35rem) { .article-meta { grid-template-columns: 1fr; } }
 </style>

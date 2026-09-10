@@ -35,8 +35,8 @@ const navigation = [
   .wordmark { display: inline-flex; gap: 0.28em; width: fit-content; align-items: baseline; font-size: clamp(1.55rem, 3.6vw, 3.15rem); font-weight: 900; letter-spacing: -0.075em; line-height: 0.82; text-decoration: none; }
   .wordmark mark { padding: 0.04em 0.12em 0.02em; background: var(--accent); color: var(--ink); }
   nav ul { display: flex; gap: 0.2rem 1.3rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
-  nav a { font-family: var(--mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
+  nav a { display: inline-flex; min-height: 2.25rem; align-items: center; font-family: var(--mono); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
   nav a:hover { background: var(--accent); }
   @media (max-width: 48rem) { .header-inner { grid-template-columns: 1fr; gap: 1rem; } nav ul { justify-content: flex-start; } }
-  @media (max-width: 35rem) { .filing-strip span:last-child { display: none; } .wordmark { display: flex; align-items: flex-start; flex-direction: column; line-height: 0.72; } nav ul { gap-inline: 0.9rem; } }
+  @media (max-width: 35rem) { .filing-strip span:last-child { display: none; } .wordmark { display: flex; align-items: flex-start; flex-direction: column; line-height: 0.72; } nav ul { gap-inline: 0.9rem; } nav a { min-height: 2.75rem; font-size: 0.875rem; } }
 </style>

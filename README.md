@@ -35,7 +35,7 @@ Required frontmatter is validated at build time:
 - `featured`, `draft`, `summary`, `sources`
 - optional `updatedDate`, hero image fields and SEO overrides
 
-Set `draft: true` to keep an investigation out of generated pages and the RSS feed. If `heroImage` is supplied, `heroImageAlt` is required. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
+Set `draft: true` to keep an investigation out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional sample reporting; real articles default to an “Investigation” label. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
 
 ## Project map
 

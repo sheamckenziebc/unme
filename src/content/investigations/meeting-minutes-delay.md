@@ -13,6 +13,7 @@ organizations:
   - "Central District Planning Board (fictional)"
 featured: false
 draft: false
+demonstration: true
 summary:
   - "Fictional board minutes were published 217 days after the meeting."
   - "The governing policy sets no publication deadline."

@@ -30,6 +30,7 @@ const investigations = defineCollection({
       organizations: z.array(z.string()).default([]),
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
+      demonstration: z.boolean().default(false),
       heroImage: z.string().optional(),
       heroImageAlt: z.string().optional(),
       summary: z.array(z.string()).min(1),
@@ -45,7 +46,14 @@ const investigations = defineCollection({
     .refine((data) => !data.heroImage || Boolean(data.heroImageAlt), {
       message: "heroImageAlt is required whenever heroImage is present.",
       path: ["heroImageAlt"],
-    }),
+    })
+    .refine(
+      (data) => !data.updatedDate || data.updatedDate >= data.publishedDate,
+      {
+        message: "updatedDate cannot be earlier than publishedDate.",
+        path: ["updatedDate"],
+      },
+    ),
 });
 
 export const collections = { investigations };

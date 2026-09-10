@@ -12,7 +12,6 @@ import { withBase } from '../utils/paths';
       <a href={withBase('/methodology/')}>Methodology</a>
       <a href={withBase('/rss.xml')}>RSS</a>
     </nav>
-    <p class="fine-print">Independent. Evidence-first. No tracking.</p>
   </div>
 </footer>
 
@@ -24,6 +23,5 @@ import { withBase } from '../utils/paths';
   mark { padding-inline: 0.16rem; background: var(--accent); color: var(--ink); }
   p { margin: 0.25rem 0 0; color: #c9c9c9; }
   nav { display: flex; gap: 1rem; align-items: flex-start; font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; }
-  .fine-print { grid-column: 1 / -1; padding-top: 1rem; border-top: 1px solid #3c3c3c; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; }
-  @media (max-width: 36rem) { .footer-grid { grid-template-columns: 1fr; } .fine-print { grid-column: auto; } }
+  @media (max-width: 36rem) { .footer-grid { grid-template-columns: 1fr; } }
 </style>
