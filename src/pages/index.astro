@@ -37,7 +37,7 @@ const publishedCount = investigations.length;
   .manifesto { display: flex; flex-direction: column; justify-content: flex-end; }
   .file-line { display: flex; gap: 1rem; justify-content: space-between; margin-bottom: auto; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
   h1 { display: flex; margin: 1.2rem 0; flex-direction: column; align-items: flex-start; font-size: clamp(4rem, 11vw, 10.5rem); font-weight: 900; letter-spacing: -0.09em; line-height: 0.72; text-transform: uppercase; }
-  h1 mark { padding: 0.03em 0.09em 0.015em; background: var(--accent); color: var(--ink); }
+  h1 mark { padding: 0.03em 0.09em 0.015em; background: var(--accent); color: var(--ink); white-space: nowrap; }
   .manifesto > p:last-child { margin: 0; font-family: var(--serif); font-size: clamp(1.35rem, 2.8vw, 2.1rem); font-style: italic; }
   .principle { position: relative; align-self: end; padding: 1.4rem 1.1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
   .principle::before { position: absolute; top: -0.45rem; right: 1.2rem; width: 4.5rem; height: 0.8rem; content: ""; background: var(--accent); opacity: 0.85; }
@@ -53,7 +53,7 @@ const publishedCount = investigations.length;
   .launch-copy p:nth-child(2) { max-width: 48rem; color: var(--muted); font-family: var(--serif); font-size: 1.15rem; }
   .launch-copy a { grid-column: 2; width: fit-content; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
   .method { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; padding: 5rem 0 5rem 1.5rem; border-block: 0.24rem solid var(--ink); border-left: 0.65rem solid var(--accent); }
-  .method h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.2rem); letter-spacing: -0.055em; line-height: 0.95; }
+  .method h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.2rem); letter-spacing: -0.055em; line-height: 0.95; overflow-wrap: break-word; text-wrap: balance; }
   .method > div:last-child { max-width: 32rem; align-self: end; font-family: var(--serif); font-size: 1.2rem; }
   .method a { font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
   .browse { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-block: 4rem 6rem; }
@@ -61,5 +61,5 @@ const publishedCount = investigations.length;
   .browse li { border-bottom: 1px solid var(--rule); }
   .browse li a { display: block; padding: 0.8rem 0; font-size: 1.1rem; font-weight: 700; text-decoration: none; }
   @media (max-width: 52rem) { .hero { grid-template-columns: 1fr; min-height: 36rem; } .principle { max-width: 28rem; } .method, .browse, .launch-copy { grid-template-columns: 1fr; gap: 2rem; } .launch-copy a { grid-column: auto; } }
-  @media (max-width: 35rem) { .hero { min-height: 31rem; padding-top: 2rem; } h1 { font-size: clamp(3.25rem, 20vw, 6.1rem); } .file-line span:last-child { display: none; } }
+  @media (max-width: 35rem) { .hero { min-height: 31rem; padding-top: 2rem; } h1 { font-size: clamp(3.25rem, 17vw, 6.1rem); } .file-line span:last-child { display: none; } }
 </style>

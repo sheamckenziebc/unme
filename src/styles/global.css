@@ -123,12 +123,13 @@ img {
 
 .page-header h1 {
   margin: 0;
-  max-width: 12ch;
+  max-width: 100%;
   font-size: clamp(2.8rem, 8vw, 6.8rem);
   letter-spacing: -0.065em;
   line-height: 0.86;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .page-header p {
@@ -137,11 +138,13 @@ img {
   color: var(--muted);
   font-family: var(--serif);
   font-size: 1.15rem;
+  text-wrap: pretty;
 }
 
 .section-heading {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   margin: 0 0 1.25rem;
@@ -150,9 +153,12 @@ img {
 }
 
 .section-heading h2 {
+  min-width: 0;
   margin: 0;
   font-size: 1rem;
   letter-spacing: 0.06em;
+  overflow-wrap: break-word;
+  text-wrap: balance;
   text-transform: uppercase;
 }
 
@@ -186,6 +192,8 @@ img {
   margin-top: 2.4em;
   font-family: var(--sans);
   line-height: 1.08;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .prose h2 {
@@ -292,6 +300,8 @@ img {
 .index-list strong {
   font-size: 1.35rem;
   letter-spacing: -0.025em;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .index-list span {
@@ -316,6 +326,8 @@ img {
   font-size: clamp(1.8rem, 4vw, 3rem);
   letter-spacing: -0.04em;
   line-height: 1.05;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .empty-state > p:last-child {
@@ -341,7 +353,8 @@ img {
   letter-spacing: -0.06em;
   line-height: 0.9;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 @media (max-width: 52rem) {
