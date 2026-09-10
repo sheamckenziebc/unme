@@ -10,7 +10,7 @@ This is the publication-safe case file for the investigation. It contains no con
 
 **Editor/reporting owner:** UNME Editorial Desk
 
-**Case-file status:** Ready
+**Case-file status:** Published
 
 **Opened:** September 10, 2026
 
@@ -220,7 +220,7 @@ Status: **Final hostile read completed September 10, 2026 at 4:00 p.m. America/W
 
 ## Final readiness decision and handoff
 
-**Decision:** Ready with documented exceptions
+**Decision:** Published
 
 **Current thesis in one sentence:** The Auditor General found that Yukon could not demonstrate market research, competition or value for money in 27 of 53 representative contract files; the government's delivery and no-fraud evidence materially narrows that finding, while higher 2026 direct-award limits make auditable proof of market testing more consequential.
 
@@ -244,15 +244,15 @@ Complete only after explicit authorization and actual deployment.
 
 **Article changed to `draft: false` by:** UNME Editorial Desk, September 10, 2026, America/Whitehorse, after the case-file readiness decision and explicit publication authorization.
 
-**Commit SHA:** Pending.
+**Commit SHA:** `6c51061def8a6356928432d5b7356ce54ca67ff5`
 
-**Deployment run:** Pending.
+**Deployment run:** [GitHub Pages run 34540761434](https://github.com/sheamckenziebc/unme/actions/runs/34540761434), completed successfully September 10, 2026 at 4:08 p.m. America/Whitehorse. Both the build and deploy jobs succeeded.
 
-**Live URL and first successful check time:** Pending.
+**Live URL and first successful check time:** [https://urnotmadenough.ca/investigations/yukon-procurement-value-for-money/](https://urnotmadenough.ca/investigations/yukon-procurement-value-for-money/), HTTP 200 and reviewed September 10, 2026 at 4:09 p.m. America/Whitehorse.
 
-**Canonical, index, RSS and sitemap checks:** Pending.
+**Canonical, index, RSS and sitemap checks:** Passed. The article's canonical URL is exact; the homepage and investigations index link to it; RSS and `sitemap-0.xml` contain it; `sitemap-index.xml` links the child sitemap; and `robots.txt` allows crawling and links the sitemap index.
 
-**Post-deploy link check:** Pending.
+**Post-deploy link check:** All 20 unique evidence and civic-action destinations were checked September 10, 2026. Two returned HTTP 200 directly to the automated client. The official Canada, Yukon and Yukon Legislative Assembly endpoints that rejected or timed out for that client were independently retrieved during the browser/web evidence review. No broken destination was identified. Live browser QA at 320 CSS pixels found no document-level horizontal overflow; both data tables scroll within their containers, and all required editorial sections are present.
 
 ## Corrections and updates
 
