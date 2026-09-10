@@ -60,6 +60,7 @@ const publishedCount = investigations.length;
   .browse ul { margin: 0; padding: 0; border-top: 1px solid var(--rule); list-style: none; }
   .browse li { border-bottom: 1px solid var(--rule); }
   .browse li a { display: block; padding: 0.8rem 0; font-size: 1.1rem; font-weight: 700; text-decoration: none; }
-  @media (max-width: 52rem) { .hero { grid-template-columns: 1fr; min-height: 36rem; } .principle { max-width: 28rem; } .method, .browse, .launch-copy { grid-template-columns: 1fr; gap: 2rem; } .launch-copy a { grid-column: auto; } }
-  @media (max-width: 35rem) { .hero { min-height: 31rem; padding-top: 2rem; } h1 { font-size: clamp(3.25rem, 17vw, 6.1rem); } .file-line span:last-child { display: none; } }
+  @media (max-width: 72rem) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } .principle { width: min(100%, 28rem); } }
+  @media (max-width: 52rem) { .method, .browse, .launch-copy { grid-template-columns: 1fr; gap: 2rem; } .launch-copy a { grid-column: auto; } }
+  @media (max-width: 35rem) { .hero { padding-top: 2rem; } h1 { font-size: clamp(2.5rem, 13vw, 6.1rem); } .file-line span:last-child { display: none; } }
 </style>

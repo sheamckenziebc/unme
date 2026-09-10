@@ -373,7 +373,7 @@ img {
     padding-top: 3rem;
   }
   .page-header h1 {
-    font-size: clamp(2.2rem, 14vw, 4.2rem);
+    font-size: clamp(2.2rem, 10vw, 4.2rem);
   }
   .policy-page h1 {
     font-size: clamp(2rem, 11vw, 3rem);
