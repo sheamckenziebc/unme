@@ -8,7 +8,7 @@
 
 **Editor/reporting owner:** UNME Editorial Desk
 
-**Case-file status:** Ready for publication and deployment
+**Case-file status:** Published
 
 **Opened:** September 10, 2026
 
@@ -254,7 +254,7 @@ The editor approved two related exceptions after narrowing the article to a date
 
 ## Final readiness decision and handoff
 
-**Decision:** Ready for publication and deployment
+**Decision:** Published
 
 **Current thesis in one sentence:** A Yukon adjudicator found that Environment had not justified withholding specified Eagle Gold-response records, but the department rejected part of the disclosure recommendation through ATIPPA's statutory process, leaving enforcement to a complainant-led court review that public sources do not confirm occurred.
 
@@ -278,15 +278,15 @@ Complete only after explicit authorization and actual deployment.
 
 **Article changed to `draft: false` by:** UNME Editorial Desk, September 10, 2026, America/Whitehorse, after explicit publication approval.
 
-**Commit SHA:** Pending publication commit.
+**Commit SHA:** `b5f4cdc4ef9eaf977373a498ab14de9abf9f698f`
 
-**Deployment run:** Pending GitHub Pages deployment.
+**Deployment run:** [GitHub Pages run 34516193229](https://github.com/sheamckenziebc/unme/actions/runs/34516193229), completed successfully September 10, 2026 at 11:45 a.m. America/Whitehorse.
 
-**Live URL and first successful check time:** Pending deployment.
+**Live URL and first successful check time:** [https://urnotmadenough.ca/investigations/eagle-gold-environment-records/](https://urnotmadenough.ca/investigations/eagle-gold-environment-records/), HTTP 200 and reviewed September 10, 2026 at 11:46 a.m. America/Whitehorse.
 
-**Canonical, index, RSS and sitemap checks:** Pending deployment.
+**Canonical, index, RSS and sitemap checks:** Passed. The article's canonical URL is exact; the homepage and investigations index link to it; the RSS feed and `sitemap-0.xml` contain it; and the sitemap is discoverable through `sitemap-index.xml` and `robots.txt`.
 
-**Post-deploy link check:** Pending deployment.
+**Post-deploy link check:** All 18 unique external evidence and civic-action URLs were checked September 10, 2026. Ten returned HTTP 200 directly. Eight official Yukon or Yukon Legislative Assembly endpoints rejected the automated HTTP client with 403 responses but resolved successfully through an independent browser/web retrieval on the same date. No broken destination was identified.
 
 ## Corrections and updates
 
