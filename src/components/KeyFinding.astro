@@ -1,0 +1,13 @@
+---
+interface Props { number?: number; title: string; }
+const { number, title } = Astro.props;
+---
+
+<aside class="key-finding"><p>{number ? `Finding ${String(number).padStart(2, '0')}` : 'Key finding'}</p><h3>{title}</h3><div><slot /></div></aside>
+
+<style>
+  .key-finding { margin: 2.5rem 0; padding: 1.4rem; border-left: 0.45rem solid var(--accent); background: var(--ink); color: var(--surface); font-family: var(--sans); }
+  p { margin: 0; color: #ff7078; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  h3 { margin: 0.65rem 0 !important; font-size: clamp(1.5rem, 4vw, 2.3rem) !important; }
+  div :global(p) { margin: 0; color: #dddddd; }
+</style>

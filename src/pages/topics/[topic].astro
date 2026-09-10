@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import InvestigationCard from '../../components/InvestigationCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isPublished, newestFirst } from '../../utils/investigations';
+import { slugify } from '../../utils/paths';
+export async function getStaticPaths() { const investigations = (await getCollection('investigations')).filter(isPublished); const topics = [...new Set(investigations.flatMap((item) => item.data.topics))]; return topics.map((topic) => ({ params: { topic: slugify(topic) }, props: { topic, investigations: newestFirst(investigations.filter((item) => item.data.topics.includes(topic))) } })); }
+const { topic, investigations } = Astro.props;
+---
+
+<BaseLayout title={topic}><div class="shell"><header class="page-header"><div><p class="eyebrow">Topic</p><h1>{topic}</h1></div><p>{investigations.length} published {investigations.length === 1 ? 'investigation' : 'investigations'}.</p></header><div class="listing-grid listing">{investigations.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></div></BaseLayout>
+<style>.listing { margin: 2rem 0 6rem; }</style>

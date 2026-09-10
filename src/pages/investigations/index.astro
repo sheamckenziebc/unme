@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import InvestigationCard from '../../components/InvestigationCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isPublished, newestFirst } from '../../utils/investigations';
+const investigations = newestFirst((await getCollection('investigations')).filter(isPublished));
+---
+
+<BaseLayout title="Investigations" description="All UR NOT MAD ENOUGH investigations, newest first."><div class="shell"><header class="page-header"><h1>Investigations</h1><p>Document-led reporting about consequential facts that deserve more scrutiny.</p></header><div class="listing-grid listing">{investigations.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></div></BaseLayout>
+<style>.listing { margin: 2rem 0 6rem; }</style>

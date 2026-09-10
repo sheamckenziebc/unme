@@ -1,0 +1,37 @@
+---
+import { siteConfig } from '../config/site';
+import { withBase } from '../utils/paths';
+
+const navigation = [
+  { href: '/investigations/', label: 'Investigations' },
+  { href: '/topics/', label: 'Topics' },
+  { href: '/jurisdictions/', label: 'Jurisdictions' },
+  { href: '/methodology/', label: 'Methodology' },
+  { href: '/about/', label: 'About' },
+];
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="wordmark" href={withBase('/')} aria-label={`${siteConfig.name}, home`}>
+      <span>UR NOT</span>
+      <span>MAD ENOUGH</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul>
+        {navigation.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { background: var(--ink); color: var(--surface); border-bottom: 0.35rem solid var(--accent); }
+  .header-inner { display: grid; grid-template-columns: minmax(13rem, 0.8fr) minmax(0, 1.5fr); gap: 2rem; align-items: end; padding-block: 1.2rem 1rem; }
+  .wordmark { display: inline-flex; width: fit-content; flex-direction: column; font-size: clamp(1.55rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.07em; line-height: 0.78; text-decoration: none; }
+  .wordmark span:last-child { color: #ff3340; }
+  nav ul { display: flex; gap: 0.2rem 1.3rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
+  nav a { font-family: var(--mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
+  nav a:hover { color: #ff6a73; }
+  @media (max-width: 43rem) { .header-inner { grid-template-columns: 1fr; } nav ul { justify-content: flex-start; } }
+</style>

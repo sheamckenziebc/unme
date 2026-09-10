@@ -1,0 +1,26 @@
+---
+import { siteConfig } from '../config/site';
+import { withBase } from '../utils/paths';
+---
+
+<footer>
+  <div class="shell footer-grid">
+    <div><strong>{siteConfig.name}</strong><p>{siteConfig.tagline}</p></div>
+    <nav aria-label="Footer navigation">
+      <a href={withBase('/corrections/')}>Corrections</a>
+      <a href={withBase('/methodology/')}>Methodology</a>
+      <a href={withBase('/rss.xml')}>RSS</a>
+    </nav>
+    <p class="fine-print">Independent. Evidence-first. No tracking.</p>
+  </div>
+</footer>
+
+<style>
+  footer { padding: 2.5rem 0; background: var(--ink); color: var(--surface); }
+  .footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 2rem; }
+  strong { font-size: 1.15rem; letter-spacing: -0.03em; }
+  p { margin: 0.25rem 0 0; color: #c9c9c9; }
+  nav { display: flex; gap: 1rem; align-items: flex-start; font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; }
+  .fine-print { grid-column: 1 / -1; padding-top: 1rem; border-top: 1px solid #3c3c3c; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; }
+  @media (max-width: 36rem) { .footer-grid { grid-template-columns: 1fr; } .fine-print { grid-column: auto; } }
+</style>

@@ -1,0 +1,30 @@
+---
+import type { Investigation } from '../utils/investigations';
+import { formatDate } from '../utils/investigations';
+import { withBase } from '../utils/paths';
+
+interface Props { investigation: Investigation; prominent?: boolean; }
+const { investigation, prominent = false } = Astro.props;
+const { data } = investigation;
+---
+
+<article class:list={['investigation-card', { prominent }]}>
+  <p class="eyebrow">{data.jurisdiction} · {formatDate(data.publishedDate)}</p>
+  <h2><a href={withBase(`/investigations/${data.slug}/`)}>{data.title}</a></h2>
+  <p class="description">{data.description}</p>
+  <ul aria-label="Topics">
+    {data.topics.map((topic) => <li>{topic}</li>)}
+  </ul>
+</article>
+
+<style>
+  .investigation-card { display: flex; min-height: 24rem; padding: 1.35rem; flex-direction: column; }
+  h2 { margin: 0; font-size: clamp(1.55rem, 3vw, 2.4rem); letter-spacing: -0.045em; line-height: 1.02; }
+  h2 a { text-decoration: none; }
+  .description { margin: 1rem 0 auto; color: var(--muted); font-family: var(--serif); font-size: 1.05rem; line-height: 1.5; }
+  ul { display: flex; gap: 0.45rem 0.8rem; margin: 1.5rem 0 0; padding: 0; flex-wrap: wrap; list-style: none; }
+  li { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+  .prominent { min-height: 32rem; padding: 0; }
+  .prominent h2 { max-width: 17ch; font-size: clamp(2.8rem, 6.8vw, 6.2rem); letter-spacing: -0.065em; line-height: 0.9; }
+  .prominent .description { max-width: 40rem; margin: 1.4rem 0 0; font-size: clamp(1.12rem, 2vw, 1.45rem); }
+</style>

@@ -1,0 +1,62 @@
+---
+import type { Investigation } from '../utils/investigations';
+import BaseLayout from './BaseLayout.astro';
+import ClaimStatus from '../components/ClaimStatus.astro';
+import InvestigationCard from '../components/InvestigationCard.astro';
+import SourceList from '../components/SourceList.astro';
+import { formatDate } from '../utils/investigations';
+import { slugify, withBase } from '../utils/paths';
+
+interface Props { investigation: Investigation; related?: Investigation[]; }
+const { investigation, related = [] } = Astro.props;
+const { data } = investigation;
+---
+
+<BaseLayout title={data.seo?.title ?? data.title} description={data.seo?.description ?? data.description} image={data.seo?.image ?? data.heroImage} type="article" publishedDate={data.publishedDate} updatedDate={data.updatedDate}>
+  <article>
+    <header class="article-header shell">
+      <p class="eyebrow">Investigation · Demonstration</p>
+      <h1>{data.title}</h1>
+      <p class="dek">{data.description}</p>
+      <div class="article-meta">
+        <div><span>Published</span><time datetime={data.publishedDate.toISOString()}>{formatDate(data.publishedDate)}</time></div>
+        {data.updatedDate && <div><span>Updated</span><time datetime={data.updatedDate.toISOString()}>{formatDate(data.updatedDate)}</time></div>}
+        <div><span>By</span><strong>{data.authors.join(', ')}</strong></div>
+        <div><span>Jurisdiction</span><a href={withBase(`/jurisdictions/${slugify(data.jurisdiction)}/`)}>{data.jurisdiction}</a></div>
+      </div>
+      <ul class="topics" aria-label="Topics">{data.topics.map((topic) => <li><a href={withBase(`/topics/${slugify(topic)}/`)}>{topic}</a></li>)}</ul>
+    </header>
+
+    <div class="article-grid shell">
+      <aside class="summary" aria-labelledby="summary-title">
+        <p class="eyebrow">At a glance</p>
+        <h2 id="summary-title">What we found</h2>
+        <ul>{data.summary.map((item) => <li>{item}</li>)}</ul>
+        <div class="status-key"><span>Evidence language</span><ClaimStatus status="confirmed" /><ClaimStatus status="supported" /><ClaimStatus status="alleged" /><ClaimStatus status="unresolved" /></div>
+      </aside>
+      <div class="prose"><slot /><SourceList sources={data.sources} /></div>
+    </div>
+    {related.length > 0 && <section class="related shell" aria-labelledby="related-title"><div class="section-heading"><h2 id="related-title">Related investigations</h2></div><div class="listing-grid">{related.map((item) => <InvestigationCard investigation={item} />)}</div></section>}
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header { padding-block: 4rem 2.5rem; border-bottom: 0.15rem solid var(--ink); }
+  h1 { max-width: 19ch; margin: 0; font-size: clamp(2.7rem, 7vw, 6.6rem); letter-spacing: -0.065em; line-height: 0.92; }
+  .dek { max-width: 50rem; margin: 1.5rem 0 2rem; color: var(--muted); font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.55rem); line-height: 1.45; }
+  .article-meta { display: flex; gap: 1rem 2rem; flex-wrap: wrap; }
+  .article-meta div { display: flex; min-width: 8rem; flex-direction: column; }
+  .article-meta span { color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; text-transform: uppercase; }
+  .article-meta time, .article-meta strong, .article-meta a { font-size: 0.88rem; font-weight: 700; }
+  .topics { display: flex; gap: 0.6rem; margin: 1.2rem 0 0; padding: 0; flex-wrap: wrap; list-style: none; }
+  .topics a { padding: 0.2rem 0.42rem; border: 1px solid var(--ink); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+  .article-grid { display: grid; grid-template-columns: minmax(14rem, 0.38fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-block: 3rem 6rem; }
+  .summary { position: sticky; top: 1rem; padding-top: 1rem; border-top: 0.3rem solid var(--ink); }
+  .summary h2 { margin: 0; font-size: 1.4rem; letter-spacing: -0.035em; }
+  .summary ul { margin: 1rem 0 0; padding-left: 1.2rem; }
+  .summary li { margin-bottom: 0.7rem; font-family: var(--serif); line-height: 1.45; }
+  .status-key { display: flex; gap: 0.45rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .status-key > span { width: 100%; color: var(--muted); font-family: var(--mono); font-size: 0.67rem; font-weight: 700; text-transform: uppercase; }
+  .related { padding-bottom: 6rem; }
+  @media (max-width: 49rem) { .article-grid { grid-template-columns: 1fr; } .summary { position: static; } }
+</style>

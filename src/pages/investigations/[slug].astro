@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import InvestigationLayout from '../../layouts/InvestigationLayout.astro';
+import { isPublished } from '../../utils/investigations';
+
+export async function getStaticPaths() {
+  const investigations = (await getCollection('investigations')).filter(isPublished);
+  return investigations.map((investigation) => ({
+    params: { slug: investigation.data.slug },
+    props: {
+      investigation,
+      related: investigations
+        .filter((item) => item.id !== investigation.id && item.data.topics.some((topic) => investigation.data.topics.includes(topic)))
+        .slice(0, 3),
+    },
+  }));
+}
+
+const { investigation, related } = Astro.props;
+const { Content } = await render(investigation);
+---
+
+<InvestigationLayout investigation={investigation} related={related}><Content /></InvestigationLayout>

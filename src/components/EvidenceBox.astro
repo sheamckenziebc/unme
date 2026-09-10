@@ -1,0 +1,18 @@
+---
+import ClaimStatus from './ClaimStatus.astro';
+interface Props { title: string; status?: 'confirmed' | 'supported' | 'alleged' | 'unresolved'; }
+const { title, status = 'confirmed' } = Astro.props;
+---
+
+<aside class="evidence-box" aria-label={`Evidence: ${title}`}>
+  <div class="evidence-label"><span>Evidence</span><ClaimStatus status={status} /></div>
+  <h3>{title}</h3>
+  <div class="evidence-body"><slot /></div>
+</aside>
+
+<style>
+  .evidence-box { margin: 2.4rem 0; padding: 1.25rem; border-top: 0.3rem solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--surface); font-family: var(--sans); }
+  .evidence-label { display: flex; gap: 1rem; align-items: center; justify-content: space-between; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  h3 { margin: 1rem 0 0.6rem !important; font-size: 1.45rem !important; }
+  .evidence-body :global(p) { margin: 0; }
+</style>

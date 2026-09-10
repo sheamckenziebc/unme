@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/paths';
+---
+
+<BaseLayout title="Page not found"><div class="shell not-found"><p class="eyebrow">404 · Unresolved</p><h1>This page is not in the record.</h1><p>The address may have changed, or the page may never have existed.</p><a href={withBase('/')}>Return to the homepage →</a></div></BaseLayout>
+<style>.not-found { min-height: 65vh; padding-block: 6rem; }.not-found h1 { max-width: 11ch; margin: 0; font-size: clamp(3rem, 9vw, 7rem); letter-spacing: -0.065em; line-height: 0.9; }.not-found > p:not(.eyebrow) { max-width: 32rem; margin-block: 1.5rem; color: var(--muted); font-family: var(--serif); font-size: 1.2rem; }.not-found a { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }</style>

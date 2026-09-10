@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import InvestigationCard from '../../components/InvestigationCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isPublished, newestFirst } from '../../utils/investigations';
+import { slugify } from '../../utils/paths';
+export async function getStaticPaths() { const investigations = (await getCollection('investigations')).filter(isPublished); const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdiction))]; return jurisdictions.map((jurisdiction) => ({ params: { jurisdiction: slugify(jurisdiction) }, props: { jurisdiction, investigations: newestFirst(investigations.filter((item) => item.data.jurisdiction === jurisdiction)) } })); }
+const { jurisdiction, investigations } = Astro.props;
+---
+
+<BaseLayout title={jurisdiction}><div class="shell"><header class="page-header"><div><p class="eyebrow">Jurisdiction</p><h1>{jurisdiction}</h1></div><p>{investigations.length} published {investigations.length === 1 ? 'investigation' : 'investigations'}.</p></header><div class="listing-grid listing">{investigations.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></div></BaseLayout>
+<style>.listing { margin: 2rem 0 6rem; }</style>

@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isPublished } from '../../utils/investigations';
+import { slugify, withBase } from '../../utils/paths';
+const investigations = (await getCollection('investigations')).filter(isPublished);
+const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdiction))].sort().map((jurisdiction) => ({ jurisdiction, count: investigations.filter((item) => item.data.jurisdiction === jurisdiction).length }));
+---
+
+<BaseLayout title="Jurisdictions"><div class="shell"><header class="page-header"><h1>Jurisdictions</h1><p>Accountability has no preferred geography. Browse reporting by the place or authority involved.</p></header><ul class="index-list">{jurisdictions.map(({ jurisdiction, count }) => <li><a href={withBase(`/jurisdictions/${slugify(jurisdiction)}/`)}><strong>{jurisdiction}</strong><span>{count} {count === 1 ? 'investigation' : 'investigations'} →</span></a></li>)}</ul></div></BaseLayout>
