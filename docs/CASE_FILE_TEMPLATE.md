@@ -10,6 +10,10 @@ This tracked dossier is public by default. Use opaque source IDs and publication
 
 **Article slug:**
 
+**Planned format:** Dossier / Brief
+
+**Why this format fits the evidence:**
+
 **Editor/reporting owner:**
 
 **Case-file status:** Intake / Reporting / Right of reply / Final review / Ready / Published / Updating
@@ -184,6 +188,8 @@ Do not erase an unmet gate. Record an exception here and point to it from the re
 
 **Final check results:**
 
+**Initial Ledger status, public summary and checked date:**
+
 ## Publication and deployment record
 
 Complete only after explicit authorization and actual deployment.
@@ -205,3 +211,11 @@ Complete only after explicit authorization and actual deployment.
 | Date | New evidence or reported error | Verification | Correction / update made | Editor | Deployment |
 | ---- | ------------------------------ | ------------ | ------------------------ | ------ | ---------- |
 |      |                                |              |                          |        |            |
+
+## Ledger history
+
+Record outcome changes even when they do not require a full article update. Each public status must be supported by a current authoritative check and expressed in plain language.
+
+| Checked date | Status | Public summary | Source and locator | Article update needed | Editor |
+| ------------ | ------ | -------------- | ------------------ | --------------------- | ------ |
+|              |        |                |                    |                       |        |

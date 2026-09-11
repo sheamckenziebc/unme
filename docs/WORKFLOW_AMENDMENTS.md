@@ -2,6 +2,22 @@
 
 This log records material changes to the production investigation workflow. It supplements `docs/EDITORIAL_WORKFLOW.md`; the current workflow remains the operative instruction.
 
+## 2026-09-10 — Dossier, Brief and Ledger architecture
+
+**Requested by:** Publisher
+
+**Decision:** UNME publishes two reporting formats under one evidentiary standard and maintains an outcome Ledger for every published file.
+
+**Implemented requirements:**
+
+- The Dossier is the deep form: original primary-source reporting, chronology, competing explanations, response, aftermath and unresolved questions.
+- The Brief is a tightly scoped finding whose material truth is already substantially established. It receives the same verification, fairness, response and publication gates as a Dossier.
+- A Brief may become a Dossier when new records, sources or public response materially expand the reporting question.
+- Every published production file carries a plain-language Ledger status, summary and checked date. Later authoritative developments are recorded without manufacturing a new story.
+- Candidate selection considers evidence strength, comprehensibility, abuse or betrayal of public trust, human consequences and undercoverage. No calendar obligation overrides the publication threshold; UNME is allowed to publish nothing.
+
+**Implementation:** The content schema now validates `format` and `ledger`; the site exposes dedicated Dossier, Brief and Ledger desks; the case file and reporting brief record format choice and outcome status.
+
 ## 2026-09-10 — Fast findings and civic action
 
 **Requested by:** Publisher

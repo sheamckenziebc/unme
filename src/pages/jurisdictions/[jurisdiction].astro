@@ -8,5 +8,5 @@ export async function getStaticPaths() { const investigations = (await getCollec
 const { jurisdiction, investigations } = Astro.props;
 ---
 
-<BaseLayout title={jurisdiction}><div class="shell"><header class="page-header"><div><p class="eyebrow">Jurisdiction</p><h1>{jurisdiction}</h1></div><p>{investigations.length} published {investigations.length === 1 ? 'investigation' : 'investigations'}.</p></header><div class="listing-grid listing">{investigations.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></div></BaseLayout>
+<BaseLayout title={jurisdiction}><div class="shell"><header class="page-header"><div><p class="eyebrow">Jurisdiction</p><h1>{jurisdiction}</h1></div><p>{investigations.length} published {investigations.length === 1 ? 'file' : 'files'}.</p></header><div class="listing-grid listing">{investigations.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></div></BaseLayout>
 <style>.listing { margin: 2rem 0 6rem; }</style>

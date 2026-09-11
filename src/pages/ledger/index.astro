@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LedgerEntry from '../../components/LedgerEntry.astro';
+import { isPublished, ledgerNewestFirst } from '../../utils/investigations';
+
+const investigations = ledgerNewestFirst((await getCollection('investigations')).filter(isPublished));
+---
+
+<BaseLayout title="The Ledger" description="What happened after UR NOT MAD ENOUGH published—the live accountability record.">
+  <div class="shell">
+    <header class="page-header product-header"><div><p class="eyebrow">The accountability record</p><h1>Ledger</h1></div><p>Publication is not the end of the story. The Ledger tracks verified consequences, official action and questions that remain unresolved.</p></header>
+    <div class="ledger-intro"><p><strong>{String(investigations.length).padStart(2, '0')}</strong> public {investigations.length === 1 ? 'file' : 'files'} tracked</p><p>Status language is explicit. A yellow label identifies the current state; it does not establish that the outcome is positive.</p></div>
+    <section class="ledger-list" aria-label="Tracked investigations">{investigations.map((investigation) => <LedgerEntry investigation={investigation} />)}</section>
+  </div>
+</BaseLayout>
+
+<style>
+  .ledger-intro { display: grid; grid-template-columns: minmax(12rem, 0.34fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); margin-top: 2rem; padding: 1.2rem 0; border-block: 0.2rem solid var(--ink); }
+  .ledger-intro p { margin: 0; }
+  .ledger-intro p:first-child { font-family: var(--mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ledger-intro strong { margin-right: 0.45rem; font-size: 1.2rem; }
+  .ledger-intro p:last-child { max-width: 45rem; color: var(--muted); font-family: var(--serif); }
+  .ledger-list { margin-bottom: 6rem; }
+  @media (max-width: 46rem) { .ledger-intro { grid-template-columns: 1fr; gap: 0.65rem; } }
+</style>

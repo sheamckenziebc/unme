@@ -1,0 +1,42 @@
+---
+import type { Investigation } from '../utils/investigations';
+import { formatDate, formatLabel } from '../utils/investigations';
+import { withBase } from '../utils/paths';
+
+interface Props { investigation: Investigation; }
+const { investigation } = Astro.props;
+const { data } = investigation;
+if (!data.ledger) throw new Error(`Ledger data is required for ${data.slug}`);
+---
+
+<article class="ledger-entry">
+  <div class="ledger-state">
+    <span>Status</span>
+    <strong>{data.ledger.label}</strong>
+    <time datetime={data.ledger.checkedDate.toISOString()}>Checked {formatDate(data.ledger.checkedDate)}</time>
+  </div>
+  <div class="ledger-copy">
+    <p>{formatLabel(data.format)} · {data.jurisdiction}</p>
+    <h2><a href={withBase(`/investigations/${data.slug}/`)}>{data.title}</a></h2>
+    <p>{data.ledger.summary}</p>
+  </div>
+  <a class="open" href={withBase(`/investigations/${data.slug}/`)}>Open file →</a>
+</article>
+
+<style>
+  .ledger-entry { display: grid; grid-template-columns: minmax(12rem, 0.34fr) minmax(0, 1fr) auto; gap: clamp(1.5rem, 4vw, 4rem); align-items: start; padding: 1.8rem 0; border-bottom: 1px solid var(--rule); }
+  .ledger-entry > * { min-width: 0; }
+  .ledger-state { display: flex; flex-direction: column; align-items: flex-start; }
+  .ledger-state span, .ledger-copy > p:first-child, time, .open { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ledger-state span { color: var(--muted); }
+  .ledger-state strong { margin-top: 0.45rem; padding: 0.22rem 0.42rem; border: 1px solid var(--ink); background: var(--accent); font-size: 0.88rem; line-height: 1.3; }
+  time { margin-top: 0.7rem; color: var(--muted); }
+  .ledger-copy > p { margin: 0; }
+  .ledger-copy > p:first-child { color: var(--muted); }
+  h2 { max-width: 27ch; margin: 0.55rem 0 0.65rem; font-family: var(--serif); font-size: clamp(1.55rem, 2.3vw, 2.15rem); letter-spacing: -0.035em; line-height: 1.06; text-wrap: balance; }
+  h2 a { text-decoration-color: transparent; }
+  h2 a:hover { text-decoration-color: var(--ink); }
+  .ledger-copy > p:last-child { max-width: 50rem; color: var(--muted); font-family: var(--serif); line-height: 1.55; }
+  .open { align-self: center; white-space: nowrap; }
+  @media (max-width: 46rem) { .ledger-entry { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: 1.6rem; } .open { align-self: start; } }
+</style>

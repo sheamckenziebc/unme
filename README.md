@@ -1,6 +1,6 @@
 # UR NOT MAD ENOUGH
 
-The first static website for **UR NOT MAD ENOUGH**, an independent, evidence-first accountability publication. The site is built for long-form investigations, direct access to source records and clear distinctions between confirmed facts, supported conclusions, allegations and unresolved questions.
+The static website for **UR NOT MAD ENOUGH**, an independent, evidence-first accountability publication. Reporting appears as deep Dossiers, tightly scoped Briefs and a living Ledger of what happened next. Every format uses the same evidentiary standard and preserves clear distinctions between confirmed facts, supported conclusions, allegations and unresolved questions.
 
 The repository uses Astro, TypeScript, Astro Content Collections, MDX and plain CSS. It has no database, CMS, client framework, analytics or runtime backend.
 
@@ -25,28 +25,32 @@ npm run preview
 
 The production site is generated in `dist/`.
 
-## Publishing an investigation
+## Publishing a Dossier or Brief
 
 Add one `.md` or `.mdx` file to `src/content/investigations/`. Copy one of the demonstration investigations as a starting point, then replace every frontmatter value and the article body. Normal publication does not require application-code changes.
 
-For a real investigation, follow [`docs/EDITORIAL_WORKFLOW.md`](docs/EDITORIAL_WORKFLOW.md). The workflow requires a case file and claim ledger before drafting, a fair account of contrary evidence, a response opportunity, explicit appeal and review checks, and technical validation. [`docs/ARTICLE_BRIEF.md`](docs/ARTICLE_BRIEF.md) is a reusable brief that can be handed directly to Codex. Repository agents are directed to this process by `AGENTS.md`.
+For real reporting, follow [`docs/EDITORIAL_WORKFLOW.md`](docs/EDITORIAL_WORKFLOW.md). The workflow requires a case file and claim ledger before drafting, a fair account of contrary evidence, a response opportunity, explicit appeal and review checks, an initial Ledger status and technical validation. A Brief is short because the story is simple, not because the verification is. [`docs/ARTICLE_BRIEF.md`](docs/ARTICLE_BRIEF.md) is a reusable intake brief that can be handed directly to Codex. Repository agents are directed to this process by `AGENTS.md`.
 
 Required frontmatter is validated at build time:
 
 - `title`, `slug`, `description`, `publishedDate`, `authors`
 - `jurisdiction`, `topics`, `organizations`
-- `featured`, `draft`, `summary`, `sources`
+- `format`, `featured`, `draft`, `summary`, `sources`
+- `ledger` for published production reporting
 - `actions` for published production investigations
 - `publicationReview` for published production investigations
 - optional `updatedDate`, hero image fields and SEO overrides
 
-Set `draft: true` to keep an investigation out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional fixtures; demonstrations are also excluded from every public route and feed. Real articles default to an “Investigation” label. The `summary` is a validated 2–4 point, 30-second findings digest. Before a production investigation can be published, `actions` must include at least one current official contact route; relevant petition and public-process links should also be supplied when verified. Published production investigations must carry at least one source and `publicationReview` metadata pointing to an existing, slug-matched case file and recording editor approval, right-of-reply status, fairness review and final fact-check completion. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX articles can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
+Set `format: dossier` for the deep form or `format: brief` for a tightly scoped finding. Set `draft: true` to keep a file out of generated pages and the RSS feed. Set the optional `demonstration: true` only for fictional fixtures; demonstrations are also excluded from every public route and feed. The `summary` is a validated 2–4 point, 30-second findings digest. Every published production file also needs a current `ledger` status, plain-language outcome summary and checked date. Before publication, `actions` must include at least one current official contact route; relevant petition and public-process links should also be supplied when verified. Published production reporting must carry at least one source and `publicationReview` metadata pointing to an existing, slug-matched case file and recording editor approval, right-of-reply status, fairness review and final fact-check completion. If `heroImage` is supplied, `heroImageAlt` is required, and `updatedDate` cannot precede `publishedDate`. A malformed article fails the build. MDX files can import the editorial components in `src/components/` for evidence, findings, document links, responses, updates and corrections.
 
 This repository is public. Tracked case files must be publication-safe: use opaque source IDs and omit private contact details, confidential identities, restricted documents and unpublished legal advice. Store sensitive working material under `.unme-private/`, which Git ignores, or in another approved secure system. Never rely on Git deletion to erase material that was already committed.
 
 ## Project map
 
 - `src/content/investigations/` — investigation Markdown and MDX
+- `src/pages/dossiers/` — the flagship Dossier desk
+- `src/pages/briefs/` — tightly scoped Briefs
+- `src/pages/ledger/` — current outcome status for published files
 - `docs/EDITORIAL_WORKFLOW.md` — production reporting and publication gates
 - `docs/WORKFLOW_AMENDMENTS.md` — dated record of editorial workflow changes
 - `docs/ARTICLE_BRIEF.md` — reusable human/Codex investigation brief

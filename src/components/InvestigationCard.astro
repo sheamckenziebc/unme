@@ -1,6 +1,6 @@
 ---
 import type { Investigation } from '../utils/investigations';
-import { formatDate } from '../utils/investigations';
+import { formatDate, formatLabel } from '../utils/investigations';
 import { withBase } from '../utils/paths';
 
 interface Props { investigation: Investigation; prominent?: boolean; }
@@ -9,28 +9,29 @@ const { data } = investigation;
 ---
 
 <article class:list={['investigation-card', { prominent }]}>
-  <div class="record-meta"><p class="eyebrow">Filed {formatDate(data.publishedDate)}</p><p>{data.jurisdiction}</p></div>
+  <div class="record-meta"><p class="eyebrow">{formatLabel(data.format)} · Filed {formatDate(data.publishedDate)}</p><p>{data.jurisdiction}</p></div>
   <div class="record-copy"><h2><a href={withBase(`/investigations/${data.slug}/`)}>{data.title}</a></h2><p class="description">{data.description}</p></div>
   <ul aria-label="Topics">{data.topics.map((topic) => <li>{topic}</li>)}</ul>
 </article>
 
 <style>
-  .investigation-card { position: relative; display: grid; grid-template-columns: minmax(9rem, 0.26fr) minmax(0, 1fr) minmax(10rem, 0.25fr); gap: 1.5rem; min-height: 0; padding: 1.5rem 3.8rem 1.5rem 0; align-items: start; counter-increment: archive-record; }
+  .investigation-card { position: relative; display: grid; grid-template-columns: minmax(9rem, 0.26fr) minmax(0, 1fr) minmax(10rem, 0.25fr); gap: 1.75rem; min-height: 0; padding: 1.75rem 3.8rem 1.75rem 0; align-items: start; counter-increment: archive-record; }
+  .investigation-card > * { min-width: 0; }
   .investigation-card::after { position: absolute; top: 1.5rem; right: 0; content: "R-" counter(archive-record, decimal-leading-zero); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; }
   .investigation-card:not(.prominent):hover { background: rgb(255 241 163 / 35%); }
   .record-meta p { margin: 0; }
   .record-meta p:last-child { max-width: 19ch; color: var(--muted); font-size: 0.85rem; line-height: 1.35; }
-  h2 { margin: 0; font-family: var(--serif); font-size: clamp(1.55rem, 3vw, 2.35rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; overflow-wrap: break-word; text-wrap: balance; }
+  h2 { margin: 0; font-family: var(--serif); font-size: clamp(1.5rem, 2.1vw, 2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; overflow-wrap: break-word; text-wrap: balance; }
   h2 a { text-decoration-color: transparent; }
   h2 a:hover { text-decoration-color: var(--ink); }
   .description { max-width: 45rem; margin: 0.75rem 0 0; color: var(--muted); font-family: var(--serif); font-size: 1.02rem; line-height: 1.5; overflow-wrap: break-word; text-wrap: pretty; }
   ul { display: flex; gap: 0.45rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
   li { padding: 0.12rem 0.32rem; border: 1px solid var(--rule); font-family: var(--mono); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; }
-  .prominent { grid-template-columns: minmax(9rem, 0.25fr) minmax(0, 1fr); min-height: 24rem; padding: 1.8rem 0 0; counter-increment: none; }
+  .prominent { grid-template-columns: minmax(9rem, 0.25fr) minmax(0, 1fr); min-height: 20rem; padding: 1.8rem 0 0; counter-increment: none; }
   .prominent::after { content: "CASE / 001"; }
   .prominent .record-copy { padding-right: 1rem; }
-  .prominent h2 { max-width: 17ch; font-family: var(--sans); font-size: clamp(2.7rem, 6.5vw, 6.4rem); font-weight: 900; letter-spacing: -0.065em; line-height: 0.9; }
-  .prominent .description { max-width: 44rem; margin: 1.4rem 0 0; font-size: clamp(1.1rem, 2vw, 1.4rem); }
+  .prominent h2 { max-width: 19ch; font-family: var(--sans); font-size: clamp(2.5rem, 4.8vw, 4.85rem); font-weight: 900; letter-spacing: -0.06em; line-height: 0.94; }
+  .prominent .description { max-width: 42rem; margin: 1.1rem 0 0; font-size: clamp(1.08rem, 1.6vw, 1.3rem); }
   .prominent ul { grid-column: 2; justify-content: flex-start; }
-  @media (max-width: 46rem) { .investigation-card, .prominent { grid-template-columns: 1fr; gap: 0.8rem; padding-right: 0; padding-top: 2.5rem; } .investigation-card::after { top: 1rem; } .investigation-card ul, .prominent ul { grid-column: auto; justify-content: flex-start; } .prominent { min-height: 0; } .prominent h2 { font-size: clamp(2.1rem, 10vw, 2.7rem); } }
+  @media (max-width: 46rem) { .investigation-card, .prominent { width: 100%; grid-template-columns: minmax(0, 1fr); gap: 0.8rem; padding-right: 0; padding-top: 2.5rem; } .investigation-card::after { top: 1rem; } .investigation-card ul, .prominent ul { grid-column: auto; justify-content: flex-start; } .prominent { min-height: 0; } .prominent .record-copy { padding-right: 0; } .prominent h2 { font-size: clamp(2.1rem, 10vw, 2.7rem); } }
 </style>

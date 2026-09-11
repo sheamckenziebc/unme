@@ -1,13 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
 import InvestigationCard from '../components/InvestigationCard.astro';
+import LedgerEntry from '../components/LedgerEntry.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { isPublished, newestFirst } from '../utils/investigations';
+import { byFormat, isPublished, ledgerNewestFirst, newestFirst } from '../utils/investigations';
 import { slugify, withBase } from '../utils/paths';
 
 const investigations = newestFirst((await getCollection('investigations')).filter(isPublished));
-const featured = investigations.find((item) => item.data.featured) ?? investigations[0];
-const recent = investigations.filter((item) => item.id !== featured?.id).slice(0, 3);
+const dossiers = byFormat(investigations, 'dossier');
+const briefs = byFormat(investigations, 'brief');
+const featured = dossiers.find((item) => item.data.featured) ?? dossiers[0];
+const moreDossiers = dossiers.filter((item) => item.id !== featured?.id).slice(0, 2);
+const ledger = ledgerNewestFirst(investigations).slice(0, 2);
 const topics = [...new Set(investigations.flatMap((item) => item.data.topics))].sort();
 const jurisdictions = [...new Set(investigations.map((item) => item.data.jurisdiction))].sort();
 const publishedCount = investigations.length;
@@ -23,8 +27,18 @@ const publishedCount = investigations.length;
     </div>
     <div class="principle"><span>Editorial position</span><strong>We do not manufacture outrage.</strong><p>We assemble the evidence clearly enough that readers can decide for themselves how angry they should be.</p></div>
   </section>
-  {featured ? <section class="featured shell" aria-labelledby="featured-title"><div class="section-heading"><h2 id="featured-title">Featured investigation</h2><span>01</span></div><InvestigationCard investigation={featured} prominent /></section> : <section class="launch shell" aria-labelledby="launch-title"><div class="section-heading"><h2 id="launch-title">First investigation</h2><span>Reporting in progress</span></div><div class="launch-copy"><p>No production investigation is public yet.</p><p>The first file will appear only after its evidence, current status, right of reply, fairness review and technical checks are recorded. Fictional demonstrations are kept out of the public archive.</p><a href={withBase('/methodology/')}>See the publication standard →</a></div></section>}
-  {recent.length > 0 && <section class="recent shell" aria-labelledby="recent-title"><div class="section-heading"><h2 id="recent-title">Recent investigations</h2><a href={withBase('/investigations/')}>View all →</a></div><div class="listing-grid">{recent.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></section>}
+  <section class="products shell" aria-labelledby="products-title">
+    <div class="section-heading"><h2 id="products-title">Three desks. One standard.</h2><a href={withBase('/methodology/')}>How verification works →</a></div>
+    <div class="product-grid">
+      <a href={withBase('/dossiers/')}><span>01 / Flagship</span><h3>The Dossier</h3><p>Deep primary-source reporting, competing explanations, response, aftermath and unresolved questions.</p><strong>Browse Dossiers →</strong></a>
+      <a href={withBase('/briefs/')}><span>02 / One finding</span><h3>The Brief</h3><p>A compact story whose core truth is substantially established—and verified to the same standard.</p><strong>Browse Briefs →</strong></a>
+      <a href={withBase('/ledger/')}><span>03 / What followed</span><h3>The Ledger</h3><p>A live record of official action, ignored recommendations, repayments, resignations and unresolved outcomes.</p><strong>Open the Ledger →</strong></a>
+    </div>
+  </section>
+  {featured ? <section class="featured shell" aria-labelledby="featured-title"><div class="section-heading"><h2 id="featured-title">The Dossier</h2><a href={withBase('/dossiers/')}>All Dossiers →</a></div><InvestigationCard investigation={featured} prominent /></section> : <section class="launch shell" aria-labelledby="launch-title"><div class="section-heading"><h2 id="launch-title">The Dossier</h2><span>Reporting in progress</span></div><div class="launch-copy"><p>No Dossier has cleared the threshold.</p><p>The first file will appear only after its evidence, current status, right of reply, fairness review and technical checks are recorded.</p><a href={withBase('/methodology/')}>See the publication standard →</a></div></section>}
+  {moreDossiers.length > 0 && <section class="recent shell" aria-labelledby="recent-title"><div class="section-heading"><h2 id="recent-title">More Dossiers</h2><a href={withBase('/dossiers/')}>View all →</a></div><div class="listing-grid">{moreDossiers.map((investigation) => <InvestigationCard investigation={investigation} />)}</div></section>}
+  <section class="brief-desk shell" aria-labelledby="brief-title"><div class="section-heading"><h2 id="brief-title">The Brief</h2><a href={withBase('/briefs/')}>Brief desk →</a></div>{briefs.length > 0 ? <div class="listing-grid">{briefs.slice(0, 3).map((investigation) => <InvestigationCard investigation={investigation} />)}</div> : <div class="brief-empty"><p class="kicker">Selective by design</p><p>A Brief is short because the story is simple, not because the verification is.</p><span>No Brief has cleared the publication threshold yet.</span></div>}</section>
+  {ledger.length > 0 && <section class="ledger-preview shell" aria-labelledby="ledger-title"><div class="section-heading"><h2 id="ledger-title">The Ledger</h2><a href={withBase('/ledger/')}>Track every file →</a></div>{ledger.map((investigation) => <LedgerEntry investigation={investigation} />)}</section>}
   <section class="method shell" aria-labelledby="method-title"><div><p class="kicker">How we report</p><h2 id="method-title">Aggressive curiosity.<br />Restrained conclusions.<br />Primary evidence.</h2></div><div><p>Public records can be technically available while remaining practically invisible. We find them, connect them and explain what they establish—and what they do not.</p><a href={withBase('/methodology/')}>Read our methodology →</a></div></section>
   {(topics.length > 0 || jurisdictions.length > 0) && <section class="browse shell" aria-label="Browse reporting">
     <div><div class="section-heading"><h2>Topics</h2><a href={withBase('/topics/')}>All topics →</a></div><ul>{topics.slice(0, 4).map((topic) => <li><a href={withBase(`/topics/${slugify(topic)}/`)}>{topic}</a></li>)}</ul></div>
@@ -36,31 +50,47 @@ const publishedCount = investigations.length;
   .hero { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(16rem, 0.4fr); gap: clamp(2rem, 5vw, 5rem); min-height: 30rem; padding-block: 3rem; border-bottom: 0.45rem solid var(--ink); }
   .manifesto { display: flex; flex-direction: column; justify-content: flex-end; }
   .file-line { display: flex; gap: 1rem; justify-content: space-between; margin-bottom: auto; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); color: var(--muted); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-  h1 { display: flex; margin: 1.2rem 0; flex-direction: column; align-items: flex-start; font-size: clamp(4rem, 11vw, 10.5rem); font-weight: 900; letter-spacing: -0.09em; line-height: 0.72; text-transform: uppercase; }
+  h1 { display: flex; margin: 1.2rem 0; flex-direction: column; align-items: flex-start; font-size: clamp(3.5rem, 9vw, 8.5rem); font-weight: 900; letter-spacing: -0.085em; line-height: 0.76; text-transform: uppercase; }
   h1 mark { padding: 0.03em 0.09em 0.015em; background: var(--accent); color: var(--ink); white-space: nowrap; }
-  .manifesto > p:last-child { margin: 0; font-family: var(--serif); font-size: clamp(1.35rem, 2.8vw, 2.1rem); font-style: italic; }
-  .principle { position: relative; align-self: end; padding: 1.4rem 1.1rem 1.2rem; border: 1px solid var(--ink); background: var(--surface); }
+  .manifesto > p:last-child { margin: 0; font-family: var(--serif); font-size: clamp(1.25rem, 2vw, 1.8rem); font-style: italic; }
+  .principle { position: relative; align-self: end; padding: 1.25rem 1.15rem; border: 1px solid var(--ink); background: var(--surface); }
   .principle::before { position: absolute; top: -0.45rem; right: 1.2rem; width: 4.5rem; height: 0.8rem; content: ""; background: var(--accent); opacity: 0.85; }
-  .principle span { display: block; margin-bottom: 1.25rem; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .principle span { display: block; margin-bottom: 0.85rem; font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
   .principle strong { display: block; font-size: 1.12rem; line-height: 1.25; }
   .principle p { margin: 0.5rem 0 0; color: var(--muted); font-family: var(--serif); }
-  .featured, .recent { padding-block: 4rem; }
+  .products { padding-top: 3.5rem; }
+  .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 0.2rem solid var(--ink); }
+  .product-grid a { display: flex; min-width: 0; min-height: 17rem; padding: 1.35rem; flex-direction: column; border-right: 1px solid var(--rule); text-decoration: none; }
+  .product-grid a:last-child { border-right: 0; }
+  .product-grid a:hover { background: var(--color-accent-soft); }
+  .product-grid span, .product-grid strong { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .product-grid span { color: var(--muted); }
+  .product-grid h3 { margin: 1.2rem 0 0.75rem; font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -0.045em; line-height: 0.95; text-transform: uppercase; }
+  .product-grid p { max-width: 32ch; margin: 0; color: var(--muted); font-family: var(--serif); line-height: 1.5; }
+  .product-grid strong { margin-top: auto; padding-top: 1.5rem; }
+  .featured, .recent, .brief-desk, .ledger-preview { padding-block: 3.5rem; }
   .featured { border-bottom: 1px solid var(--rule); }
+  .brief-desk { border-block: 1px solid var(--rule); }
+  .brief-empty { display: grid; grid-template-columns: minmax(10rem, 0.32fr) minmax(0, 1fr); gap: 1.5rem 3rem; align-items: start; padding: 2rem 0; }
+  .brief-empty .kicker { margin: 0; }
+  .brief-empty p:nth-child(2) { max-width: 32ch; margin: 0; font-family: var(--serif); font-size: clamp(1.6rem, 3.2vw, 2.6rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; text-wrap: balance; }
+  .brief-empty span { grid-column: 2; color: var(--muted); }
+  .ledger-preview :global(.ledger-entry:last-child) { border-bottom: 0; }
   .launch { padding-block: 4rem; border-bottom: 1px solid var(--rule); }
   .launch-copy { display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 1rem 3rem; align-items: start; }
   .launch-copy p { margin: 0; }
   .launch-copy p:first-child { max-width: 18ch; font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.05em; line-height: 0.95; }
   .launch-copy p:nth-child(2) { max-width: 48rem; color: var(--muted); font-family: var(--serif); font-size: 1.15rem; }
   .launch-copy a { grid-column: 2; width: fit-content; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
-  .method { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; padding: 5rem 0 5rem 1.5rem; border-block: 0.24rem solid var(--ink); border-left: 0.65rem solid var(--accent); }
-  .method h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.2rem); letter-spacing: -0.055em; line-height: 0.95; overflow-wrap: break-word; text-wrap: balance; }
-  .method > div:last-child { max-width: 32rem; align-self: end; font-family: var(--serif); font-size: 1.2rem; }
+  .method { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; padding: 4rem 0 4rem 1.5rem; border-block: 0.24rem solid var(--ink); border-left: 0.65rem solid var(--accent); }
+  .method h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.05em; line-height: 0.98; overflow-wrap: break-word; text-wrap: balance; }
+  .method > div:last-child { max-width: 32rem; align-self: end; font-family: var(--serif); font-size: 1.1rem; }
   .method a { font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
-  .browse { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-block: 4rem 6rem; }
+  .browse { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-block: 3.5rem 5rem; }
   .browse ul { margin: 0; padding: 0; border-top: 1px solid var(--rule); list-style: none; }
   .browse li { border-bottom: 1px solid var(--rule); }
   .browse li a { display: block; padding: 0.8rem 0; font-size: 1.1rem; font-weight: 700; text-decoration: none; }
   @media (max-width: 72rem) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } .principle { width: min(100%, 28rem); } }
-  @media (max-width: 52rem) { .method, .browse, .launch-copy { grid-template-columns: 1fr; gap: 2rem; } .launch-copy a { grid-column: auto; } }
-  @media (max-width: 35rem) { .hero { padding-top: 2rem; } h1 { font-size: clamp(2.5rem, 13vw, 6.1rem); } .file-line span:last-child { display: none; } }
+  @media (max-width: 52rem) { .product-grid { grid-template-columns: 1fr; } .product-grid a { min-height: 0; border-right: 0; border-bottom: 1px solid var(--rule); } .product-grid a:last-child { border-bottom: 0; } .product-grid strong { margin-top: 1rem; padding-top: 0; } .method, .browse, .launch-copy, .brief-empty { grid-template-columns: 1fr; gap: 2rem; } .launch-copy a, .brief-empty span { grid-column: auto; } }
+  @media (max-width: 35rem) { .hero { padding-top: 2rem; } h1 { font-size: clamp(2.25rem, 12vw, 6.1rem); } .file-line span:last-child { display: none; } }
 </style>

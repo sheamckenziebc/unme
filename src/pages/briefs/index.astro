@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InvestigationCard from '../../components/InvestigationCard.astro';
+import { byFormat, isPublished, newestFirst } from '../../utils/investigations';
+
+const briefs = byFormat(newestFirst((await getCollection('investigations')).filter(isPublished)), 'brief');
+---
+
+<BaseLayout title="The Brief" description="Short, fully verified accountability reporting from UR NOT MAD ENOUGH.">
+  <div class="shell">
+    <header class="page-header product-header"><div><p class="eyebrow">One extraordinary finding</p><h1>Briefs</h1></div><p>A primary record, its decisive facts, the strongest relevant response and why it matters—without length the story does not need.</p></header>
+    <blockquote class="standard">A Brief is short because the story is simple, not because the verification is.</blockquote>
+    {briefs.length > 0 ? <div class="listing-grid listing">{briefs.map((investigation) => <InvestigationCard investigation={investigation} />)}</div> : <section class="empty-state"><p class="eyebrow">Brief desk / selective by design</p><h2>No Brief has cleared the threshold yet.</h2><p>A quiet desk is not a failure. The first Brief will appear when a compact finding is strong enough to merit publication.</p></section>}
+  </div>
+</BaseLayout>
+
+<style>
+  .standard { max-width: 34ch; margin: 2.5rem 0; padding-left: 1.25rem; border-left: 0.5rem solid var(--accent); font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.12; }
+  .listing { margin: 2rem 0 6rem; }
+</style>

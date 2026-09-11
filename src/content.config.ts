@@ -50,6 +50,23 @@ const publicationReviewSchema = z.object({
   finalFactCheck: z.literal("completed"),
 });
 
+const ledgerSchema = z.object({
+  status: z.enum([
+    "action-underway",
+    "recommendations-accepted",
+    "partially-implemented",
+    "recommendations-ignored",
+    "money-repaid",
+    "official-resigned",
+    "no-action",
+    "under-investigation",
+    "unresolved",
+  ]),
+  label: z.string().trim().min(1).max(80),
+  summary: z.string().trim().min(1).max(240),
+  checkedDate: z.coerce.date(),
+});
+
 const investigations = defineCollection({
   loader: glob({
     base: "./src/content/investigations",
@@ -59,6 +76,7 @@ const investigations = defineCollection({
     .object({
       title: z.string().trim().min(1).max(180),
       slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+      format: z.enum(["dossier", "brief"]).default("dossier"),
       description: z.string().trim().min(1).max(280),
       publishedDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
@@ -77,6 +95,7 @@ const investigations = defineCollection({
       summary: z.array(z.string().trim().min(1).max(180)).min(2).max(4),
       actions: z.array(actionSchema).default([]),
       publicationReview: publicationReviewSchema.optional(),
+      ledger: ledgerSchema.optional(),
       sources: z.array(sourceSchema).default([]),
       seo: z
         .object({
@@ -131,6 +150,17 @@ const investigations = defineCollection({
       (data) =>
         data.draft ||
         data.demonstration ||
+        !data.ledger ||
+        data.ledger.checkedDate <= new Date(),
+      {
+        message: "Ledger status checks cannot be future-dated.",
+        path: ["ledger", "checkedDate"],
+      },
+    )
+    .refine(
+      (data) =>
+        data.draft ||
+        data.demonstration ||
         (data.actions.length > 0 &&
           data.actions.some((action) => action.category === "contact")),
       {
@@ -147,6 +177,10 @@ const investigations = defineCollection({
         path: ["publicationReview"],
       },
     )
+    .refine((data) => data.draft || data.demonstration || data.ledger, {
+      message: "Published investigations require a current Ledger status.",
+      path: ["ledger"],
+    })
     .refine(
       (data) => data.draft || data.demonstration || data.sources.length > 0,
       {

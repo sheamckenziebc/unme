@@ -12,6 +12,25 @@ export function newestFirst(entries: Investigation[]) {
   );
 }
 
+export function byFormat(
+  entries: Investigation[],
+  format: Investigation["data"]["format"],
+) {
+  return entries.filter((entry) => entry.data.format === format);
+}
+
+export function ledgerNewestFirst(entries: Investigation[]) {
+  return [...entries].sort(
+    (a, b) =>
+      (b.data.ledger?.checkedDate.valueOf() ?? 0) -
+      (a.data.ledger?.checkedDate.valueOf() ?? 0),
+  );
+}
+
+export function formatLabel(format: Investigation["data"]["format"]) {
+  return format === "dossier" ? "Dossier" : "Brief";
+}
+
 export function formatDate(date: Date) {
   return new Intl.DateTimeFormat("en-CA", {
     year: "numeric",

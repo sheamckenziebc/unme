@@ -1,6 +1,6 @@
-# Production investigation workflow
+# Production reporting workflow
 
-This is the operating procedure for creating or substantially updating a real UR NOT MAD ENOUGH investigation. It is written for both human editors and Codex. Read it together with `AGENTS.md` and the public methodology page.
+This is the operating procedure for creating or substantially updating a real UR NOT MAD ENOUGH Dossier, Brief or Ledger entry. It is written for both human editors and Codex. Read it together with `AGENTS.md` and the public methodology page.
 
 The purpose is repeatability: a new article should be produced from a documented chain of evidence, not from the confidence or memory of the writer.
 
@@ -14,20 +14,32 @@ For a new investigation, produce these three things:
 
 Do not publish merely because the prose is finished. Keep `draft: true` until the publication gates in this document are satisfied or the editor explicitly accepts a documented exception.
 
+## One standard, three products
+
+- **The Dossier** is the flagship deep form: original primary-source work, chronology, competing explanations, government or subject response, documentary evidence, aftermath and unresolved questions.
+- **The Brief** isolates one extraordinary, readily explained finding whose material truth is already substantially established. It is normally 500–1,000 words, but scope—not a word target—determines the format.
+- **The Ledger** follows outcomes after publication: recommendations accepted, ignored or partly implemented; money repaid; an official resigned; no action; action underway; or the matter remains unresolved.
+
+> A Brief is short because the story is simple, not because the verification is.
+
+Dossiers and Briefs pass the same evidence, attribution, fairness, response, current-status and publication gates. A Brief may become a Dossier when new records, sources or public response materially expand the reporting question; preserve the original record and document the change of scope.
+
+The intended publishing rhythm is a planning aid, never a quota. Candidate selection should weigh evidence strength, comprehensibility, abuse or betrayal of public trust, human consequences and undercoverage. No date on the calendar lowers the threshold. UNME is allowed to publish nothing.
+
 ## Workflow stages and exit conditions
 
 Start the dossier from `docs/CASE_FILE_TEMPLATE.md`. A stage is complete only when its evidence is recorded in that case file.
 
-| Stage            | Required output                                                                                  | Exit condition                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| Intake           | Lead, public-interest reason, testable hypothesis, defeat condition, scope and sensitivity notes | The lead is specific enough to test without assuming its truth.                                         |
-| Evidence         | Source register, chronology, claim ledger and current-status plan                                | Material claims have primary support or are explicitly unresolved.                                      |
-| Red team         | Disconfirming-evidence record and strongest fair contrary account                                | The thesis survives, is narrowed, or is abandoned based on recorded results.                            |
-| Draft            | Schema-valid MDX, fast summary, actions and reporting-status disclosure                          | Draft accurately reflects the dossier and remains `draft: true`.                                        |
-| Right of reply   | Verified contacts, authorized delivery log, responses and incorporation record                   | Responses are fairly included, the deadline passed, or an exception is documented.                      |
-| Final review     | Current-status refresh, hostile read, fact check, copy edit and link check                       | All gates are checked or each exception has a named approver, reason and mitigation.                    |
-| Publication      | `publicationReview`, explicit editor approval, passing build and deployment authorization        | The deployed URL is verified and the commit, deployment run and live checks are recorded.               |
-| Post-publication | Correction/update intake and source monitoring appropriate to the story                          | Material new evidence is verified and handled through the update or correction workflow when it arises. |
+| Stage            | Required output                                                                                                   | Exit condition                                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Intake           | Lead, public-interest reason, proposed format, testable hypothesis, defeat condition, scope and sensitivity notes | The lead is specific enough to test without assuming its truth and the proposed format fits its evidentiary scope. |
+| Evidence         | Source register, chronology, claim ledger and current-status plan                                                 | Material claims have primary support or are explicitly unresolved.                                                 |
+| Red team         | Disconfirming-evidence record and strongest fair contrary account                                                 | The thesis survives, is narrowed, or is abandoned based on recorded results.                                       |
+| Draft            | Schema-valid MDX, fast summary, actions and reporting-status disclosure                                           | Draft accurately reflects the dossier and remains `draft: true`.                                                   |
+| Right of reply   | Verified contacts, authorized delivery log, responses and incorporation record                                    | Responses are fairly included, the deadline passed, or an exception is documented.                                 |
+| Final review     | Current-status refresh, hostile read, fact check, copy edit and link check                                        | All gates are checked or each exception has a named approver, reason and mitigation.                               |
+| Publication      | `publicationReview`, initial Ledger state, explicit editor approval, passing build and deployment authorization   | The deployed URL is verified and the commit, deployment run and live checks are recorded.                          |
+| Post-publication | Ledger checks, correction/update intake and source monitoring appropriate to the story                            | Material new evidence is verified and handled through the Ledger, update or correction workflow.                   |
 
 ## Ground rules
 
@@ -40,6 +52,7 @@ Start the dossier from `docs/CASE_FILE_TEMPLATE.md`. A stage is complete only wh
 - Name individuals only when identification materially helps the public understand responsibility. Never imply personal wrongdoing from an institution's litigation position.
 - Use exact calendar dates. Distinguish an event date, decision date, release date, retrieval date and article publication date.
 - Preserve meaningful caveats near the claim they qualify, not only at the end.
+- Choose Dossier or Brief by the complexity of the proved story, never by weakening verification or padding a simple finding.
 
 ### Public repository safety
 
@@ -183,7 +196,7 @@ Record the tests, searches, contrary records and effect on the thesis in the cas
 
 Use this order unless the evidence requires a clearer alternative:
 
-1. **Frontmatter:** accurate title, plain-language description, date, authors, jurisdiction, topics, organizations, publication state, 30-second findings summary, civic actions, source metadata and SEO copy.
+1. **Frontmatter:** accurate title, format, plain-language description, date, authors, jurisdiction, topics, organizations, publication state, 30-second findings summary, civic actions, initial Ledger state, source metadata and SEO copy.
 2. **Fast findings:** 2–4 plain-language points that state the result, consequence, contrary fact and central limit as applicable.
 3. **What readers can do now:** verified official contact, petition and other relevant public-process links, rendered automatically from `actions`.
 4. **Lead:** the most consequential confirmed fact, followed immediately by the central limit.
@@ -255,6 +268,7 @@ Keep `draft: true` until all applicable gates are recorded in the case file:
 - direct links work;
 - dates, names, figures, quotations and procedural descriptions received a second pass; and
 - formatting, type checking and a production build pass.
+- the initial Ledger status, public summary and checked date are supported by a current authoritative check.
 
 Only then record the readiness decision, add matching `publicationReview` frontmatter and change `draft` to `false`. The build rejects a published production investigation without that approval metadata. Never invent a review status, approver, response event or exception. Publishing or pushing to a remote repository still requires the user's explicit direction.
 
@@ -282,7 +296,7 @@ When directed to create an article:
 2. Inspect the working tree and preserve unrelated changes.
 3. Research current sources. Treat supplied claims as leads and verify them independently.
 4. Copy or update `docs/CASE_FILE_TEMPLATE.md` first. Build the source register, chronology, claim ledger, current-status checks, disconfirming-evidence record and reader-action inventory there.
-5. Add one MDX file with the concise `summary` and verified `actions`. Ordinary article publication should not require application-code changes.
+5. Add one MDX file with `format`, the concise `summary`, verified `actions` and an evidence-backed initial `ledger` state. Ordinary Dossier or Brief publication should not require application-code changes.
 6. Reuse existing components and schema fields. Do not add dependencies for article styling.
 7. Run:
 
@@ -306,7 +320,7 @@ After every editorial gate is satisfied, publication still requires explicit use
 4. Add `publicationReview` frontmatter with the matching case-file path, approver, approval date, right-of-reply state, fairness-review state and final fact-check state.
 5. Change `draft` to `false`, run formatting, diagnostics and a production build, and inspect the generated page at desktop and 320px mobile width.
 6. Commit and push only the intended files, then monitor the configured deployment to completion.
-7. Verify the live URL returns success and check its canonical URL, investigation index entry, RSS entry, sitemap inclusion and critical source/action links.
+7. Verify the live URL returns success and check its canonical URL, Dossier or Brief desk entry, Archive entry, Ledger entry, RSS entry, sitemap inclusion and critical source/action links.
 8. Record the commit SHA, deployment run, live URL, verification time and any failure or rollback in the case file.
 
 A successful local build is “ready to deploy,” not “published.” A successful deployment without a reachable, correct article URL is a deployment incident, not completed publication.
@@ -322,11 +336,13 @@ A successful local build is “ready to deploy,” not “published.” A succes
 ## Updating a published investigation
 
 - Verify the new development against a primary source.
+- Update the Ledger checked date, status and plain-language summary when the outcome changes, even if the article does not require substantial revision.
 - Update `updatedDate`.
 - Add an `UpdateNote` explaining the substantive addition.
 - Use `CorrectionNote` for factual corrections and state what changed.
 - Preserve the earlier record when context is necessary; never silently reverse a material claim.
 - Re-run the claim ledger and publication gates for the changed sections.
+- If a Brief has grown into a Dossier, change `format` only after the case file records the new scope and the expanded article passes the full gates.
 
 ## Amendment record
 

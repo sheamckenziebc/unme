@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InvestigationCard from '../../components/InvestigationCard.astro';
+import { byFormat, isPublished, newestFirst } from '../../utils/investigations';
+
+const dossiers = byFormat(newestFirst((await getCollection('investigations')).filter(isPublished)), 'dossier');
+---
+
+<BaseLayout title="The Dossier" description="Deep, primary-source investigations from UR NOT MAD ENOUGH.">
+  <div class="shell">
+    <header class="page-header product-header"><div><p class="eyebrow">Flagship reporting</p><h1>Dossiers</h1></div><p>Deep primary-source work: chronology, competing explanations, documentary evidence, response, aftermath and unresolved questions.</p></header>
+    {dossiers.length > 0 ? <div class="listing-grid listing">{dossiers.map((investigation) => <InvestigationCard investigation={investigation} />)}</div> : <section class="empty-state"><p class="eyebrow">No file forced</p><h2>No Dossier has cleared the publication threshold.</h2><p>UNME is allowed to publish nothing. A Dossier appears when the evidence justifies one.</p></section>}
+  </div>
+</BaseLayout>
+
+<style>.listing { margin: 2rem 0 6rem; }</style>

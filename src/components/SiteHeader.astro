@@ -3,11 +3,11 @@ import { siteConfig } from '../config/site';
 import { withBase } from '../utils/paths';
 
 const navigation = [
-  { href: '/investigations/', label: 'Investigations' },
-  { href: '/topics/', label: 'Topics' },
-  { href: '/jurisdictions/', label: 'Jurisdictions' },
+  { href: '/dossiers/', label: 'Dossiers' },
+  { href: '/briefs/', label: 'Briefs' },
+  { href: '/ledger/', label: 'Ledger' },
+  { href: '/investigations/', label: 'Archive' },
   { href: '/methodology/', label: 'Methodology' },
-  { href: '/about/', label: 'About' },
 ];
 const currentPath = Astro.url.pathname;
 const isCurrent = (href: string) => {
@@ -36,13 +36,14 @@ const isCurrent = (href: string) => {
   .site-header { background: var(--surface); border-bottom: 0.22rem solid var(--ink); }
   .filing-strip { padding: 0.32rem 0; background: var(--ink); color: var(--surface); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .filing-strip .shell { display: flex; justify-content: space-between; }
-  .header-inner { display: grid; grid-template-columns: minmax(19rem, 1fr) minmax(0, 1.2fr); gap: 2rem; align-items: center; padding-block: 1.35rem; }
-  .wordmark { display: inline-flex; gap: 0.28em; width: fit-content; align-items: baseline; font-size: clamp(1.55rem, 3.6vw, 3.15rem); font-weight: 900; letter-spacing: -0.075em; line-height: 0.82; text-decoration: none; }
-  .wordmark mark { padding: 0.04em 0.12em 0.02em; background: var(--accent); color: var(--ink); }
+  .header-inner { display: grid; grid-template-columns: minmax(17rem, 1fr) minmax(0, 1.25fr); gap: 2rem; align-items: center; padding-block: 1.15rem; }
+  .wordmark { display: inline-flex; gap: 0.28em; width: fit-content; align-items: baseline; font-size: clamp(1.5rem, 3vw, 2.7rem); font-weight: 900; letter-spacing: -0.07em; line-height: 0.84; text-decoration: none; }
+  .wordmark > span { white-space: nowrap; }
+  .wordmark mark { padding: 0.04em 0.12em 0.02em; background: var(--accent); color: var(--ink); white-space: nowrap; }
   nav ul { display: flex; gap: 0.2rem 1.3rem; justify-content: flex-end; margin: 0; padding: 0; flex-wrap: wrap; list-style: none; }
-  nav a { display: inline-flex; min-height: 2.25rem; align-items: center; font-family: var(--mono); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
+  nav a { display: inline-flex; min-height: 2.25rem; align-items: center; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
   nav a:hover { background: var(--accent); }
   nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 0.35rem; text-underline-offset: 0.16rem; }
   @media (max-width: 48rem) { .header-inner { grid-template-columns: 1fr; gap: 1rem; } nav ul { justify-content: flex-start; } }
-  @media (max-width: 35rem) { .filing-strip span:last-child { display: none; } .wordmark { display: flex; align-items: flex-start; flex-direction: column; line-height: 0.72; } nav ul { gap-inline: 0.9rem; } nav a { min-height: 2.75rem; font-size: 0.875rem; } }
+  @media (max-width: 35rem) { .filing-strip span:last-child { display: none; } .header-inner { gap: 0.75rem; padding-block: 1rem; } .wordmark { font-size: 1.65rem; } nav ul { gap: 0 0.9rem; } nav a { min-height: 2.25rem; font-size: 0.75rem; } }
 </style>
