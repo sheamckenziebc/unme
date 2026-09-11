@@ -62,6 +62,7 @@ This repository is public. Tracked case files must be publication-safe: use opaq
 - `docs/REPUBLISHING_POLICY_DRAFT.md` — draft excerpt and republication terms
 - `docs/REPUBLISHING_PERMISSION_TEMPLATE.md` — one-use outlet permission record
 - `docs/FUNDING_AND_INDEPENDENCE_DRAFT.md` — draft revenue and underwriting guardrails
+- `docs/GROWTH_ROADMAP.md` — staged hosting, product, revenue and pilot execution list
 - `docs/case-files/` — source inventories, chronologies, claim ledgers and open checks
 - `.unme-private/` — ignored local working area for sensitive reporting and distribution material
 - `scripts/validate-build.mjs` — generated-route, metadata, link and draft-leakage checks
@@ -73,6 +74,8 @@ This repository is public. Tracked case files must be publication-safe: use opaq
 - `src/styles/global.css` — global design tokens and shared typography
 - `src/utils/` — date, sorting, slug and base-path helpers
 - `.github/workflows/deploy.yml` — GitHub Pages deployment
+
+For the current business and infrastructure sequence, see `docs/GROWTH_ROADMAP.md`.
 
 ## GitHub Pages deployment
 

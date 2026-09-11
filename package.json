@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "validate:build": "node scripts/validate-build.mjs",
+    "deploy:build": "npm run format:check && npm run check && npm run build && npm run validate:build",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
