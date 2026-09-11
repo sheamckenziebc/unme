@@ -35,6 +35,8 @@ Begin direct reporting while gathering records. Agents verify recipients, write 
 
 Lead with what happened, who is affected and why it matters within the first 100–150 words. A consequential local failure or policy choice can merit reporting without scandal, crime or an exclusive. Preserve the evidence standard while cutting repeated caveats and process narration; retain the verification trail in citations and case files.
 
+Follow the workflow's [editorial-voice standard](docs/EDITORIAL_WORKFLOW.md#editorial-voice-clear-alive-and-worth-repeating): accessible language, natural rhythm, earned bite and one central fact readers can accurately repeat to someone they know. Record that sentence and its proof in the case file and check it aloud and outside the article's context. Make the reporting memorable while leaving readers free to form their own judgment.
+
 Required frontmatter is validated at build time:
 
 - `title`, `slug`, `description`, `publishedDate`, `authors`

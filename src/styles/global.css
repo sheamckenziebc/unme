@@ -250,6 +250,7 @@ img {
 }
 
 .prose th {
+  overflow-wrap: normal;
   background: var(--ink);
   color: var(--surface);
   font-family: var(--mono);

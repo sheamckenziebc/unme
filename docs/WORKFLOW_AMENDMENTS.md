@@ -2,6 +2,22 @@
 
 This log records material changes to the production investigation workflow. It supplements `docs/EDITORIAL_WORKFLOW.md`; the current workflow remains the operative instruction.
 
+## 2026-09-11 — Accessible language and the UNME voice
+
+**Requested by:** Publisher, to align the writing with UR NOT MAD ENOUGH and make consequential public records understandable, memorable and useful in everyday conversation.
+
+**Decision:** Write clear, level-headed reporting with broad appeal and a livelier voice. Investigate inconsistencies, mismanagement, avoidable failures and bad choices, explain the evidence and consequences, and leave readers free to form their own judgment.
+
+**Implemented requirements:**
+
+- Use everyday language, explain necessary jargon and unfamiliar institutions, prefer concrete actions and read the prose aloud for clarity and natural rhythm.
+- Permit sharp comparisons, dry wit, blunt criticism and occasional swearing when they serve a documented point. Do not replace reporting with manufactured outrage or ridicule people affected by a failure.
+- Give every Dossier and Brief at least one central, verified fact that readers can accurately repeat to a family member. Use the existing summary where possible; preserve essential attribution, scope and qualifications when the sentence is shared alone.
+- Record the exact takeaway, claim-ledger ID and source locator in the case file and final handoff. Check memorable wording against contrary evidence. “Irrefutable” sets an ambition for proof, not immunity from correction.
+- Make accessibility and accurate repetition part of the drafting instructions and publication review. Record actual review work without inventing reader testing. These are editorial checks, with no new article schema fields or site components.
+
+**Operative files:** `AGENTS.md`, `EDITORIAL_WORKFLOW.md`, `CASE_FILE_TEMPLATE.md`, `ARTICLE_BRIEF.md` and README. Existing evidence states, fairness, direct-reporting and publication-approval requirements remain in force.
+
 ## 2026-09-11 — Direct reporting, clearer writing and Yukon focus
 
 **Requested and approved direction:** Publisher, including explicit confirmation that the non-Yukon story to remove is Waltham/Portage-du-Fort.

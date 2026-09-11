@@ -10,7 +10,7 @@ For a new investigation, produce these four things:
 
 1. A case file in `docs/case-files/` containing the source register, chronology, claim ledger, current-status checks, disconfirming evidence, reader-action inventory, response log, hostile read, readiness decision and open checks.
 2. A production MDX draft in `src/content/investigations/` that follows the site's schema and editorial components, including the 30-second findings summary and verified civic actions.
-3. A standardized handoff copied from the case file's final readiness section: decision, current thesis, strongest complication, material gaps, response status, current-status result, exceptions, approval and technical checks.
+3. A standardized handoff copied from the case file's final readiness section: decision, current thesis, strongest complication, one repeatable fact and its proof, material gaps, response status, current-status result, exceptions, approval and technical checks.
 4. A private direct-reporting packet with verified recipients, questions tied to evidence gaps, complete mailbox drafts, proposed deadlines and a review log. The editor's remaining action should be to review each message and click Send. A draft is not a contact event.
 
 Do not publish merely because the prose is finished. Keep `draft: true` until the publication gates in this document are satisfied or the editor explicitly accepts a documented exception.
@@ -97,6 +97,30 @@ Work down this list until each material claim rests on the strongest source reas
 
 For PDFs, preserve the direct URL and record the page and paragraph numbers used. Check whether a corrected version, appendix, response or later decision exists. If a link may disappear, add a lawful archive URL or preserve a working copy outside the public repository.
 
+## Editorial voice: clear, alive and worth repeating
+
+UR NOT MAD ENOUGH turns public records into reporting people can understand, remember and use. Investigate inconsistencies, fuck-ups, mismanagement and bad choices; establish what happened and make the consequences clear. A document being public does not mean its contents are accessible to the public. Our work is to close that gap through careful reporting and clear explanation.
+
+Write for broad appeal across generations, with no specialist knowledge assumed. A reader should be able to tell their grandma, dad, uncle or son something solid they learned. The ambition is clear, level-headed reporting with enough life to enter ordinary conversation. Give people the evidence and an intelligible account; leave them free to decide what to think and do.
+
+- **Use everyday language.** Prefer familiar words, concrete nouns and active verbs. Explain an unfamiliar institution or necessary technical term when it first matters. Spell out or avoid acronyms. Replace bureaucratic phrases with what someone actually did, paid, promised, received or failed to do. Preserve a legal distinction by explaining it plainly.
+- **Sound like a person explaining something worth knowing.** Use natural speech, varied sentence lengths, short paragraphs and descriptive headings. Read the prose aloud. Cut ceremonial introductions, abstract noun stacks and sentences that need a second reading. Respect the reader's intelligence and time; never talk down to them.
+- **Let the writing have bite.** Restrained conclusions can be expressed vividly. A sharp comparison, dry wit, a blunt description or occasional swearing can fit when the evidence earns it. They are tools, not quotas. Direct criticism at documented conduct and choices; keep people harmed by those choices out of the punchline.
+- **Make memorable language carry information.** Build a phrase around a real contradiction, choice, scale or consequence. Show why a decision was bad and distinguish that judgment from a reported finding. A striking line must preserve the same truth and scope as the quieter explanation behind it.
+- **Earn the name.** UR NOT MAD ENOUGH is a challenge to pay attention. The reporting supplies the reason to care. Exclamation marks, insults, assumed motives and instructions to feel angry cannot do that work. Let the facts create surprise, concern, anger or a changed mind, including when they defeat our initial premise.
+
+### One fact a reader can take away
+
+Every Dossier and Brief must contain at least one central, verified factual sentence that a reader can accurately repeat without the surrounding article. Put it in an existing findings-summary point where possible; do not add a mandatory callout or repeat it throughout the piece. A Ledger update should make the changed outcome just as easy to explain.
+
+Record the exact sentence, claim-ledger ID, source locator and essential qualification in the case file. Choose a substantive finding, not a trivial date or document number. Keep any necessary attribution, time period, denominator or distinction between a records gap and an event inside the sentence. If it cannot fit a 180-character summary point honestly, choose a narrower fact for that point rather than dropping context.
+
+Treat “irrefutable” as an ambition for proof and precision. Test the sentence against the strongest contrary evidence and current record; never label reporting immune to correction. A supported inference or an allegation cannot become a confirmed fact just because it makes a better line.
+
+**Fictional editing example:** Assume a paid repair invoice and a records search that found no completion record. Replace “Post-payment completion-verification documentation could not be located” with “The bill was paid, but the records we checked did not show whether the repair was finished.” The clearer sentence preserves the records gap; it does not claim the repair never happened.
+
+Before handoff, read the opening and takeaway aloud, then test whether someone new to the subject could explain the finding and why it matters. An agent without audio can review the text for spoken clarity; record that method accurately. Check the takeaway separately as if it appeared in a family conversation or social post. Record who performed this review and what changed; do not invent reader testing. The factual sentence must survive being shared, even when the catchy wording travels further than the article.
+
 ## Reader-first summary and civic action
 
 Every production investigation must help a reader understand the finding quickly and act on it responsibly.
@@ -106,6 +130,7 @@ Every production investigation must help a reader understand the finding quickly
 - Write 2–4 standalone points, each no longer than 180 characters. The schema enforces these limits.
 - Put the decisive confirmed outcome first. Use the remaining points for scale or consequence, the strongest contrary fact and the central unresolved limit.
 - Use plain language, concrete nouns and proved verbs. Do not add outrage language, throat-clearing, unexplained acronyms or facts that exist only in the long-form body.
+- Make at least one point a useful fact worth repeating, following the editorial-voice standard above. Keep its essential qualification in that point; do not depend on another bullet to make it true.
 - Enter the points in frontmatter `summary`; the investigation layout renders them before the article body.
 
 ### Make the consequence easy to understand
@@ -223,7 +248,7 @@ Record the tests, searches, contrary records and effect on the thesis in the cas
 
 ### 8. Draft around the reader's questions
 
-Use a flexible structure, not a mandatory sequence of boilerplate headings:
+Apply the editorial-voice standard above. Use a flexible structure, not a mandatory sequence of boilerplate headings:
 
 1. **Frontmatter and fast findings:** schema-valid metadata, 2–4 concise findings, verified civic actions, sources and an evidence-backed Ledger state. The layout renders summary and actions automatically.
 2. **What happened, to whom and why it matters:** begin with the consequential finding and its concrete stakes. Include the central qualification before a reader can reasonably draw a false conclusion.
@@ -282,6 +307,8 @@ Keep `draft: true` until all applicable gates are recorded in the case file:
 - every title and findings-memo claim appears in the claim ledger;
 - the 30-second summary contains 2–4 concise, ledgered findings and preserves the central limit;
 - the opening explains who is affected and the concrete consequence without inventing an experience or harm; a reader can explain the point in two sentences;
+- one central fact is recorded verbatim with its claim ID and source locator, appears in the article and remains accurate when repeated alone;
+- the copy uses accessible language and natural rhythm; unfamiliar terms are explained, memorable lines survive the evidence check and the review for spoken clarity is recorded;
 - civic actions include an official representative or government contact route, are jurisdictionally relevant and have current verification dates;
 - petition status, sponsorship, deadline and data-collection caveats were checked when a petition is listed;
 - final versions of primary records were checked;

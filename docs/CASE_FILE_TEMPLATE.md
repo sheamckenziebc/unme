@@ -44,6 +44,8 @@ This tracked dossier is public by default. Use opaque source IDs and publication
 
 **Reader's two-sentence explanation:** What happened to whom, and why should a reader care now?
 
+**One fact worth repeating:** Exact proposed sentence, claim-ledger ID, source locator and any qualification that must travel with it. Keep this provisional until verified; a reader should be able to repeat the final sentence accurately to a family member.
+
 **Human consequence:** Separate documented effects, attributed experiences and risks. Identify the source for each and the reporting needed where effects are unknown.
 
 ## Scope and usefulness
@@ -178,6 +180,8 @@ This is an editorial risk review, not a claim of legal advice. Read the title, s
 - [ ] Final fact check and copy edit are complete.
 - [ ] The opening explains the finding, who is affected and the consequence within 100–150 words, with no invented scene or harm.
 - [ ] Repeated caveats and process narration have been cut; needed qualifications remain near their claims and the verification trail remains accessible.
+- [ ] One central, verified fact appears in the article and is recorded verbatim with its claim ID and source locator; it remains accurate when shared alone.
+- [ ] Accessible language, natural rhythm and memorable wording were checked for spoken clarity; jargon is explained and wit or criticism preserves the evidence and treats affected people fairly.
 - [ ] `npm run format`, `npm run check`, `npm run build` and `npm run validate:build` pass on the final copy.
 - [ ] Editor explicitly approves publication and the article contains matching `publicationReview` metadata.
 
@@ -203,7 +207,9 @@ Do not erase an unmet gate. Record an exception here and point to it from the re
 
 **Direct-reporting result, mailbox draft status and editor's next action:**
 
-**Reader consequence and readability check:**
+**Reader consequence and readability check:** Record who checked the opening and takeaway for spoken clarity, the review method, any reader testing that actually occurred, and changes made for clarity, rhythm and accurate repetition.
+
+**Final fact worth repeating, claim ID and source locator:**
 
 **Appeal, review and current-status result:**
 

@@ -16,6 +16,8 @@ This repository is public. Do not paste confidential identities, private contact
 
 **Who is affected, and what concrete consequence or decision needs explaining:**
 
+**Candidate fact a reader could repeat to a family member:** Provisional until verified; do not invent a finding to fill this field.
+
 **Yukon relevance, or explicit instruction to cover another jurisdiction:**
 
 **What evidence would weaken or disprove the premise:**
@@ -51,6 +53,8 @@ This repository is public. Do not paste confidential identities, private contact
 **Outreach handling:** Agents prepare complete, verified mailbox drafts; the editor reviews every message and clicks Send. Identify any explicit change to this default here.
 
 ## Codex instruction
+
+**Writing standard:** Use accessible, lively language for a general audience. Explain necessary jargon, write with natural rhythm and let documented choices and consequences give the prose its bite. Follow the editorial-voice section of the workflow. Include one central, verified fact that a reader can repeat accurately to a family member, with its proof and essential qualification recorded in the case file. Let readers form their own judgment from the evidence.
 
 > Investigate this lead and create or update an UR NOT MAD ENOUGH Dossier or Brief. Follow `AGENTS.md` and `docs/EDITORIAL_WORKFLOW.md`, starting from `docs/CASE_FILE_TEMPLATE.md`. Focus on Yukon unless I explicitly expand the scope. A useful local finding can merit coverage without scandal, crime or an exclusive. Verify the premise independently, build the source register, chronology and claim ledger, refresh current status and actively seek contrary evidence. Begin direct reporting early: identify relevant responsible actors, affected people and other sources, then prepare complete, verified mailbox drafts using `docs/RESPONSE_REQUEST_TEMPLATE.md`. I review every outreach message and click Send; do not send or schedule correspondence. Track actual contact and incorporate replies fairly. Lead with what happened, who is affected and why it matters; keep necessary qualifications near their claims and move extended methods to source notes or the case file. Do not invent a human story or weaken the evidence standard. Include the 2–4 point summary, verified civic actions and an evidence-backed Ledger state. Complete the hostile read and readiness decision, keep `draft: true` until explicit editor approval, run all required technical checks and provide the standardized handoff. Do not publish or deploy without my direction.
 
