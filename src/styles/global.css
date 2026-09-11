@@ -231,15 +231,19 @@ img {
 
 .prose table {
   display: block;
-  width: max-content;
+  width: 100%;
+  min-width: 0;
   border-collapse: collapse;
   font-family: var(--sans);
   font-size: 0.95rem;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prose th,
 .prose td {
-  min-width: 8rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
   padding: 0.6rem;
   border: 1px solid var(--rule);
   text-align: left;
@@ -368,6 +372,17 @@ img {
 @media (max-width: 35rem) {
   .page-header {
     padding-top: 3rem;
+  }
+  .prose {
+    font-size: 1rem;
+  }
+  .prose table {
+    font-size: 0.9rem;
+  }
+  .prose th,
+  .prose td {
+    min-width: 0;
+    padding: 0.52rem;
   }
   .page-header h1 {
     font-size: clamp(2.2rem, 10vw, 4.2rem);
