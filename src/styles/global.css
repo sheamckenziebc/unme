@@ -381,8 +381,14 @@ img {
   }
   .prose th,
   .prose td {
-    min-width: 0;
+    min-width: 5.75rem;
+    overflow-wrap: normal;
+    word-break: normal;
     padding: 0.52rem;
+  }
+  .prose th:first-child,
+  .prose td:first-child {
+    min-width: 9rem;
   }
   .page-header h1 {
     font-size: clamp(2.2rem, 10vw, 4.2rem);
