@@ -51,6 +51,8 @@ This repository is public. Tracked case files must be publication-safe: use opaq
 
 For an explicitly authorized withdrawal, set the article to `draft: true`, preserve its MDX and historical approval, record the reason in its case file, and deploy after validation. Verify that its former URL returns 404 and that listings, topic pages, RSS and sitemap exclude it. A scope withdrawal is not a factual retraction. Restoring it requires a new explicit publication decision and current checks.
 
+Check the former URL with and without a trailing slash on both production hostnames. During the September 11 withdrawal, removed trailing-slash assets remained available after deployment and cache purging. `public/_redirects` explicitly routes those six retired addresses to their absent, extensionless counterparts so they resolve to a real 404. Check and remove any matching withdrawal rule before approved republication or reuse of a retired topic. Cloudflare parses this file at deployment; Astro preview does not apply it. See the [Pages redirect documentation](https://developers.cloudflare.com/pages/configuration/redirects/).
+
 ## Project map
 
 - `src/content/investigations/` — investigation Markdown and MDX

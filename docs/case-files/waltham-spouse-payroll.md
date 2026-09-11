@@ -32,6 +32,8 @@ This is a scope decision, not a factual retraction. No new finding about the sub
 
 **Withdrawal deployment:** Pending validation and live verification in this change.
 
+**Delivery issue found:** Commit `61ba453` deployed successfully through Cloudflare Pages deployment `939a84ad-6e70-4ea6-b7e8-c33ff47f95e6`; GitHub validation run `34646456776` passed. The live sitemap contained 22 URLs and RSS contained only the two Yukon investigations. However, the six former trailing-slash article/taxonomy URLs still returned old content, including after targeted and full zone cache purges. Explicit Pages redirects to the absent extensionless paths are being deployed and must be verified before withdrawal is complete. No DNS or mail records were changed.
+
 ## Intake and hypothesis
 
 **Lead as received:** The editor supplied the CMQ's Waltham investigation report and summarized its findings: the director general placed his spouse on the payroll for almost a decade; cheques were the only documentary trace supporting ordinary municipal employment; later sworn statements lacked credibility; the director general proposed increasing his own salary after her departure; mayors signed blank cheques; and Waltham paid him for resources also used by his private business. The editor asked for the standard investigation workflow and publication once complete.

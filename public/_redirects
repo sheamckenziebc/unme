@@ -1,0 +1,9 @@
+# Withdrawn September 11, 2026: bypass retained trailing-slash assets.
+# Each destination is an absent path that returns the site's real 404 response.
+# Remove the matching rule before any editor-approved republication.
+/investigations/waltham-spouse-payroll/ /investigations/waltham-spouse-payroll 302
+/jurisdictions/waltham-and-portage-du-fort-quebec/ /jurisdictions/waltham-and-portage-du-fort-quebec 302
+/topics/municipal-accountability/ /topics/municipal-accountability 302
+/topics/ethics-and-governance/ /topics/ethics-and-governance 302
+/topics/employment-records/ /topics/employment-records 302
+/topics/quebec/ /topics/quebec 302
