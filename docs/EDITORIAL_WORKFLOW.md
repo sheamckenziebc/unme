@@ -6,40 +6,48 @@ The purpose is repeatability: a new article should be produced from a documented
 
 ## The completion contract
 
-For a new investigation, produce these three things:
+For a new investigation, produce these four things:
 
 1. A case file in `docs/case-files/` containing the source register, chronology, claim ledger, current-status checks, disconfirming evidence, reader-action inventory, response log, hostile read, readiness decision and open checks.
 2. A production MDX draft in `src/content/investigations/` that follows the site's schema and editorial components, including the 30-second findings summary and verified civic actions.
 3. A standardized handoff copied from the case file's final readiness section: decision, current thesis, strongest complication, material gaps, response status, current-status result, exceptions, approval and technical checks.
+4. A private direct-reporting packet with verified recipients, questions tied to evidence gaps, complete mailbox drafts, proposed deadlines and a review log. The editor's remaining action should be to review each message and click Send. A draft is not a contact event.
 
 Do not publish merely because the prose is finished. Keep `draft: true` until the publication gates in this document are satisfied or the editor explicitly accepts a documented exception.
 
 ## One standard, three products
 
 - **The Dossier** is the flagship deep form: original primary-source work, chronology, competing explanations, government or subject response, documentary evidence, aftermath and unresolved questions.
-- **The Brief** isolates one extraordinary, readily explained finding whose material truth is already substantially established. It is normally 500–1,000 words, but scope—not a word target—determines the format.
+- **The Brief** explains one consequential, substantially established finding. Use only the length needed to establish it, explain its consequence and include the strongest relevant response. There is no minimum word count or requirement that the finding be extraordinary.
 - **The Ledger** follows outcomes after publication: recommendations accepted, ignored or partly implemented; money repaid; an official resigned; no action; action underway; or the matter remains unresolved.
 
 > A Brief is short because the story is simple, not because the verification is.
 
 Dossiers and Briefs pass the same evidence, attribution, fairness, response, current-status and publication gates. A Brief may become a Dossier when new records, sources or public response materially expand the reporting question; preserve the original record and document the change of scope.
 
-The intended publishing rhythm is a planning aid, never a quota. Candidate selection should weigh evidence strength, comprehensibility, abuse or betrayal of public trust, human consequences and undercoverage. No date on the calendar lowers the threshold. UNME is allowed to publish nothing.
+The current reporting focus is Yukon. Cover governments, political actors, companies, institutions and societal norms where a specific question matters to people here. Work elsewhere requires an explicit scope decision from the editor.
+
+Candidate selection weighs consequence, evidence, clarity and usefulness. A service failure, unfair process, unexplained cost, ineffective policy, broken commitment or normalized practice can warrant scrutiny even when lawful, familiar or already reported elsewhere. Readers do not need a scandal to deserve an explanation. Identify what this piece adds: a clear account, new evidence, a tested explanation, an affected person's experience or a current follow-up. Do not manufacture an exclusive claim.
+
+Non-partisan means applying the same standards across parties and interests. It permits direct criticism of political choices and social norms, with the factual basis and reasoning visible. Distinguish reported findings from the publication's policy or moral judgment. An absence of criminal or civil liability does not establish that a decision was competent, fair or harmless.
+
+Publishing frequency remains a planning aid, not a quota. Hold weakly supported or inconsequential work; do not reject a useful local story merely because it is ordinary.
 
 ## Workflow stages and exit conditions
 
 Start the dossier from `docs/CASE_FILE_TEMPLATE.md`. A stage is complete only when its evidence is recorded in that case file.
 
-| Stage            | Required output                                                                                                   | Exit condition                                                                                                     |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Intake           | Lead, public-interest reason, proposed format, testable hypothesis, defeat condition, scope and sensitivity notes | The lead is specific enough to test without assuming its truth and the proposed format fits its evidentiary scope. |
-| Evidence         | Source register, chronology, claim ledger and current-status plan                                                 | Material claims have primary support or are explicitly unresolved.                                                 |
-| Red team         | Disconfirming-evidence record and strongest fair contrary account                                                 | The thesis survives, is narrowed, or is abandoned based on recorded results.                                       |
-| Draft            | Schema-valid MDX, fast summary, actions and reporting-status disclosure                                           | Draft accurately reflects the dossier and remains `draft: true`.                                                   |
-| Right of reply   | Verified contacts, authorized delivery log, responses and incorporation record                                    | Responses are fairly included, the deadline passed, or an exception is documented.                                 |
-| Final review     | Current-status refresh, hostile read, fact check, copy edit and link check                                        | All gates are checked or each exception has a named approver, reason and mitigation.                               |
-| Publication      | `publicationReview`, initial Ledger state, explicit editor approval, passing build and deployment authorization   | The deployed URL is verified and the commit, deployment run and live checks are recorded.                          |
-| Post-publication | Ledger checks, correction/update intake and source monitoring appropriate to the story                            | Material new evidence is verified and handled through the Ledger, update or correction workflow.                   |
+| Stage            | Required output                                                                                                   | Exit condition                                                                                                                |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Intake           | Lead, public-interest reason, proposed format, testable hypothesis, defeat condition, scope and sensitivity notes | The lead is specific enough to test without assuming its truth and the proposed format fits its evidentiary scope.            |
+| Evidence         | Source register, chronology, claim ledger and current-status plan                                                 | Material claims have primary support or are explicitly unresolved.                                                            |
+| Direct reporting | Source map, focused questions, verified contacts and complete private mailbox drafts                              | Requests are ready for the editor to review and send; the log separates preparation, sending and replies.                     |
+| Red team         | Disconfirming-evidence record and strongest fair contrary account                                                 | The thesis survives, is narrowed, or is abandoned based on recorded results.                                                  |
+| Draft            | Schema-valid MDX, fast summary, actions and reporting-status disclosure                                           | Draft accurately reflects the dossier and remains `draft: true`.                                                              |
+| Right of reply   | Actual send/delivery record, responses and incorporation record                                                   | Responses are fairly included, a reasonable delivered-request deadline passed, or an editor-approved exception is documented. |
+| Final review     | Current-status refresh, hostile read, fact check, copy edit and link check                                        | All gates are checked or each exception has a named approver, reason and mitigation.                                          |
+| Publication      | `publicationReview`, initial Ledger state, explicit editor approval, passing build and deployment authorization   | The deployed URL is verified and the commit, deployment run and live checks are recorded.                                     |
+| Post-publication | Ledger checks, correction/update intake and source monitoring appropriate to the story                            | Material new evidence is verified and handled through the Ledger, update or correction workflow.                              |
 
 ## Ground rules
 
@@ -100,6 +108,15 @@ Every production investigation must help a reader understand the finding quickly
 - Use plain language, concrete nouns and proved verbs. Do not add outrage language, throat-clearing, unexplained acronyms or facts that exist only in the long-form body.
 - Enter the points in frontmatter `summary`; the investigation layout renders them before the article body.
 
+### Make the consequence easy to understand
+
+- Within the first 100–150 words of the body, explain the finding, who is affected and why it matters now. Tie the consequence to money, time, safety, access, rights, public services, power or a concrete decision. Do not bury the reason to care after the chronology.
+- Show the chain from decision to consequence. Separate a documented harm, a person's attributed experience and a plausible risk. If the effect is unknown, name the decision people cannot evaluate or the question that still needs reporting. Never invent a resident, quote, scene, lost service or causal link.
+- Make one main point per paragraph. Prefer concrete actors and verbs; translate a legal term or acronym when first needed. Use a table only when comparison is easier than prose.
+- Keep each material qualification beside the claim it limits. Repeat it only where a standalone headline, summary or new context would otherwise mislead. Remove repeated disclaimers, defensive throat-clearing and a paragraph's second explanation of the same point.
+- Let citations and source notes carry document identifiers, page arithmetic and procedural detail that readers do not need to follow the argument. Keep the full verification trail in the case file. Transparency should make verification possible without making the reader perform the investigation.
+- Before handoff, summarize the story aloud in two sentences: what happened to whom, and why the reader should care. If that requires a new unsupported claim, report the gap or narrow the premise.
+
 ### What readers can do now
 
 - Add frontmatter `actions` for every production investigation before publication. Each action needs a category, title, responsible organization, concise instruction, direct URL and `verifiedDate`.
@@ -126,12 +143,12 @@ Example:
 
 This boundary should control the search and the headline.
 
-### 2. Check novelty and scope
+### 2. Check usefulness, current relevance and scope
 
 - Search the site for earlier coverage and avoid duplicating a published file.
 - Search current primary-source indexes for later decisions, corrections, appeals, responses or completed investigations.
 - Review credible local reporting to identify facts and responses that need independent verification.
-- Note what is genuinely new: a finding, a document connection, a quantified pattern or an unanswered question exposed by the primary record.
+- Record what this article adds for Yukon readers. New evidence is valuable; a clearer account of a consequential existing record or an overdue check on a promise can also earn publication.
 
 Do not claim a story is “undercovered” from intuition. Describe the evidence that has been overlooked or not assembled, or omit the coverage claim.
 
@@ -140,6 +157,18 @@ Do not claim a story is “undercovered” from intuition. Describe the evidence
 Use the source-register table in `docs/CASE_FILE_TEMPLATE.md`. Record issuer, version or date, retrieval time, pinpoint locators, authentication state, preservation location and evidentiary limits. A URL alone is not a source review.
 
 Before relying on a historical condition, identify the authoritative place that could show whether it changed: a live docket, judgments index, registry, officeholder directory, policy page, current dataset, later decision or direct response. Record what was checked, when it was checked and what that check cannot establish. Schedule a fresh check close to publication.
+
+### 3a. Begin direct reporting while gathering records
+
+Map the questions a document cannot answer and who is positioned to answer them. Consider the responsible decision-maker, people affected, the records custodian and an independent specialist. Choose sources for knowledge and relevance, not a mechanical quota or partisan balance. An institutional spokesperson does not replace an affected person's account; one person's experience does not establish a population-wide effect.
+
+Prepare proportionate requests early enough for replies to shape the thesis. Ask about present conditions, practical consequences, disputed facts, evidence of reform and the strongest alternative explanation. Seek records supporting answers. Use `docs/RESPONSE_REQUEST_TEMPLATE.md` for interviews and records inquiries as well as right of reply. Do not assume a request must wait until the article is drafted.
+
+Agents own the preparation: verify the public contact and current role, check prior contact, write the exact message, choose a realistic deadline, include source links and create an addressed, unsent draft in `editor@urnotmadenough.ca`. Read it back to verify sender, recipient, subject, body, attachments and unsent state. Save the review packet and mailbox identifiers under `.unme-private/`; keep only a safe status summary in the tracked case file. If a connector is unavailable, finish the same packet locally and identify the missing access step rather than handing the user an outline to finish.
+
+The user reviews all outreach and clicks Send. Agents must not send, schedule, resend, send a follow-up, submit a contact form or accept interview, embargo or background terms. Draft those next steps for review too. Publication authorization does not authorize contact. An explicit later user instruction may change this boundary; do not infer it from a general request to investigate.
+
+Every investigation records what direct reporting was pursued and what it added or could not establish. Omitting direct reporting requires a specific rationale and editor-approved exception. Document availability alone is not a sufficient rationale. No-contact decisions for source safety or other concrete constraints must remain visible; historical launch exceptions are not standing exemptions.
 
 ### 4. Build the chronology before drafting
 
@@ -192,25 +221,17 @@ If the thesis survives only by omitting one of those answers, discard or narrow 
 
 Record the tests, searches, contrary records and effect on the thesis in the case file's disconfirming-evidence section. “No contrary evidence found” is not sufficient without a description of where and how it was sought.
 
-### 8. Draft in the standard article anatomy
+### 8. Draft around the reader's questions
 
-Use this order unless the evidence requires a clearer alternative:
+Use a flexible structure, not a mandatory sequence of boilerplate headings:
 
-1. **Frontmatter:** accurate title, format, plain-language description, date, authors, jurisdiction, topics, organizations, publication state, 30-second findings summary, civic actions, initial Ledger state, source metadata and SEO copy.
-2. **Fast findings:** 2–4 plain-language points that state the result, consequence, contrary fact and central limit as applicable.
-3. **What readers can do now:** verified official contact, petition and other relevant public-process links, rendered automatically from `actions`.
-4. **Lead:** the most consequential confirmed fact, followed immediately by the central limit.
-5. **Key finding:** one sentence a reader can verify in a primary record.
-6. **What the records establish:** define the confirmed core and identify the decision-maker.
-7. **Chronology or comparison:** show how the documents connect.
-8. **The criticized party's case:** present its strongest argument before rebuttal.
-9. **The finding or outcome:** distinguish reasons, order, remedy and any point the other side won.
-10. **What was not decided:** bad faith, illegality, motive, damages, individual fault, appeal status or any other live limit.
-11. **Broader context:** include patterns only when directly documented; label official but untested claims as alleged.
-12. **Why it matters:** explain the public consequence without inflating the finding.
-13. **Unresolved questions and next records:** convert outrage into answerable reporting tasks.
-14. **Primary documents:** use `DocumentLink` for the records readers most need to inspect.
-15. **Reporting status:** disclose source boundaries, response status and checks still required while the file remains a draft.
+1. **Frontmatter and fast findings:** schema-valid metadata, 2–4 concise findings, verified civic actions, sources and an evidence-backed Ledger state. The layout renders summary and actions automatically.
+2. **What happened, to whom and why it matters:** begin with the consequential finding and its concrete stakes. Include the central qualification before a reader can reasonably draw a false conclusion.
+3. **How we know, and what the other account explains:** present the decisive evidence, useful chronology and strongest relevant response. Explain which facts support a criticism and which limit it. Give direct reporting its proper evidentiary weight.
+4. **What happens next:** identify the responsible actor, answerable unresolved question, next decision or measurable commitment. End when the reader understands the stakes and the remaining uncertainty.
+5. **Sources and reporting status:** make central documents easy to inspect and disclose material reporting limits, actual response status and update history. Put extended methods or calculations here only when readers benefit from them.
+
+These are functions to satisfy, not five required headings. A Brief may meet them in a few paragraphs. Do not add a generic “what was not decided” section to every article; state the relevant limit where it changes the meaning. Do not repeat the findings box in successive introductory paragraphs.
 
 Use `KeyFinding` sparingly for decisive propositions. Use `EvidenceBox` to make evidence state explicit. Frontmatter `sources` are rendered automatically, so body document links should be reserved for central records rather than every citation.
 
@@ -220,7 +241,7 @@ The title may be forceful, but each verb must be proved by the strongest source.
 
 The description should contain the strongest finding and its most important qualification. Do not make the reader reach the final section to learn that the underlying allegation was never adjudicated.
 
-### 10. Request and track a response
+### 10. Complete right of reply and track actual contact
 
 Prepare each request and delivery log from `docs/RESPONSE_REQUEST_TEMPLATE.md`, storing completed working copies outside Git. Add only a publication-safe status summary to the tracked case file. Anyone facing material criticism should receive:
 
@@ -232,7 +253,11 @@ Prepare each request and delivery log from `docs/RESPONSE_REQUEST_TEMPLATE.md`, 
 
 Ask the institution to separate factual corrections, legal position and policy explanation. Ask whether an appeal or review has been filed. Request itemized costs when expense is relevant.
 
-Verify the recipient and contact channel from an official source. Set a deadline that accounts for urgency, question complexity, working hours, holidays and timezone. Preserve the exact message, delivery evidence, follow-ups, full response and supporting records. Sending or following up requires explicit user authorization; drafting and identifying recipients does not.
+Verify the recipient and contact channel from an official source. Set a deadline that accounts for urgency, question complexity, working hours, holidays and timezone; ordinarily allow at least five full business days for a substantive non-urgent request. Record a send-by date and refresh the deadline if approval is delayed. Preserve the exact message, actual send/delivery evidence, follow-ups, full response and supporting records. Use the agent-prepared, human-send procedure in step 3a.
+
+Use explicit states: **prepared locally**, **mailbox draft ready for review**, **sent by editor**, **delivery failed**, **awaiting response**, **response received**, **declined**, or **deadline passed without response**. A draft deadline does not start a response clock. Approval, a saved draft and a successful send are different events. Verify sending from mailbox evidence before changing the case-file status; distinguish successful transmission from confirmed delivery or reading.
+
+For an already published story, say that it is published, link it, identify this as the first direct inquiry when applicable, invite corrections and ask about current status. Never describe later contact as prepublication right of reply. Preserve the original publication exception and dates. Add an article update or correction only when warranted and verified; preparing a draft is not a new substantive development.
 
 Do not use `ResponseBox` until a request was actually sent. If delivery fails, do not describe the subject as having received an opportunity. If no response arrives, say when and how the request was made and that the deadline passed. Independently check corrective facts where possible and accurately include explanations that weaken or complicate the thesis.
 
@@ -256,11 +281,13 @@ Keep `draft: true` until all applicable gates are recorded in the case file:
 - source-register entries identify version, retrieval, locators, authentication and limits;
 - every title and findings-memo claim appears in the claim ledger;
 - the 30-second summary contains 2–4 concise, ledgered findings and preserves the central limit;
+- the opening explains who is affected and the concrete consequence without inventing an experience or harm; a reader can explain the point in two sentences;
 - civic actions include an official representative or government contact route, are jurisdictionally relevant and have current verification dates;
 - petition status, sponsorship, deadline and data-collection caveats were checked when a petition is listed;
 - final versions of primary records were checked;
 - allegations and party submissions are attributed;
 - the strongest response is included fairly;
+- direct reporting and its effect on the account are documented, or the editor approved a specific exception;
 - a fresh right-of-reply opportunity was provided, or a documented editor approved an exception;
 - appeal, review, publication-ban and correction status were checked;
 - privacy and source-safety issues were reviewed;
@@ -296,6 +323,7 @@ When directed to create an article:
 2. Inspect the working tree and preserve unrelated changes.
 3. Research current sources. Treat supplied claims as leads and verify them independently.
 4. Copy or update `docs/CASE_FILE_TEMPLATE.md` first. Build the source register, chronology, claim ledger, current-status checks, disconfirming-evidence record and reader-action inventory there.
+   Prepare direct-reporting questions and verified mailbox drafts while research continues. Give the editor the complete review packet; do not send the messages. Reconcile actual replies before the readiness decision.
 5. Add one MDX file with `format`, the concise `summary`, verified `actions` and an evidence-backed initial `ledger` state. Ordinary Dossier or Brief publication should not require application-code changes.
 6. Reuse existing components and schema fields. Do not add dependencies for article styling.
 7. Run:

@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "UNME",
   tagline: "Evidence worth paying attention to.",
   description:
-    "An independent, evidence-first accountability publication producing Dossiers, Briefs and a living Ledger of what happened next.",
+    "Independent Yukon accountability reporting: Dossiers, Briefs and a living Ledger of what happened next.",
   defaultAuthor: "UR NOT MAD ENOUGH",
   editorialEmail: "editor@urnotmadenough.ca",
   social: {},

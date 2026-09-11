@@ -1,6 +1,6 @@
 # UR NOT MAD ENOUGH
 
-The static website for **UR NOT MAD ENOUGH**, an independent, evidence-first accountability publication. Reporting appears as deep Dossiers, tightly scoped Briefs and a living Ledger of what happened next. Every format uses the same evidentiary standard and preserves clear distinctions between confirmed facts, supported conclusions, allegations and unresolved questions.
+The static website for **UR NOT MAD ENOUGH**, an independent, evidence-first accountability publication currently focused on Yukon. Reporting appears as deep Dossiers, tightly scoped Briefs and a living Ledger of what happened next. Every format uses the same evidentiary standard and preserves clear distinctions between confirmed facts, supported conclusions, allegations and unresolved questions.
 
 The repository uses Astro, TypeScript, Astro Content Collections, MDX and plain CSS. It has no database, CMS, client framework, analytics or runtime backend.
 
@@ -31,6 +31,10 @@ Add one `.md` or `.mdx` file to `src/content/investigations/`. Copy one of the d
 
 For real reporting, follow [`docs/EDITORIAL_WORKFLOW.md`](docs/EDITORIAL_WORKFLOW.md). The workflow requires a case file and claim ledger before drafting, a fair account of contrary evidence, a response opportunity, explicit appeal and review checks, an initial Ledger status and technical validation. A Brief is short because the story is simple, not because the verification is. [`docs/ARTICLE_BRIEF.md`](docs/ARTICLE_BRIEF.md) is a reusable intake brief that can be handed directly to Codex. Repository agents are directed to this process by `AGENTS.md`.
 
+Begin direct reporting while gathering records. Agents verify recipients, write focused questions and create complete unsent drafts in the editor mailbox using [`docs/RESPONSE_REQUEST_TEMPLATE.md`](docs/RESPONSE_REQUEST_TEMPLATE.md). The publisher reviews every message and clicks Send. Keep contacts, draft IDs and correspondence under `.unme-private/`; record only actual contact events in public case files. Publishing permission does not authorize agents to send outreach.
+
+Lead with what happened, who is affected and why it matters within the first 100–150 words. A consequential local failure or policy choice can merit reporting without scandal, crime or an exclusive. Preserve the evidence standard while cutting repeated caveats and process narration; retain the verification trail in citations and case files.
+
 Required frontmatter is validated at build time:
 
 - `title`, `slug`, `description`, `publishedDate`, `authors`
@@ -45,6 +49,8 @@ Set `format: dossier` for the deep form or `format: brief` for a tightly scoped 
 
 This repository is public. Tracked case files must be publication-safe: use opaque source IDs and omit private contact details, confidential identities, restricted documents and unpublished legal advice. Store sensitive working material under `.unme-private/`, which Git ignores, or in another approved secure system. Never rely on Git deletion to erase material that was already committed.
 
+For an explicitly authorized withdrawal, set the article to `draft: true`, preserve its MDX and historical approval, record the reason in its case file, and deploy after validation. Verify that its former URL returns 404 and that listings, topic pages, RSS and sitemap exclude it. A scope withdrawal is not a factual retraction. Restoring it requires a new explicit publication decision and current checks.
+
 ## Project map
 
 - `src/content/investigations/` — investigation Markdown and MDX
@@ -55,14 +61,16 @@ This repository is public. Tracked case files must be publication-safe: use opaq
 - `docs/WORKFLOW_AMENDMENTS.md` — dated record of editorial workflow changes
 - `docs/ARTICLE_BRIEF.md` — reusable human/Codex investigation brief
 - `docs/CASE_FILE_TEMPLATE.md` — required publication-safe investigation dossier
-- `docs/RESPONSE_REQUEST_TEMPLATE.md` — right-of-reply request and response log
+- `docs/RESPONSE_REQUEST_TEMPLATE.md` — direct-reporting drafts, right of reply and actual contact log
 - `docs/DISTRIBUTION_WORKFLOW.md` — approved-recipient, cadence and outreach controls
 - `docs/DISTRIBUTION_CAMPAIGN_TEMPLATE.md` — reusable private campaign record
 - `docs/OUTREACH_TEMPLATES.md` — reporter, desk, community and courtesy message structures
 - `docs/REPUBLISHING_POLICY_DRAFT.md` — draft excerpt and republication terms
 - `docs/REPUBLISHING_PERMISSION_TEMPLATE.md` — one-use outlet permission record
 - `docs/FUNDING_AND_INDEPENDENCE_DRAFT.md` — draft revenue and underwriting guardrails
-- `docs/GROWTH_ROADMAP.md` — staged hosting, product, revenue and pilot execution list
+- `docs/GROWTH_ROADMAP.md` — Yukon reporting priorities and future supporting subscription
+- `docs/PAID_PRODUCT_DEFINITION.md` — supporting-subscription promise and financial assumptions
+- `docs/PAID_PRODUCT_HANDOFF.md` — implementation instructions for a later subscription build
 - `docs/case-files/` — source inventories, chronologies, claim ledgers and open checks
 - `.unme-private/` — ignored local working area for sensitive reporting and distribution material
 - `scripts/validate-build.mjs` — generated-route, metadata, link and draft-leakage checks

@@ -14,6 +14,10 @@ This repository is public. Do not paste confidential identities, private contact
 
 **Why it may matter:**
 
+**Who is affected, and what concrete consequence or decision needs explaining:**
+
+**Yukon relevance, or explicit instruction to cover another jurisdiction:**
+
 **What evidence would weaken or disprove the premise:**
 
 **Jurisdiction and affected community:**
@@ -32,6 +36,8 @@ This repository is public. Do not paste confidential identities, private contact
 
 **People or organizations that must be offered a response:**
 
+**Affected people, records custodians or independent sources who could answer a material gap:**
+
 **Known source-safety, privacy, publication-ban or legal concerns:**
 
 **Immediate actions readers can take:**
@@ -42,11 +48,11 @@ This repository is public. Do not paste confidential identities, private contact
 
 **Publication instruction:** Draft only / prepare for publication / update an existing article
 
-**Authorization to contact sources:** No / Draft requests only / Authorized recipients and channels
+**Outreach handling:** Agents prepare complete, verified mailbox drafts; the editor reviews every message and clicks Send. Identify any explicit change to this default here.
 
 ## Codex instruction
 
-> Investigate this lead and create or update an UR NOT MAD ENOUGH Dossier or Brief. Follow `AGENTS.md` and `docs/EDITORIAL_WORKFLOW.md`, starting from `docs/CASE_FILE_TEMPLATE.md`. Treat everything in this brief as a lead rather than an established fact. Choose the format by evidentiary scope, not by lowering the verification standard. Build the source register, chronology and claim ledger; verify present status; actively seek evidence that would defeat the premise; and track right of reply with `docs/RESPONSE_REQUEST_TEMPLATE.md`. Present the strongest contrary position, distinguish findings from allegations and run the legal, privacy and fairness hostile read. Write a 2–4 point, 30-second findings summary, add verified, jurisdictionally relevant civic actions and set an evidence-backed initial Ledger status. Keep the article `draft: true` until the case file records a completed readiness decision and explicit editor approval. Run the repository's format, check and build commands, then provide the standardized handoff. Do not publish, deploy or contact anyone unless I explicitly direct you to do so.
+> Investigate this lead and create or update an UR NOT MAD ENOUGH Dossier or Brief. Follow `AGENTS.md` and `docs/EDITORIAL_WORKFLOW.md`, starting from `docs/CASE_FILE_TEMPLATE.md`. Focus on Yukon unless I explicitly expand the scope. A useful local finding can merit coverage without scandal, crime or an exclusive. Verify the premise independently, build the source register, chronology and claim ledger, refresh current status and actively seek contrary evidence. Begin direct reporting early: identify relevant responsible actors, affected people and other sources, then prepare complete, verified mailbox drafts using `docs/RESPONSE_REQUEST_TEMPLATE.md`. I review every outreach message and click Send; do not send or schedule correspondence. Track actual contact and incorporate replies fairly. Lead with what happened, who is affected and why it matters; keep necessary qualifications near their claims and move extended methods to source notes or the case file. Do not invent a human story or weaken the evidence standard. Include the 2–4 point summary, verified civic actions and an evidence-backed Ledger state. Complete the hostile read and readiness decision, keep `draft: true` until explicit editor approval, run all required technical checks and provide the standardized handoff. Do not publish or deploy without my direction.
 
 For a simple future request, the editor can instead say:
 

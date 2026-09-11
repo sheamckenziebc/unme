@@ -6,7 +6,7 @@ Use this workflow to place a published investigation in front of people who are 
 
 ## Non-negotiable rules
 
-- Do not send anything until an editor has approved the exact story, recipient, message and send time.
+- Agents prepare verified recipients, complete messages and unsent mailbox drafts. The editor reviews the exact story, recipient, message and timing, then clicks Send. Agents do not send or schedule distribution, follow-ups or acknowledgements. The timing below guides preparation, not automatic sending.
 - Do not distribute a production investigation while it is a draft. An explicitly approved embargoed preview is the only exception.
 - Keep right-of-reply requests in the editorial workflow. A promotional pitch never substitutes for a fair opportunity to respond.
 - Send one-to-one messages with a specific reason for contacting that recipient. Do not use purchased lists, guessed addresses, bulk BCC or generic blasts.

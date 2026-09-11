@@ -2,6 +2,16 @@
 
 This is the publication-safe case file for the investigation. It contains no confidential sources, private contact information, unpublished legal advice or employment-derived information.
 
+## September 11, 2026 — postpublication reporting preparation
+
+At the publisher's direction, complete first-inquiry drafts were prepared in the editor mailbox for Highways and Public Works communications and the Clerk to the Standing Committee on Public Accounts. Official contacts and the current committee document index were checked; mailbox sender, recipients, full text and unsent state were read back and verified.
+
+The questions seek the HPW update received by the committee on February 3, current implementation evidence from actual contract files, the comprehensive procurement review's status and safeguards accompanying higher direct-award limits. The committee inquiry distinguishes an update not located on the public index from one that does not exist. The department request includes the audit's limiting findings and the government's efficiency rationale.
+
+**Contact status:** Two drafts ready for publisher review and Send; no inquiry sent by an agent, no new response received through this preparation, and no response deadline has begun. Proposed replies by September 21 at 4 p.m. Yukon time depend on sending September 11–14; refresh if sending later. Contacts, full messages and mailbox evidence remain in the private reporting packet.
+
+Preserve the September 10 no-contact disclosure and publication exception. Preparing these messages does not revise the published findings or establish that a new response opportunity has occurred. Add actual send evidence and any verified corrections or updates when they occur.
+
 ## File control
 
 **Working title:** Yukon could not show competition in 27 of 53 representative contract files. Direct-award limits just rose.

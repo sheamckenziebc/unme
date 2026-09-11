@@ -13,6 +13,7 @@ This repository is a static, content-first investigative publication. Preserve i
 
 ## Production investigations
 
+- Focus new reporting on Yukon issues unless the editor explicitly changes that scope. A meaningful local failure, policy choice or harmful norm can warrant coverage without a criminal finding, scandal or exclusive discovery. Apply the same standards to all political actors and institutions.
 - Before creating or substantially updating a real investigation, read and follow `docs/EDITORIAL_WORKFLOW.md`.
 - Start production work from `docs/CASE_FILE_TEMPLATE.md`; use `docs/RESPONSE_REQUEST_TEMPLATE.md` to prepare and track right-of-reply requests.
 - Treat user-supplied claims and links as leads. Verify them independently and create the source register, chronology, claim ledger and disconfirming-evidence record before drafting the article.
@@ -21,7 +22,10 @@ This repository is a static, content-first investigative publication. Preserve i
 - Keep a new investigation `draft: true` until the workflow's publication gates are satisfied. Never imply that a response was requested, an appeal was checked or an article was published unless that action occurred.
 - Do not add `publicationReview` metadata or change `draft` to `false` without a completed case-file readiness decision and explicit editor approval. Record any gate exception, its reason and its approver.
 - Give every production investigation a hyper-concise findings summary and a verified civic-action section. Use official representative/contact links, include petitions only when their status and relevance are clear, and record link-check dates in the case file.
-- Publishing, deploying, contacting sources and sending requests for comment require explicit user direction. Draft the questions and identify the correct recipients without taking those external actions on your own.
+- Make direct reporting part of the investigation: identify responsible actors, affected people and useful independent sources; prepare focused questions that could change the account. Public documents alone do not automatically excuse fresh reporting or right of reply.
+- Agents handle outreach preparation through verified, fully addressed, ready-to-send drafts in the editor mailbox, with source links, reasonable deadlines and a private review log. The user reviews every message and clicks Send. Do not send, schedule, follow up or accept interview/background terms on the user's behalf. If mailbox access is unavailable, prepare the complete private packet and identify the specific remaining access step.
+- Lead with the human consequence and the reason to care now. Within the first 100–150 words, explain what happened, who is affected and what is at stake. Keep necessary qualifications beside their claims; put detailed audit trails in the case file or source notes. Never invent a person, experience or harm to make a story vivid.
+- Publishing and deploying still require explicit user direction. Permission to research, prepare outreach or publish does not authorize agents to send correspondence.
 
 ## Technical boundaries
 

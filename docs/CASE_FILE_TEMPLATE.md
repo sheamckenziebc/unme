@@ -40,7 +40,13 @@ This tracked dossier is public by default. Use opaque source IDs and publication
 
 **Jurisdiction, affected community and responsible decision-makers:**
 
-## Scope and novelty
+**Yukon relevance or explicit editor-approved scope exception:**
+
+**Reader's two-sentence explanation:** What happened to whom, and why should a reader care now?
+
+**Human consequence:** Separate documented effects, attributed experiences and risks. Identify the source for each and the reporting needed where effects are unknown.
+
+## Scope and usefulness
 
 **Questions this investigation will answer:**
 
@@ -54,7 +60,7 @@ This tracked dossier is public by default. Use opaque source IDs and publication
 
 **Relevant outside reporting checked:**
 
-**What is genuinely new:**
+**What this adds for readers:** New evidence, explanation, practical consequence or current follow-up. An exclusive or extraordinary finding is not required.
 
 ## Source register
 
@@ -110,13 +116,23 @@ Use official and first-party links where possible. Do not imply that an outside 
 | --- | -------------- | -------- | ---------------------------------- | -------------------- | ----------------- | ----------------------------- | ---------- |
 | A1  |                | Contact  |                                    |                      |                   |                               |            |
 
-## Right-of-reply plan and delivery log
+## Direct-reporting plan and right of reply
 
-Prepare each request with `docs/RESPONSE_REQUEST_TEMPLATE.md`. Do not mark a request sent until delivery actually occurred.
+Consider responsible actors, affected people, records custodians and independent specialists. Choose sources for knowledge and relevance; no mechanical source quota. Prepare requests early enough to change the account. Explain any omitted direct reporting and obtain a specific editor-approved exception. Public records alone do not automatically excuse it.
 
-| Recipient and role | Why response is required | Contact source verified | Authorized to send by | Sent at / channel | Deadline and timezone | Follow-up | Delivery evidence | Status |
-| ------------------ | ------------------------ | ----------------------- | --------------------- | ----------------- | --------------------- | --------- | ----------------- | ------ |
-|                    |                          |                         |                       |                   |                       |           |                   | Draft  |
+| Public-safe source role | Question or consequence they can clarify | Reporting purpose | What was learned / gap remaining | Next step |
+| ----------------------- | ---------------------------------------- | ----------------- | -------------------------------- | --------- |
+|                         |                                          |                   |                                  |           |
+
+Prepare each complete private request with `docs/RESPONSE_REQUEST_TEMPLATE.md`. Agents verify the contacts, write the messages, prepare mailbox drafts and read them back. The editor reviews and clicks Send. Actual addresses, mailbox IDs, exchanges and review links remain private.
+
+| Public-safe recipient role | Contact verified at | Draft ready at | Actual editor send / delivery status | Deadline and timezone    | Response / incorporation status |
+| -------------------------- | ------------------- | -------------- | ------------------------------------ | ------------------------ | ------------------------------- |
+|                            |                     |                | Not sent                             | Proposed only until sent |                                 |
+
+**Private review packet location:** Refer generically; do not expose mailbox identifiers or sensitive content.
+
+**Postpublication inquiry, if applicable:** Record the first actual contact date and preserve the original publication exception. Prepared or approved does not mean sent; a draft does not create a missed deadline.
 
 ## Response incorporation log
 
@@ -146,17 +162,22 @@ This is an editorial risk review, not a claim of legal advice. Read the title, s
 ## Publication gates
 
 - [ ] Scope, hypothesis and defeat condition are recorded.
+- [ ] Yukon relevance and a concrete reason for readers to care are clear; novelty is not treated as an evidence gate.
 - [ ] Source register is complete and material sources are authenticated.
 - [ ] Chronology is reconciled against primary records.
 - [ ] Title, description, summary and key findings are approved in the claim ledger.
 - [ ] Disconfirming-evidence pass is recorded and the thesis was narrowed or abandoned where necessary.
 - [ ] Historical claims received a current-status check close to publication.
 - [ ] Strongest contrary evidence and response are represented fairly.
+- [ ] Direct reporting and its effect on the account are recorded, or a specific editor-approved exception is recorded.
+- [ ] Outreach preparation, actual sending and replies are distinguished; private details are excluded from tracked files.
 - [ ] Fresh right of reply is complete, not applicable or covered by an approved exception.
 - [ ] Appeal, review, correction, publication-ban and sealing status were checked where applicable.
 - [ ] Reader actions and officeholder, petition or process links were rechecked.
 - [ ] Legal, privacy and fairness hostile read is complete.
 - [ ] Final fact check and copy edit are complete.
+- [ ] The opening explains the finding, who is affected and the consequence within 100–150 words, with no invented scene or harm.
+- [ ] Repeated caveats and process narration have been cut; needed qualifications remain near their claims and the verification trail remains accessible.
 - [ ] `npm run format`, `npm run check`, `npm run build` and `npm run validate:build` pass on the final copy.
 - [ ] Editor explicitly approves publication and the article contains matching `publicationReview` metadata.
 
@@ -179,6 +200,10 @@ Do not erase an unmet gate. Record an exception here and point to it from the re
 **Material unresolved questions:**
 
 **Right-of-reply status:**
+
+**Direct-reporting result, mailbox draft status and editor's next action:**
+
+**Reader consequence and readability check:**
 
 **Appeal, review and current-status result:**
 

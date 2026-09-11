@@ -2,6 +2,8 @@
 
 **Status:** Working decision memo. No funding programme or ad product is authorized by this document.
 
+**Publisher decision, September 11, 2026:** The next revenue option is a supporting subscription for public Yukon journalism. Quality is the reason to support it; a separate paid watch, exclusive briefing or artificial benefit is not required. The price, provider and launch remain future decisions. `docs/PAID_PRODUCT_DEFINITION.md` and `docs/PAID_PRODUCT_HANDOFF.md` define this direction. Later revenue options below are possibilities, not current implementation instructions.
+
 ## Recommendation
 
 Do not add programmatic display advertising now. At the publication’s current stage it would produce little revenue while adding clutter, behavioural-ad infrastructure and perceived incentives that conflict with the existing no-advertising, no-tracking presentation.

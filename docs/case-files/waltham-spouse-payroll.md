@@ -14,7 +14,7 @@ This is the publication-safe case file for the investigation. It contains no con
 
 **Editor/reporting owner:** UNME Editorial Desk
 
-**Case-file status:** Published
+**Case-file status:** Withdrawn from public publication scope by editor instruction, September 11, 2026; deployment verification recorded below. Historical publication review retained.
 
 **Opened:** September 10, 2026
 
@@ -23,6 +23,14 @@ This is the publication-safe case file for the investigation. It contains no con
 **Target publication date, if any:** September 10, 2026
 
 **Sensitivity notes:** The investigation names a living former municipal official and reports adverse administrative findings. The CMQ report anonymizes him, so identity is triangulated through official municipal minutes and consistent local reporting. The spouse is not named because identification is unnecessary. No publication ban, sealed record, confidential source, private contact information or criminal allegation is used.
+
+## September 11, 2026 — geographic scope withdrawal
+
+The publisher chose to focus UNME on Yukon and explicitly confirmed: “Yes, remove the Waltham/Portage-du-Fort story.” The MDX is retained with `draft: true` so the standard publication filter removes its article route and all listing, topic, Ledger, feed and sitemap entries. The source record and original publication decision below remain historical records.
+
+This is a scope decision, not a factual retraction. No new finding about the subjects is asserted. Do not restore publication from the retained approval metadata: a new explicit editor decision and refreshed publication checks are required.
+
+**Withdrawal deployment:** Pending validation and live verification in this change.
 
 ## Intake and hypothesis
 

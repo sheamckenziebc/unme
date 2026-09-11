@@ -1,114 +1,132 @@
-# Right-of-reply request and response log
+# Direct reporting, right of reply and response log
 
-Use one copy or one clearly separated section per materially criticized person or organization. This is an internal reporting document. Preparing it does not authorize contact: sending requires explicit user direction.
+Use one working copy per recipient or office for a records inquiry, interview request, factual clarification or right of reply. Agents prepare everything through a complete unsent mailbox draft. The editor reviews the exact message and clicks Send. Do not send, schedule, submit a form, follow up or agree to terms on the editor's behalf.
 
-Completed response logs may contain private contact details or unpublished exchanges. Keep working copies under `.unme-private/<article-slug>/responses/` or another approved secure location, not in Git. Only a publication-safe status summary belongs in the tracked case file.
+Keep completed copies, contact details, mailbox identifiers, exchanges and attachments under `.unme-private/<article-slug>/responses/` or another approved secure location. Only a publication-safe status summary belongs in the tracked case file.
 
 ## Request control
 
 **Investigation and case-file path:**
 
-**Recipient organization:**
+**Purpose:** Records / Affected person's experience / Expert explanation / Clarification / Right of reply
 
-**Named recipient and public role:**
+**Timing:** Prepublication / First direct inquiry after publication / Later follow-up
 
-**Contact address or channel:**
+**Recipient organization, name and public role:**
 
-**Official source used to verify contact details:**
+**Verified To address and official source URL:**
 
-**Contact details verified at:**
+**Contact and role verified at:**
 
-**Sender identity and reply address:** [Real name and role], `editor@urnotmadenough.ca`
+**Prior contact, duplicate requests, preferences or opt-out checked:**
 
-**User authorization to send:** Not requested / Requested / Granted at / Declined
+**Verified sender identity and reply address:** Use the actual configured mailbox identity; `Editorial Desk <editor@urnotmadenough.ca>` is appropriate when confirmed. Do not invent a named reporter.
 
-**Planned send time:**
+**CC / BCC:** Normally none. Explain any necessary copied recipient; no bulk BCC.
 
-**Response deadline with timezone:**
+**Attachments:** Normally none; prefer public source links. Review rights and privacy for each attachment.
 
-**Deadline rationale:** Consider urgency, complexity, volume of questions, public holidays, recipient working hours and the planned publication time.
+**Preparation status:** Prepared locally / Mailbox draft ready for review
 
-## Standard request package
+**Mailbox draft ID, message ID and review link:** Keep identifiers distinct and private.
 
-Each request must contain:
+**Prepared / last read-back verified at:**
 
-1. The working article subject and the central factual proposition that may be published.
-2. Direct links or precise descriptions of the controlling records.
-3. Numbered, concise questions that separate factual correction, legal position and policy explanation.
-4. The exact response deadline, date and timezone.
-5. An invitation to identify errors and provide supporting records.
-6. A clear explanation of how to respond and whom to contact if more time is needed.
+**Proposed send-by date:**
 
-Do not send the entire unpublished article unless the editor decides the fairness benefit outweighs source, privacy and reporting risks.
+**Response deadline with date, time and timezone:**
 
-## Message draft
+**Deadline rationale:** Ordinarily allow at least five full business days for substantive non-urgent questions. Consider complexity, holidays, working hours and timezone. Refresh the deadline if the editor sends later than planned; a draft creates no response clock.
 
-**Subject:** Request for response — [specific investigation subject]
+**User review and send status:** Pending review / Sent by editor / Held / Changes requested. Do not infer approval from silence.
 
-Hello [name or office],
+## Write the complete message
 
-UR NOT MAD ENOUGH is preparing an investigation concerning [precise subject]. Our current reporting, based on [identify controlling records], may state that:
+The draft must contain a specific subject, accurate publication/sender identity, short context, necessary qualifications, direct controlling-source links, usually 3–5 answerable questions, a realistic deadline, an invitation to correct errors and a reply route. A simple records inquiry may need fewer questions. Ask for supporting records, not agreement with the thesis. Tailor every request to what this recipient can know or provide.
 
-> [Central factual proposition and necessary qualification]
+Do not send an entire unpublished article by default. Do not request confidential identities, privileged advice or restricted records. Do not authorize fees, promise coverage, promise an interview time or accept embargo/background terms without the editor's decision. No tracking pixels or read-receipt demands.
 
-The principal records are:
+### Before publication
 
-- [Record title and direct URL]
+**Subject:** Request for response: [specific finding or decision]
 
-We invite your response to the following questions:
+Hello [verified name or office],
 
-1. [Question]
+UR NOT MAD ENOUGH is reporting on [precise subject and consequence]. Based on [controlling record], we may report that [factual proposition and necessary qualification].
 
-Please identify any factual error and provide records supporting any correction or explanation. We would appreciate a response by **[time, date and timezone]**. If additional time is needed, please explain what can be provided and when.
+The central records are [direct links].
 
-Responses may be quoted or summarized accurately and in context. Please send the response to [reply channel].
+1. [Question that can change the account, with its factual premise stated fairly.]
+2. [Current status or practical consequence, and records that would establish it.]
+3. [Strongest alternative explanation, correction or missing context.]
+
+Please identify any factual error and provide public records supporting your answers. We would appreciate a reply by [time, full date and timezone]. If you need more time, please tell us what you can provide and when.
+
+Replies may be quoted or summarized with attribution. Please propose any different terms before providing information on those terms.
 
 Thank you,
 
-[Sender name and publication contact]
+[Verified sender identity and functioning reply address]
+
+### First direct inquiry after publication
+
+Replace the opening with:
+
+> We published [article link] on [actual publication date] without seeking a fresh response from your office. This is our first direct inquiry for that article. We are reporting a follow-up and invite corrections and current records concerning [specific finding and consequence].
+
+Adapt the wording for an affected person, expert or registry rather than implying they were accused. Keep the original no-contact disclosure and publication exception intact. Do not backdate the opportunity to reply or imply the recipient previously ignored us.
+
+### Interviews and affected people
+
+Explain the subject, why this person's knowledge matters and the proposed use of the response. Offer written answers or an interview without requiring either. Ask for a suitable time and format; prepare the editor's scheduling reply when one arrives. Participation is voluntary. Do not request intimate or confidential details merely to enliven a lead, and do not promise anonymity before the editor agrees to the terms.
 
 ## Question ledger
 
-| No. | Question | Claim or gap addressed | Record supplied to recipient | Answerable without accepting the thesis? |
-| --- | -------- | ---------------------- | ---------------------------- | ---------------------------------------- |
-| 1   |          |                        |                              |                                          |
+| No. | Question | Claim, consequence or gap addressed | Record supplied | Answerable without accepting the thesis? |
+| --- | -------- | ----------------------------------- | --------------- | ---------------------------------------- |
+| 1   |          |                                     |                 |                                          |
 
-## Delivery and follow-up log
+## Ready-for-review check
 
-Preserve enough evidence to establish what was sent, to whom and when. Do not publish private contact details in the article or public case material.
+- [ ] Current role and address verified against an official or first-party source; no guessed addresses.
+- [ ] Each question has a reporting purpose and does not demand agreement with an allegation.
+- [ ] The message identifies whether the story is already published and accurately describes prior contact.
+- [ ] All placeholders are resolved; sender, recipient, source links, deadline and signature are complete.
+- [ ] The exact mailbox draft was read back and matches the reviewed text, headers and attachments.
+- [ ] Unsent state is verified; no message has been sent or scheduled by an agent.
+- [ ] Private packet contains the contact source, question ledger, draft identifiers, send-by date and next step.
+- [ ] Editor has a direct route to review the drafts and can finish by clicking Send.
 
-| Event | Date, time and timezone | Channel | Address verified? | Delivery evidence / error | Next step |
-| ----- | ----------------------- | ------- | ----------------- | ------------------------- | --------- |
-| Draft |                         |         |                   |                           |           |
+If mailbox access is unavailable, finish the complete local packet and identify the exact access step still needed. Do not call a local file a mailbox draft or hand the user a partial outline to finish.
 
-If delivery fails, correct the address from an authoritative source and resend only with existing authorization. If the request is materially changed or sent to a new person, confirm that the authorization still covers it.
+## Contact and follow-up log
 
-## Response log
+| Event                                                                                | Date, time and timezone | Channel | Evidence                           | Deadline / next step   |
+| ------------------------------------------------------------------------------------ | ----------------------- | ------- | ---------------------------------- | ---------------------- |
+| Mailbox draft ready                                                                  |                         |         | Verified draft ID; not sent        | Editor review and Send |
+| Sent by editor                                                                       |                         |         | Actual sent-message ID and headers |                        |
+| Delivery failed / awaiting response / response received / declined / deadline passed |                         |         |                                    |                        |
 
-**Received at:**
+After the editor sends, verify the actual sent message before updating the public case-file summary. Successful transmission does not prove delivery or reading. A bounce is not a response opportunity. Prepare a corrected draft for the editor to resend; follow-ups and substantive revisions also require review and human Send. Do not describe silence as refusal or a missed deadline until an actual delivered request's reasonable deadline has elapsed.
 
-**Identity or authority of respondent verified by:**
+## Response and incorporation log
 
-**Full response preserved at:**
+**Received at and respondent authority verified by:**
 
-**On-record, background or other terms:** Do not agree to new terms retroactively.
+**Full response and supporting records preserved at:**
 
-**Supporting records supplied:**
+**Terms actually agreed:** On record / Other terms explicitly agreed before disclosure. Do not accept terms retroactively.
 
-**Material factual correction:**
+**Material correction, strongest contrary explanation and unanswered questions:**
 
-**Strongest explanation or contrary position:**
+**Independent verification and effect on thesis:**
 
-**Questions not answered:**
-
-**Follow-up required and authorized:**
-
-## Incorporation check
+**Follow-up draft needed:**
 
 - [ ] Corrective facts were independently checked where possible.
-- [ ] The response is represented in proportion to its importance, not buried or selectively quoted.
-- [ ] Unsupported assertions remain attributed.
-- [ ] Supporting records were added to the source register and claim ledger.
-- [ ] New allegations received their own verification and, where necessary, response opportunity.
-- [ ] The article accurately states the request date, channel, deadline and response status.
-- [ ] No private contact detail or off-record material is exposed.
+- [ ] The strongest explanation is represented prominently and in proportion to its importance.
+- [ ] Assertions remain attributed; records are entered in the source register and claim ledger.
+- [ ] New allegations receive their own verification and response opportunity.
+- [ ] Article request dates, deadline and response status match actual events.
+- [ ] A material correction or update is handled under the editorial workflow, preserving prior publication history.
+- [ ] No private contact detail, restricted record or confidential exchange is exposed.

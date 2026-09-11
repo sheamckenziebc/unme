@@ -1,5 +1,15 @@
 # Eagle Gold Environment records: investigation case file
 
+## September 11, 2026 — postpublication reporting preparation
+
+At the publisher's direction, six complete first-inquiry drafts were prepared in the editor mailbox for Environment, the Information and Privacy Commissioner, Energy, Mines and Resources, the receiver's media office, the Supreme Court registry and the First Nation of Na-Cho Nyäk Dun's public office for routing to its designated spokesperson. Official contact sources were checked; mailbox sender, recipients, full text and unsent state were read back and verified.
+
+The questions address the disclosure count and actual release status, later proceedings, evidence of oversight reforms, financing and sale status, and the Nation's account of practical consequences. The government implementation page, modified September 2, was checked during preparation and still described 23 recommendations implemented, six in progress and 27 expected by spring 2027. The inquiry asks for itemized supporting evidence rather than assuming that this self-report proves implementation.
+
+**Contact status:** Drafts ready for publisher review and Send; no inquiry sent by an agent, no new response received through this preparation, and no response deadline has begun. Proposed replies by September 21 at 4 p.m. Yukon time depend on sending September 11–14; refresh the deadline if sending later. The complete packet and mailbox evidence are retained privately.
+
+The September 10 publication exception and no-fresh-contact disclosure below remain historical facts. These preparations do not change the published findings, Ledger state or evidence cutoff. Record actual contact and any verified substantive update separately after the publisher sends.
+
 ## File control
 
 **Working title:** Yukon Environment rejected part of an Eagle Gold disclosure recommendation. The public count needs explaining.

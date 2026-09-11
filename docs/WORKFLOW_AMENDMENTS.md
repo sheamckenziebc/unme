@@ -2,6 +2,23 @@
 
 This log records material changes to the production investigation workflow. It supplements `docs/EDITORIAL_WORKFLOW.md`; the current workflow remains the operative instruction.
 
+## 2026-09-11 — Direct reporting, clearer writing and Yukon focus
+
+**Requested and approved direction:** Publisher, including explicit confirmation that the non-Yukon story to remove is Waltham/Portage-du-Fort.
+
+**Decisions and implementation:**
+
+- Direct reporting begins during evidence gathering and includes relevant responsible actors, affected people, records custodians and independent sources. Record what it added; an omission needs a specific editor-approved exception. Public documents alone do not automatically excuse fresh reporting or right of reply.
+- Agents research and verify recipients, resolve all message placeholders, prepare source-linked questions and reasonable deadlines, create addressed unsent mailbox drafts and verify them by reading them back. The publisher reviews every message and clicks Send. Follow-ups, resends, forms and scheduling replies follow the same boundary.
+- Drafting, approval, sending, delivery and response are separate states. Preserve mailbox evidence privately and only safe status summaries publicly. A draft deadline creates no missed-response claim.
+- Prepare first direct inquiries after publication for the Eagle Gold disclosure and Yukon procurement investigations. Preserve the September 10 no-contact disclosures and publication exceptions; later contact cannot retroactively become prepublication right of reply.
+- Explain the finding, affected people and concrete consequence within the first 100–150 words. Replace mandatory article boilerplate with a flexible reader-led structure; cut repeated caveats and process narration while retaining material limits and the auditable evidence trail. Never invent a scene, person or harm.
+- Select useful, consequential Yukon stories without requiring an extraordinary scandal, crime, novelty or proof of illegality. Non-partisanship permits reasoned criticism of political choices, institutions and societal norms under the same standard of evidence.
+- Focus current coverage on Yukon. Withdraw Waltham/Portage-du-Fort from public routes with `draft: true`, retaining the historical article and case file. This is a geographic scope decision, not a factual retraction; republication needs a fresh explicit decision.
+- Define the future subscription as support for public journalism. Supersede the paid Eagle Gold watch proposal and pilot-briefing requirements. No checkout, price, provider purchase or payment activation is authorized by this amendment.
+
+**Operative files:** `AGENTS.md`, `EDITORIAL_WORKFLOW.md`, `CASE_FILE_TEMPLATE.md`, `RESPONSE_REQUEST_TEMPLATE.md`, `ARTICLE_BRIEF.md` and the distribution workflow. README and public About, Methodology and Brief desk copy reflect the new direction. The growth roadmap, product definition, execution handoff and funding memo reflect the supporting-subscription decision.
+
 ## 2026-09-10 — Dossier, Brief and Ledger architecture
 
 **Requested by:** Publisher
