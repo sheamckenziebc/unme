@@ -18,7 +18,7 @@ Completed response logs may contain private contact details or unpublished excha
 
 **Contact details verified at:**
 
-**Sender identity and reply address:**
+**Sender identity and reply address:** [Real name and role], `editor@urnotmadenough.ca`
 
 **User authorization to send:** Not requested / Requested / Granted at / Declined
 

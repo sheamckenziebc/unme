@@ -5,8 +5,6 @@ export const siteConfig = {
   description:
     "An independent, evidence-first accountability publication producing Dossiers, Briefs and a living Ledger of what happened next.",
   defaultAuthor: "UR NOT MAD ENOUGH",
-  repositoryUrl: "https://github.com/sheamckenziebc/unme",
-  correctionsUrl:
-    "https://github.com/sheamckenziebc/unme/issues/new?template=correction.yml",
+  editorialEmail: "editor@urnotmadenough.ca",
   social: {},
 } as const;

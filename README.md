@@ -56,8 +56,14 @@ This repository is public. Tracked case files must be publication-safe: use opaq
 - `docs/ARTICLE_BRIEF.md` — reusable human/Codex investigation brief
 - `docs/CASE_FILE_TEMPLATE.md` — required publication-safe investigation dossier
 - `docs/RESPONSE_REQUEST_TEMPLATE.md` — right-of-reply request and response log
+- `docs/DISTRIBUTION_WORKFLOW.md` — approved-recipient, cadence and outreach controls
+- `docs/DISTRIBUTION_CAMPAIGN_TEMPLATE.md` — reusable private campaign record
+- `docs/OUTREACH_TEMPLATES.md` — reporter, desk, community and courtesy message structures
+- `docs/REPUBLISHING_POLICY_DRAFT.md` — draft excerpt and republication terms
+- `docs/REPUBLISHING_PERMISSION_TEMPLATE.md` — one-use outlet permission record
+- `docs/FUNDING_AND_INDEPENDENCE_DRAFT.md` — draft revenue and underwriting guardrails
 - `docs/case-files/` — source inventories, chronologies, claim ledgers and open checks
-- `.unme-private/` — ignored local working area for sensitive reporting material
+- `.unme-private/` — ignored local working area for sensitive reporting and distribution material
 - `scripts/validate-build.mjs` — generated-route, metadata, link and draft-leakage checks
 - `src/content.config.ts` — the validated investigation schema
 - `src/config/site.ts` — publication name, tagline and global metadata

@@ -31,7 +31,7 @@ const structuredData = {
   url: canonical,
   datePublished: publishedDate?.toISOString(),
   dateModified: updatedDate?.toISOString() ?? publishedDate?.toISOString(),
-  publisher: { '@type': 'Organization', name: siteConfig.name, url: Astro.site },
+  publisher: { '@type': 'Organization', name: siteConfig.name, url: Astro.site, email: siteConfig.editorialEmail },
   author: type === 'article' ? authors.map((name) => ({ '@type': name === 'UNME Editorial Desk' ? 'Organization' : 'Person', name })) : undefined,
   mainEntityOfPage: type === 'article' ? { '@type': 'WebPage', '@id': canonical } : undefined,
 };

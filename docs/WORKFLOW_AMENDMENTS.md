@@ -69,7 +69,7 @@ This log records material changes to the production investigation workflow. It s
 - Made published production entries require at least one source, verified civic actions, a slug-matched case file and recorded editor approval, right-of-reply status, fairness review and final fact check. Future-dated publication, approval and action-check dates fail validation.
 - Added generated-site validation for required outputs, metadata, canonical URLs, internal links and fragments, accessibility basics, published route presence, RSS/sitemap consistency and draft or demonstration leakage.
 - Changed the GitHub Pages workflow to run locked installation, formatting, Astro/TypeScript diagnostics, the production build and generated-site validation before uploading a deployable artifact. Deployment permissions now exist only on the deploy job.
-- Added a public correction-request form and clear warning that the GitHub intake is not confidential.
+- Added a public correction-request form and clear warning that the intake was not confidential. This route was later retired when the dedicated editor inbox became available; the site now directs correction requests to email.
 - Documented AI-assisted work as non-evidentiary, preserved named human editorial accountability, and documented the boundary between public case files and private reporting material.
 - Verified public pages at 320px, 375px and desktop widths with no horizontal overflow, valid landmarks, unique headings, usable navigation and correct metadata.
 

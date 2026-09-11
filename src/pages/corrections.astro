@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { siteConfig } from '../config/site';
+
+const correctionEmailUrl = `mailto:${siteConfig.editorialEmail}?subject=${encodeURIComponent('Correction — article title')}`;
 ---
 
 <BaseLayout title="Corrections" description="How to request and review corrections to UR NOT MAD ENOUGH reporting.">
@@ -10,8 +12,8 @@ import { siteConfig } from '../config/site';
       <p>UR NOT MAD ENOUGH corrects substantive factual errors promptly, clearly and in the place readers are most likely to encounter them.</p>
       <p>A correction note states what was wrong, supplies the accurate information and records the date of the change. We do not disguise corrections as routine edits. Typographical fixes that do not alter meaning may be made without a note. New reporting and later developments are labelled as updates rather than corrections.</p>
       <h2>Request a correction</h2>
-      <p>A useful request identifies the article, the disputed statement and the strongest available evidence supporting the correction. <a href={siteConfig.correctionsUrl} rel="external">Submit a correction request through the public repository</a>.</p>
-      <p><strong>Correction requests are public.</strong> Do not include confidential sources, private contact details, personal identifiers or sensitive records. A confidential submissions channel is not currently offered.</p>
+      <p>A useful request identifies the article, the disputed statement and the strongest available evidence supporting the correction. Email <a href={correctionEmailUrl}>{siteConfig.editorialEmail}</a> with a subject beginning <strong>Correction —</strong>.</p>
+      <p>Ordinary email is not a secure or anonymous submissions channel. Do not include confidential sources, personal identifiers, restricted records or other highly sensitive material.</p>
       <h2>Corrections history</h2>
       <p>No corrections to production reporting have been recorded. Fictional demonstration files are excluded from the public investigation archive and do not constitute published reporting.</p>
     </div>
