@@ -14,11 +14,11 @@ This is the publication-safe case file for the investigation. It contains no con
 
 **Editor/reporting owner:** UNME Editorial Desk
 
-**Case-file status:** Ready
+**Case-file status:** Published
 
 **Opened:** September 10, 2026
 
-**Last evidence check:** September 10, 2026, 7:54 p.m. America/Whitehorse
+**Last evidence check:** September 10, 2026, 7:59 p.m. America/Whitehorse
 
 **Target publication date, if any:** September 10, 2026
 
@@ -251,7 +251,7 @@ Status: **Final hostile read and rendered-page review completed September 10, 20
 
 ## Final readiness decision and handoff
 
-**Decision:** Ready with documented exceptions. The editorial evidence gates are complete; deployment remains contingent on a clean final public build and rendered-page review.
+**Decision:** Published with documented exceptions after the editorial evidence gates, final public build, rendered-page review and live deployment checks passed.
 
 **Current thesis in one sentence:** The CMQ could not substantiate the Waltham director general's spouse's almost decade-long municipal employment beyond cheques, found a broader collapse of controls, and left a public accountability record that makes Portage's current office-management engagement with the same former official a legitimate due-diligence question.
 
@@ -267,7 +267,7 @@ Status: **Final hostile read and rendered-page review completed September 10, 20
 
 **Approved by and date:** UNME Editorial Desk, September 10, 2026, 7:46 p.m. America/Whitehorse. The editor explicitly instructed UNME to run the standard workflow and “publish once finished.”
 
-**Final check results:** Passed September 10, 2026 at 7:54 p.m.: `npm run format`, `npm run check`, `npm run build` and `npm run validate:build`. Astro reported zero errors, warnings or hints; the static build generated 29 pages with three published production investigations and four excluded draft/demonstration files. Custom-domain and `/unme` repository-subpath modes both passed build validation; the subpath output used `/unme/` for canonical, assets, RSS, robots and internal navigation. All 19 unique source and civic-action destinations returned HTTP 200 in the final automated check. Rendered browser QA at 1,440 × 900 and 320 × 844 CSS pixels confirmed the title, findings digest, six actions, full article, three inline document links, 15-record source list and reporting-method disclosure. No document-level horizontal overflow or browser error occurred. The narrow budget table scrolls within its 288-pixel container, keeps figures intact across its 421-pixel content width, and the global fix improves other long article tables. Keyboard focus retained a three-pixel visible outline and reduced-motion rendering was exercised.
+**Final check results:** Passed September 10, 2026 at 7:54 p.m. and repeated after recording deployment at 8:00 p.m.: `npm run format`, `npm run check`, `npm run build` and `npm run validate:build`. Astro reported zero errors, warnings or hints; the static build generated 29 pages with three published production investigations and four excluded draft/demonstration files. Custom-domain and `/unme` repository-subpath modes both passed build validation; the subpath output used `/unme/` for canonical, assets, RSS, robots and internal navigation. All 19 unique source and civic-action destinations returned HTTP 200 in the final automated check. Rendered browser QA at 1,440 × 900 and 320 × 844 CSS pixels confirmed the title, findings digest, six actions, full article, three inline document links, 15-record source list and reporting-method disclosure. No document-level horizontal overflow or browser error occurred. The narrow budget table scrolls within its 288-pixel container, keeps figures intact across its 421-pixel content width, and the global fix improves other long article tables. Keyboard focus retained a three-pixel visible outline and reduced-motion rendering was exercised.
 
 **Initial Ledger status, public summary and checked date:** `partially-implemented` — “Waltham filed the report and later adopted explicit cheque controls, but no public CMQ record located closes the observer's remaining work.” Checked September 10, 2026.
 
@@ -277,15 +277,15 @@ Complete only after explicit authorization and actual deployment.
 
 **Article changed to `draft: false` by:** UNME Editorial Desk, September 10, 2026, 7:46 p.m. America/Whitehorse, after the documented readiness decision and the editor's explicit publication authorization.
 
-**Commit SHA:** Pending.
+**Commit SHA:** `2c2952cb7fcd717ad1a50443785f513d21ac6f1d`
 
-**Deployment run:** Pending.
+**Deployment run:** [GitHub Pages run 34556612751](https://github.com/sheamckenziebc/unme/actions/runs/34556612751), completed successfully September 10, 2026 at 7:58 p.m. America/Whitehorse. Both the build and deploy jobs succeeded.
 
-**Live URL and first successful check time:** Pending.
+**Live URL and first successful check time:** [https://urnotmadenough.ca/investigations/waltham-spouse-payroll/](https://urnotmadenough.ca/investigations/waltham-spouse-payroll/), HTTP 200 with the current title, 15 source records and reporting-method disclosure at 7:58:44 p.m. America/Whitehorse on September 10, 2026.
 
-**Canonical, index, RSS and sitemap checks:** Pending.
+**Canonical, index, RSS and sitemap checks:** Passed at 7:59 p.m. The live canonical is exact; the homepage, investigations archive, Dossiers index and Ledger link the article; RSS and `sitemap-0.xml` contain its canonical URL; `sitemap-index.xml` links that sitemap; and `robots.txt` allows crawling and names the canonical sitemap index.
 
-**Post-deploy link check:** Pending.
+**Post-deploy link check:** All 19 unique evidence and civic-action destinations returned HTTP 200 in the final automated check. Live browser QA at 1,440 × 900 and 320 × 844 CSS pixels returned HTTP 200 with no browser errors or document-level horizontal overflow. The live page exposes six actions and 15 source cards; its budget table scrolls within the 320-pixel layout and keeps currency figures intact.
 
 ## Corrections and updates
 
