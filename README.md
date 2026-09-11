@@ -73,22 +73,22 @@ This repository is public. Tracked case files must be publication-safe: use opaq
 - `src/pages/` — routes, indexes, RSS, robots and 404
 - `src/styles/global.css` — global design tokens and shared typography
 - `src/utils/` — date, sorting, slug and base-path helpers
-- `.github/workflows/deploy.yml` — GitHub Pages deployment
+- `.github/workflows/validate.yml` — independent validation-only CI
 
 For the current business and infrastructure sequence, see `docs/GROWTH_ROADMAP.md`.
 
-## GitHub Pages deployment
+## Cloudflare Pages deployment
 
-The workflow follows GitHub Pages’ artifact deployment approach. A push to `main` installs the locked dependencies, checks formatting and types, builds the site, validates generated metadata and links, checks that drafts and demonstrations did not leak, and deploys only if every stage passes. The Astro configuration derives the temporary Pages URL and repository base path from GitHub Actions automatically, so a project repository works at `https://OWNER.github.io/REPOSITORY/` without hard-coded owner details.
+Production is published by the Cloudflare Pages project `urnotmadenough` from the repository's `main` branch. Cloudflare uses the Astro preset, runs `npm run deploy:build`, publishes `dist`, and reads the pinned runtime from `.node-version`. The deployment command checks formatting, content, Astro and TypeScript before building, then validates generated metadata, links, draft exclusions, feeds and routes before Cloudflare publishes the result.
 
-After the repository is pushed to GitHub, open **Settings → Pages → Build and deployment** and select **GitHub Actions** as the source.
+The GitHub workflow is validation-only CI. It deliberately does not publish, so Cloudflare is the single production deployment path. The Cloudflare GitHub App is restricted to this repository.
 
 ## Custom domain
 
-For a domain such as `urnotmadenough.ca`:
+The domain remains registered at Namecheap, while its authoritative DNS is managed by Cloudflare. Preserve the Google mail-routing, SPF, DKIM and site-verification records when changing web records. Both the apex and `www` hostnames must be attached to the Pages project and verified over HTTPS.
 
-1. Configure the required DNS records with the domain provider.
-2. Add `public/CNAME` containing only the domain name, such as `urnotmadenough.ca`.
-3. Configure and verify the custom domain under **Settings → Pages**.
+`public/CNAME` remains the source for the production hostname used by Astro's canonical URLs and internal links. Optional `PUBLIC_SITE_URL` and `PUBLIC_BASE_PATH` environment variables can override this behavior for an unusual deployment. Site URL behavior is centralized in `astro.config.mjs`; editorial identity and default metadata are centralized in `src/config/site.ts`.
 
-Astro reads `public/CNAME` automatically and switches canonical URLs and internal links to the domain root. Optional `PUBLIC_SITE_URL` and `PUBLIC_BASE_PATH` repository variables can override this behavior for an unusual deployment. Site URL behavior is centralized in `astro.config.mjs`; editorial identity and default metadata are centralized in `src/config/site.ts`.
+### Hosting rollback
+
+Keep the last successful GitHub Pages deployment available during the migration window. If a rollback is required, leave Cloudflare DNS authoritative and replace the Pages web records with the four documented GitHub Pages apex addresses (`185.199.108.153` through `185.199.111.153`) plus the `www` CNAME to `sheamckenziebc.github.io`. Confirm the GitHub custom-domain setting before changing DNS. Restore the former Pages deployment workflow from Git history only if a new GitHub-hosted release is required.

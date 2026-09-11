@@ -17,15 +17,15 @@ This is the working execution list for turning UR NOT MAD ENOUGH into a durable,
 - [x] Keep Astro static output, MDX as the source of truth and the existing strict build validation.
 - [x] Add one Cloudflare build command that runs formatting, content/type checks, the static build and generated-site validation.
 - [x] Pin a supported Node.js version for reproducible cloud builds.
-- [ ] Connect the GitHub repository to a Cloudflare Pages project.
-- [ ] Configure the production branch as `main`, build command as `npm run deploy:build` and output directory as `dist`.
-- [ ] Deploy and validate the temporary `pages.dev` address before touching DNS.
-- [ ] Import and review every existing DNS record, including mail and verification records.
-- [ ] Delegate the domain to Cloudflare only after the DNS review passes.
-- [ ] Attach and verify the apex and `www` custom domains with HTTPS.
-- [ ] Confirm canonical URLs, assets, investigations, RSS, sitemap, robots and the 404 page on production.
-- [ ] Convert the GitHub Actions workflow from Pages deployment to validation-only CI.
-- [ ] Update deployment documentation and record a rollback path.
+- [x] Connect the GitHub repository to a Cloudflare Pages project.
+- [x] Configure the production branch as `main`, build command as `npm run deploy:build` and output directory as `dist`.
+- [x] Deploy and validate the temporary `pages.dev` address before touching DNS.
+- [x] Import and review every existing DNS record, including mail and verification records.
+- [x] Delegate the domain to Cloudflare only after the DNS review passes.
+- [x] Attach and verify the apex and `www` custom domains with HTTPS.
+- [x] Confirm canonical URLs, assets, investigations, RSS, sitemap, robots and the 404 page on production.
+- [x] Convert the GitHub Actions workflow from Pages deployment to validation-only CI.
+- [x] Update deployment documentation and record a rollback path.
 
 ## 2. Define the first paid product
 
