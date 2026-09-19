@@ -419,7 +419,7 @@ Do not label a clarification as a correction to the publication when the earlier
 
 ### 4. Make the public change transparent
 
-- Set `updatedDate` and add an `UpdateNote` for a substantive addition. Use `CorrectionNote` for a factual correction and state the original error and corrected fact plainly.
+- Set `updatedDate` and add an `UpdateNote` for a substantive addition. Use `CorrectionNote` for a factual correction and state the original error and corrected fact plainly. The RSS feed uses `updatedDate` as the item's activity date so a substantive update reaches feed readers without changing the article's original publication date.
 - Revise every affected title, description, summary point, body passage, source note, action or Ledger field. Do not leave the old claim in a fast summary after fixing it in the body.
 - Preserve the earlier wording or publication-time state when readers need it to understand what changed; never silently reverse a material claim.
 - Attribute a respondent's assertion and retain necessary qualifications. Link supporting public records; if the response itself is not public, describe it accurately without exposing mailbox or personal details.
@@ -430,7 +430,7 @@ Do not label a clarification as a correction to the publication when the earlier
 - Recheck the changed claims, the strongest contrary evidence, time-sensitive sources and civic-action links.
 - Run a focused hostile read for misleading implications created by the update, then complete fact check, copy edit and spoken-clarity review for changed passages.
 - Record a dated update-readiness decision, named editor approval and any exception in the case file. A respondent's reply does not waive editorial approval.
-- Run formatting, diagnostics, production build and generated-site validation. Inspect the updated note, summary, Ledger, source list and narrow-screen rendering.
+- Run formatting, diagnostics, production build and generated-site validation. Inspect the updated note, summary, Ledger, source list, RSS activity date and narrow-screen rendering.
 - Publication still requires explicit user authorization. Commit and push only the intended files, monitor deployment, verify the live article and discovery surfaces, then add the deployment evidence to the case file's correction/update log.
 
 If a Brief has grown into a Dossier, change `format` only after the case file records the new scope and the expanded article passes the full gates.

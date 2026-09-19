@@ -269,7 +269,7 @@ Complete this block for a material reply or new record before changing the publi
 
 **Case-file sections reconciled:** Source register / Chronology / Claim ledger / Current status / Disconfirming evidence / Delivery log / Response log
 
-**Public changes required:** `updatedDate` / `UpdateNote` / `CorrectionNote` / Summary / Body / Sources / Actions / Ledger / None
+**Public changes required:** `updatedDate` / `UpdateNote` / `CorrectionNote` / Summary / Body / Sources / Actions / Ledger / RSS activity date / None
 
 **Update hostile read and final fact check:**
 

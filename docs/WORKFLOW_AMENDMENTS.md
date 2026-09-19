@@ -14,7 +14,7 @@ This log records material changes to the production investigation workflow. It s
 - Match each answer to the question asked. A response proves what the respondent said, not every underlying factual assertion, and an omitted answer is not a concession.
 - Classify the result as no public change, response update, correction or expanded reporting. Use `UpdateNote` for material new context and `CorrectionNote` for a publication error.
 - Update the source register, chronology, claim ledger, current-status and disconfirming-evidence checks, delivery log and response-incorporation record before editing the article.
-- Revise every affected summary, body, source and Ledger field; set `updatedDate`; preserve material publication-time context; and keep unanswered questions explicit.
+- Revise every affected summary, body, source and Ledger field; set `updatedDate`; expose that date as the RSS item's activity date; preserve material publication-time context; and keep unanswered questions explicit.
 - Re-run proportionate evidence, fairness, hostile-read, fact-check, copy, technical and live-deployment gates. Record a dated update-readiness decision, editor approval and deployment evidence.
 - Preserve the original publication exception. Postpublication contact cannot retroactively become prepublication right of reply.
 
