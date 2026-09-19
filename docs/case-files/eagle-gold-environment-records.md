@@ -320,7 +320,7 @@ This is the September 10 publication snapshot. The superseding September 19 upda
 - [x] The focused legal, privacy and fairness hostile read and a separate factual/copy pass were completed.
 - [x] The publisher explicitly authorized the update and live publication on September 19, 2026.
 - [x] Formatting, diagnostics, production build and generated-site validation pass on the final update.
-- [ ] The live article, canonical metadata, discovery surfaces, updated note, Ledger and critical links are verified after deployment.
+- [x] The live article, canonical metadata, discovery surfaces, updated note, Ledger and critical links are verified after deployment.
 
 ## September 19, 2026 update readiness decision
 
@@ -342,7 +342,7 @@ This is the September 10 publication snapshot. The superseding September 19 upda
 
 **Approved by and date:** UNME Editorial Desk / publisher, September 19, 2026, America/Whitehorse, through the explicit direction to intake the response, issue an official update and publish it live.
 
-**Technical and deployment results:** Local checks passed September 19, 2026: `npm run format`, `npm run format:check`, `npm run check`, `npm run build` and `npm run validate:build`. Astro reported zero errors, warnings or hints; the static build generated 23 pages; validation found two published production investigations and six excluded draft/demonstration files. Browser QA at 1280 and 320 CSS pixels found no document-level horizontal overflow. The update note, revised fast summary, Ledger text, reporting disclosure and source notes rendered correctly; at 320 pixels the evidence table remains a 273-pixel-wide scroll container with 96 pixels of horizontal scroll range. Deployment and live checks are recorded below when complete.
+**Technical and deployment results:** Local checks passed September 19, 2026: `npm run format`, `npm run format:check`, `npm run check`, `npm run build` and `npm run validate:build`. Astro reported zero errors, warnings or hints; the static build generated 23 pages; validation found two published production investigations and six excluded draft/demonstration files. Browser QA at 1280 and 320 CSS pixels found no document-level horizontal overflow. The update note, revised fast summary, Ledger text, reporting disclosure and source notes rendered correctly; at 320 pixels the evidence table remains a 273-pixel-wide scroll container with 96 pixels of horizontal scroll range. A second complete production build after the RSS activity-date change passed the same checks and counts. Deployment and live results are recorded below.
 
 ## Publication and deployment record
 
@@ -360,8 +360,22 @@ Complete only after explicit authorization and actual deployment.
 
 **Post-deploy link check:** All 18 unique external evidence and civic-action URLs were checked September 10, 2026. Ten returned HTTP 200 directly. Eight official Yukon or Yukon Legislative Assembly endpoints rejected the automated HTTP client with 403 responses but resolved successfully through an independent browser/web retrieval on the same date. No broken destination was identified.
 
+### September 19, 2026 response-update deployment
+
+**Authorization:** The publisher explicitly directed intake of the IPC response, an official update and live publication on September 19, 2026.
+
+**Content and workflow commits:** [`db625a9d2baad827f99b5fa22ab094be88fea078`](https://github.com/sheamckenziebc/unme/commit/db625a9d2baad827f99b5fa22ab094be88fea078) published the response update and postpublication workflow. [`db7455a`](https://github.com/sheamckenziebc/unme/commit/db7455a) made substantive `updatedDate` values the RSS activity date and documented that rule.
+
+**Deployment:** The Cloudflare Pages check for `db7455a` completed successfully September 19, 2026 at 11:55 a.m. America/Whitehorse. Cloudflare deployment ID: `73ef7225-f8cc-452f-b370-0d4652197663`.
+
+**Live URL and successful check time:** [https://urnotmadenough.ca/investigations/eagle-gold-environment-records/](https://urnotmadenough.ca/investigations/eagle-gold-environment-records/) returned HTTP 200 and was reviewed September 19, 2026 at 11:56 a.m. America/Whitehorse.
+
+**Live content check:** Passed. The September 19 update note, the 14-of-33-redacted-sections clarification, the exact canonical URL and links to the official IPC report index and report PDF were present. The public IPC reports page returned HTTP 200 and used the same “14 of the 33 redacted sections” wording.
+
+**Discovery check:** Passed. The homepage, investigations index, Dossier index and Ledger linked to the article. The Ledger showed a September 19 check date and the revised section count. The RSS feed linked to the article and exposed September 19 as its activity date. `sitemap-0.xml` contained the route, and `robots.txt` exposed `sitemap-index.xml`.
+
 ## Corrections and updates
 
-| Date       | New evidence or reported error                                                                            | Verification                                                                                                          | Correction / update made                                                                                                             | Editor              | Deployment                                                  |
-| ---------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------- | ----------------------------------------------------------- |
-| 2026-09-19 | S21 clarified that the count is 14 of 33 redacted sections, not pages, and explained the report filename. | Official-domain reply authenticated in the editorial mailbox; reconciled with S1/S2; S4 now uses “redacted sections.” | Response update, not correction: dated note plus revised summary, count section, source notes, reporting status and Ledger metadata. | UNME Editorial Desk | Pending technical checks, deployment and live verification. |
+| Date       | New evidence or reported error                                                                            | Verification                                                                                                          | Correction / update made                                                                                                             | Editor              | Deployment                                                                                              |
+| ---------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------- |
+| 2026-09-19 | S21 clarified that the count is 14 of 33 redacted sections, not pages, and explained the report filename. | Official-domain reply authenticated in the editorial mailbox; reconciled with S1/S2; S4 now uses “redacted sections.” | Response update, not correction: dated note plus revised summary, count section, source notes, reporting status and Ledger metadata. | UNME Editorial Desk | Cloudflare Pages succeeded for `db7455a`; live verification completed at 11:56 a.m. America/Whitehorse. |
