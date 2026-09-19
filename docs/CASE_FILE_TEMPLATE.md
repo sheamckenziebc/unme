@@ -243,6 +243,40 @@ Complete only after explicit authorization and actual deployment.
 | ---- | ------------------------------ | ------------ | ------------------------ | ------ | ---------- |
 |      |                                |              |                          |        |            |
 
+### Postpublication response / update intake
+
+Complete this block for a material reply or new record before changing the public article. Keep addresses, mailbox IDs, technical headers, confidential terms and full correspondence in the private packet.
+
+**Response or record received at:**
+
+**Public-safe source and role:**
+
+**Private preservation location:**
+
+**Authentication and attribution terms:**
+
+**Questions answered:**
+
+**Questions not answered:**
+
+**Supporting records and independent verification:**
+
+**Classification:** No public change / Response update / Correction / Expanded reporting
+
+**Reason for classification:**
+
+**Affected claim-ledger IDs and article locations:**
+
+**Case-file sections reconciled:** Source register / Chronology / Claim ledger / Current status / Disconfirming evidence / Delivery log / Response log
+
+**Public changes required:** `updatedDate` / `UpdateNote` / `CorrectionNote` / Summary / Body / Sources / Actions / Ledger / None
+
+**Update hostile read and final fact check:**
+
+**Update approved by and date:**
+
+**Deployment and live verification:**
+
 ## Ledger history
 
 Record outcome changes even when they do not require a full article update. Each public status must be supported by a current authoritative check and expressed in plain language.

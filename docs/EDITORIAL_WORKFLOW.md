@@ -390,14 +390,50 @@ A successful local build is “ready to deploy,” not “published.” A succes
 
 ## Updating a published investigation
 
-- Verify the new development against a primary source.
-- Update the Ledger checked date, status and plain-language summary when the outcome changes, even if the article does not require substantial revision.
-- Update `updatedDate`.
-- Add an `UpdateNote` explaining the substantive addition.
-- Use `CorrectionNote` for factual corrections and state what changed.
-- Preserve the earlier record when context is necessary; never silently reverse a material claim.
-- Re-run the claim ledger and publication gates for the changed sections.
-- If a Brief has grown into a Dossier, change `format` only after the case file records the new scope and the expanded article passes the full gates.
+Treat a postpublication reply as new evidence, not as a courtesy insert. It may confirm the publication, narrow it, correct it, add a respondent's position or leave the material question unanswered. The update record must show which occurred.
+
+### 1. Preserve and authenticate the response
+
+- Read the full message and its thread, not only the inbox preview. Record the sender, role, received time, delivery thread, attachments, attribution terms and any request for confidentiality, background or embargo in the private reporting packet.
+- Confirm that the sender and domain are authentic enough for the proposed use. Preserve mailbox identifiers and technical authentication privately; keep personal contact details and confidential material out of the tracked repository.
+- Compare the reply with the exact questions sent. Do not turn silence on one question into a denial, confirmation or concession.
+- A reply confirms what the respondent said. Independently verify factual assertions against supplied records and current authoritative sources where possible.
+
+### 2. Classify the newsroom action
+
+Record one of these decisions before editing the article:
+
+- **No public change:** the response adds no material verified information. Log it and explain why the article remains accurate.
+- **Response update:** the response adds a material position, explanation or current-status fact without showing that the published account was wrong. Use an `UpdateNote`.
+- **Correction:** the publication made a material factual error. Use a `CorrectionNote`, say what was wrong and replace the error everywhere it appears, including the summary, metadata and Ledger.
+- **Expanded reporting:** the response opens a materially broader question that needs more evidence or fresh right of reply. Keep the new work unpublished until the applicable gates are complete.
+
+Do not label a clarification as a correction to the publication when the earlier account accurately described the evidence then available. Do not use “update” to soften an actual error.
+
+### 3. Reconcile the case file before drafting
+
+- Add the response to the source register with its evidentiary limits and private preservation location.
+- Update the chronology, claim ledger, disconfirming-evidence record, current-status checks, delivery log and response-incorporation log.
+- Record what the response answered, what it did not answer, whether supporting records were supplied and how verification changed the thesis.
+- Preserve the original publication decision and any historical exception. Later contact does not retroactively become prepublication right of reply.
+
+### 4. Make the public change transparent
+
+- Set `updatedDate` and add an `UpdateNote` for a substantive addition. Use `CorrectionNote` for a factual correction and state the original error and corrected fact plainly.
+- Revise every affected title, description, summary point, body passage, source note, action or Ledger field. Do not leave the old claim in a fast summary after fixing it in the body.
+- Preserve the earlier wording or publication-time state when readers need it to understand what changed; never silently reverse a material claim.
+- Attribute a respondent's assertion and retain necessary qualifications. Link supporting public records; if the response itself is not public, describe it accurately without exposing mailbox or personal details.
+- Update the Ledger checked date, status and plain-language summary when the outcome or the reader's understanding changes, even if the article needs only a short note.
+
+### 5. Re-run proportionate gates and publish
+
+- Recheck the changed claims, the strongest contrary evidence, time-sensitive sources and civic-action links.
+- Run a focused hostile read for misleading implications created by the update, then complete fact check, copy edit and spoken-clarity review for changed passages.
+- Record a dated update-readiness decision, named editor approval and any exception in the case file. A respondent's reply does not waive editorial approval.
+- Run formatting, diagnostics, production build and generated-site validation. Inspect the updated note, summary, Ledger, source list and narrow-screen rendering.
+- Publication still requires explicit user authorization. Commit and push only the intended files, monitor deployment, verify the live article and discovery surfaces, then add the deployment evidence to the case file's correction/update log.
+
+If a Brief has grown into a Dossier, change `format` only after the case file records the new scope and the expanded article passes the full gates.
 
 ## Amendment record
 
