@@ -1,6 +1,6 @@
 # UR NOT MAD ENOUGH
 
-The static website for **UR NOT MAD ENOUGH**, an independent, evidence-first accountability publication currently focused on Yukon. Reporting appears as deep Dossiers, tightly scoped Briefs and a living Ledger of what happened next. Every format uses the same evidentiary standard and preserves clear distinctions between confirmed facts, supported conclusions, allegations and unresolved questions.
+The static website for **UR NOT MAD ENOUGH**, a searchable directory of Yukon government organizations and elected officials with evidence-first accountability reporting. Reporting appears as deep Dossiers, tightly scoped Briefs and a living Ledger of what happened next. Every format uses the same evidentiary standard and preserves clear distinctions between confirmed facts, supported conclusions, allegations and unresolved questions.
 
 The repository uses Astro, TypeScript, Astro Content Collections, MDX and plain CSS. It has no database, CMS, client framework, analytics or runtime backend.
 
@@ -24,6 +24,16 @@ npm run preview
 ```
 
 The production site is generated in `dist/`.
+
+## Directory experience and content
+
+The homepage and `/atlas/` route are deliberately directory-first. Visitors get one search field, local results for current elected officials and organizations, a compact expandable organization chart, and a query-preserving handoff to the live Government of Yukon employee finder for civil servants. Reporting remains a separate navigation destination instead of competing with the search task.
+
+Directory records live in `src/data/organizations.json` and `src/data/people.json`. Astro Content Collection schemas reject malformed records, unknown organization references, duplicate portfolio references, unsupported fields and future check dates. The local elected roster records all current members of the 36th Legislative Assembly and Cabinet portfolio assignments checked September 30, 2026. Civil-service names and work contacts are not copied into the repository; the official service remains the current source for those records.
+
+The hierarchy distinguishes executive government, the elected Legislative Assembly and independent election administration. A minister's portfolio is not represented as an employment relationship, and MLAs are labelled as elected officeholders rather than civil servants. First Nations governments and municipalities are separate governments and are outside this directory scope.
+
+The chart and roster work without JavaScript. A small dependency-free script adds instant filtering, a type filter, URL-preserved searches, keyboard shortcuts and the official-directory handoff. There is no client framework, backend or duplicated staff database. Build checks validate the route, metadata, links, IDs and all existing publication safeguards.
 
 ## Publishing a Dossier or Brief
 
@@ -60,6 +70,9 @@ Check the former URL with and without a trailing slash on both production hostna
 ## Project map
 
 - `src/content/investigations/` — investigation Markdown and MDX
+- `src/data/organizations.json` — validated Yukon government organization records and official staff-directory routes
+- `src/data/people.json` — validated current elected-official and portfolio records
+- `src/pages/atlas/index.astro` — searchable directory and expandable organization chart
 - `src/pages/dossiers/` — the flagship Dossier desk
 - `src/pages/briefs/` — tightly scoped Briefs
 - `src/pages/ledger/` — current outcome status for published files

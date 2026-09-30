@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "UR NOT MAD ENOUGH",
   shortName: "UNME",
-  tagline: "Evidence worth paying attention to.",
+  tagline: "Find who does what.",
   description:
-    "Independent Yukon accountability reporting: Dossiers, Briefs and a living Ledger of what happened next.",
+    "A searchable directory of Yukon government organizations and elected officials, with evidence-first accountability reporting.",
   defaultAuthor: "UR NOT MAD ENOUGH",
   editorialEmail: "editor@urnotmadenough.ca",
   social: {},

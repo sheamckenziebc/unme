@@ -217,6 +217,7 @@ const requiredOutputs = [
   "index.html",
   "404.html",
   "about/index.html",
+  "atlas/index.html",
   "briefs/index.html",
   "corrections/index.html",
   "dossiers/index.html",

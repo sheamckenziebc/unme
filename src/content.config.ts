@@ -1,6 +1,6 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 const repositoryRoot = new URL("../", import.meta.url);
@@ -221,4 +221,76 @@ const investigations = defineCollection({
     ),
 });
 
-export const collections = { investigations };
+const organizationIds = new Set<string>(
+  (
+    JSON.parse(
+      readFileSync(
+        new URL("src/data/organizations.json", repositoryRoot),
+        "utf8",
+      ),
+    ) as Array<{ id: string }>
+  ).map((entry) => entry.id),
+);
+const directoryReference = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+  .refine((id) => organizationIds.has(id), {
+    message: "Directory links must name an existing organization.",
+  });
+const organizations = defineCollection({
+  loader: file("./src/data/organizations.json"),
+  schema: z
+    .object({
+      id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+      name: z.string().trim().min(1).max(120),
+      shortName: z.string().trim().min(1).max(48),
+      kind: z.enum([
+        "Government",
+        "Legislature",
+        "Department",
+        "Directorate",
+        "Corporation",
+        "Office",
+        "Independent office",
+      ]),
+      parentId: directoryReference.optional(),
+      summary: z.string().trim().min(1).max(240),
+      officialUrl: httpUrl,
+      staffDirectoryUrl: httpUrl.optional(),
+      checkedDate: z.coerce
+        .date()
+        .refine((date) => date <= new Date(), "Checks cannot be future-dated."),
+      aliases: z.array(z.string().trim().min(1)).default([]),
+    })
+    .strict(),
+});
+const people = defineCollection({
+  loader: file("./src/data/people.json"),
+  schema: z
+    .object({
+      id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+      name: z.string().trim().min(1).max(100),
+      kind: z.literal("Elected official"),
+      primaryRole: z.string().trim().min(1).max(180),
+      organizationId: directoryReference,
+      district: z.string().trim().min(1).max(100),
+      party: z.string().trim().min(1).max(80),
+      responsibilityIds: z.array(directoryReference).default([]),
+      officialUrl: httpUrl,
+      aliases: z.array(z.string().trim().min(1)).default([]),
+      checkedDate: z.coerce
+        .date()
+        .refine((date) => date <= new Date(), "Checks cannot be future-dated."),
+    })
+    .strict()
+    .refine(
+      (data) =>
+        new Set(data.responsibilityIds).size === data.responsibilityIds.length,
+      {
+        message: "Directory responsibilities must be unique.",
+        path: ["responsibilityIds"],
+      },
+    ),
+});
+
+export const collections = { investigations, organizations, people };
