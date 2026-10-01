@@ -230,10 +230,151 @@ const requiredOutputs = [
   "rss.xml",
   "sitemap-index.xml",
   "CNAME",
+  "data/yukon-employees.json",
 ];
 for (const required of requiredOutputs) {
   if (!(await exists(path.join(outputRoot, required))))
     failures.push(`missing required output: ${required}`);
+}
+
+const employeeDirectoryPath = path.join(
+  outputRoot,
+  "data",
+  "yukon-employees.json",
+);
+if (await exists(employeeDirectoryPath)) {
+  const directory = JSON.parse(await readFile(employeeDirectoryPath, "utf8"));
+  const organizationRecords = Array.isArray(directory.organizations)
+    ? directory.organizations
+    : [];
+  const employees = Array.isArray(directory.employees)
+    ? directory.employees
+    : [];
+  const organizationSource = JSON.parse(
+    await readFile(
+      path.join(repositoryRoot, "src", "data", "organizations.json"),
+      "utf8",
+    ),
+  );
+  const electedNames = new Set(
+    JSON.parse(
+      await readFile(
+        path.join(repositoryRoot, "src", "data", "people.json"),
+        "utf8",
+      ),
+    ).map((person) => person.name.toLocaleLowerCase("en-CA")),
+  );
+  const searchableOrganizationIds = new Set(
+    organizationSource
+      .filter((organization) => organization.staffDirectoryUrl)
+      .map((organization) => organization.id),
+  );
+  const allowedEmployeeFields = new Set([
+    "name",
+    "title",
+    "department",
+    "division",
+    "branch",
+    "unit",
+    "community",
+    "organizationId",
+    "officialUrl",
+  ]);
+  const employeeKeys = new Set();
+  const checkedDate = new Date(`${directory.checkedDate}T00:00:00Z`);
+
+  if (directory.version !== 1)
+    failures.push("employee directory: expected schema version 1");
+  if (!Number.isFinite(checkedDate.getTime()))
+    failures.push("employee directory: invalid checkedDate");
+  else if (checkedDate > new Date())
+    failures.push("employee directory: checkedDate cannot be in the future");
+  if (directory.uniqueEmployees !== employees.length)
+    failures.push(
+      `employee directory: declared ${directory.uniqueEmployees} unique employees but found ${employees.length}`,
+    );
+  if (employees.length < 5000)
+    failures.push(
+      `employee directory: expected at least 5,000 employees, found ${employees.length}`,
+    );
+  if (directory.excludedElectedOfficials !== 14)
+    failures.push(
+      `employee directory: expected 14 elected officials to be excluded, found ${directory.excludedElectedOfficials}`,
+    );
+  if (organizationRecords.length !== searchableOrganizationIds.size)
+    failures.push(
+      `employee directory: expected ${searchableOrganizationIds.size} organization records, found ${organizationRecords.length}`,
+    );
+
+  for (const organization of organizationRecords) {
+    if (!searchableOrganizationIds.has(organization.organizationId))
+      failures.push(
+        `employee directory: unknown organization ${organization.organizationId}`,
+      );
+    if (organization.stale !== false)
+      failures.push(
+        `employee directory: ${organization.organizationId} is marked stale`,
+      );
+    if (organization.declaredCount !== organization.observedCount)
+      failures.push(
+        `employee directory: ${organization.organizationId} declared ${organization.declaredCount} records but observed ${organization.observedCount}`,
+      );
+  }
+
+  for (const [index, employee] of employees.entries()) {
+    const unexpectedFields = Object.keys(employee).filter(
+      (field) => !allowedEmployeeFields.has(field),
+    );
+    if (unexpectedFields.length)
+      failures.push(
+        `employee directory: employee ${index + 1} has unsupported field(s): ${unexpectedFields.join(", ")}`,
+      );
+    for (const field of [
+      "name",
+      "title",
+      "department",
+      "organizationId",
+      "officialUrl",
+    ]) {
+      if (typeof employee[field] !== "string" || !employee[field].trim())
+        failures.push(
+          `employee directory: employee ${index + 1} has invalid ${field}`,
+        );
+    }
+    if (!searchableOrganizationIds.has(employee.organizationId))
+      failures.push(
+        `employee directory: ${employee.name || `employee ${index + 1}`} references unknown organization ${employee.organizationId}`,
+      );
+    if (
+      typeof employee.name === "string" &&
+      electedNames.has(employee.name.toLocaleLowerCase("en-CA"))
+    )
+      failures.push(
+        `employee directory: elected official ${employee.name} is duplicated as a civil servant`,
+      );
+    if (
+      typeof employee.officialUrl === "string" &&
+      !/^https:\/\/find-employee\.service\.yukon\.ca\/en\/find-employee\/search\/keyword=.+&department=any-department$/.test(
+        employee.officialUrl,
+      )
+    )
+      failures.push(
+        `employee directory: ${employee.name || `employee ${index + 1}`} has an invalid official URL`,
+      );
+    const key = [
+      employee.name,
+      employee.title,
+      employee.department,
+      employee.officialUrl,
+    ]
+      .join("|")
+      .toLowerCase();
+    if (employeeKeys.has(key))
+      failures.push(
+        `employee directory: duplicate record for ${employee.name || `employee ${index + 1}`}`,
+      );
+    employeeKeys.add(key);
+  }
 }
 
 const contentFiles = (await filesUnder(contentRoot)).filter((file) =>

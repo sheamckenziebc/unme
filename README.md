@@ -27,13 +27,13 @@ The production site is generated in `dist/`.
 
 ## Directory experience and content
 
-The homepage and `/atlas/` route are deliberately directory-first. Visitors get one search field, local results for current elected officials and organizations, a compact expandable organization chart, and a query-preserving handoff to the live Government of Yukon employee finder for civil servants. Reporting remains a separate navigation destination instead of competing with the search task.
+The homepage and `/atlas/` route are deliberately directory-first. Visitors get one search field with local results for civil servants, current elected officials and organizations, plus a compact expandable organization chart. Every civil-servant result links to the live Government of Yukon employee finder for the current official contact record. Reporting remains a separate navigation destination instead of competing with the search task.
 
-Directory records live in `src/data/organizations.json` and `src/data/people.json`. Astro Content Collection schemas reject malformed records, unknown organization references, duplicate portfolio references, unsupported fields and future check dates. The local elected roster records all current members of the 36th Legislative Assembly and Cabinet portfolio assignments checked September 30, 2026. Civil-service names and work contacts are not copied into the repository; the official service remains the current source for those records.
+Organization and elected-official records live in `src/data/organizations.json` and `src/data/people.json`. The civil-service search snapshot lives in `public/data/yukon-employees.json`. It contains names, job titles and organizational context checked September 30, 2026, but deliberately excludes phone numbers, email addresses, street addresses, usernames and reporting-manager fields. The official service remains the source for current contact details. Astro Content Collection schemas reject malformed organization and elected records; the build validator independently checks the employee snapshot's counts, fields, links and organization references.
 
 The hierarchy distinguishes executive government, the elected Legislative Assembly and independent election administration. A minister's portfolio is not represented as an employment relationship, and MLAs are labelled as elected officeholders rather than civil servants. First Nations governments and municipalities are separate governments and are outside this directory scope.
 
-The chart and roster work without JavaScript. A small dependency-free script adds instant filtering, a type filter, URL-preserved searches, keyboard shortcuts and the official-directory handoff. There is no client framework, backend or duplicated staff database. Build checks validate the route, metadata, links, IDs and all existing publication safeguards.
+The chart and elected roster work without JavaScript. A small dependency-free script lazy-loads the civil-service snapshot only when a visitor searches, then adds instant ranked filtering, a type filter, URL-preserved searches, keyboard shortcuts and the official-directory handoff. There is no client framework, backend or runtime database. Build checks validate the route, metadata, links, IDs, staff snapshot and all existing publication safeguards.
 
 ## Publishing a Dossier or Brief
 
@@ -72,6 +72,7 @@ Check the former URL with and without a trailing slash on both production hostna
 - `src/content/investigations/` — investigation Markdown and MDX
 - `src/data/organizations.json` — validated Yukon government organization records and official staff-directory routes
 - `src/data/people.json` — validated current elected-official and portfolio records
+- `public/data/yukon-employees.json` — validated, minimal civil-service search snapshot without contact details
 - `src/pages/atlas/index.astro` — searchable directory and expandable organization chart
 - `src/pages/dossiers/` — the flagship Dossier desk
 - `src/pages/briefs/` — tightly scoped Briefs

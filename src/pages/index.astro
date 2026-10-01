@@ -1,10 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
+import { readFile } from 'node:fs/promises';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../utils/paths';
 
 const organizations = await getCollection('organizations');
 const people = await getCollection('people');
+const employeeDirectory = JSON.parse(
+  await readFile(`${process.cwd()}/public/data/yukon-employees.json`, 'utf8'),
+) as { uniqueEmployees: number };
 ---
 
 <BaseLayout description="Find Yukon elected officials, government departments and current public-service staff from one clear directory.">
@@ -12,7 +16,7 @@ const people = await getCollection('people');
     <main class="home-main shell">
       <p class="eyebrow">Yukon government directory</p>
       <h1>Find who<br />does what.</h1>
-      <p class="intro">One search for elected officials, portfolios and public-service organizations—then a direct route to the current official staff record.</p>
+      <p class="intro">One search across {employeeDirectory.uniqueEmployees.toLocaleString('en-CA')} civil servants, current elected officials and public-service organizations.</p>
 
       <form class="home-search" role="search" action={withBase('/atlas/')} method="get">
         <label for="home-query">Search the directory</label>
@@ -21,13 +25,13 @@ const people = await getCollection('people');
 
       <div class="home-actions">
         <a class="primary-action" href={withBase('/atlas/')}>Browse the organization chart <span aria-hidden="true">→</span></a>
-        <a href="https://find-employee.service.yukon.ca/en/find-employee">Go straight to official staff records <span aria-hidden="true">↗</span></a>
+        <a href="https://find-employee.service.yukon.ca/en/find-employee">Verify a current contact in the official directory <span aria-hidden="true">↗</span></a>
       </div>
 
       <dl class="coverage">
+        <div><dt>{employeeDirectory.uniqueEmployees.toLocaleString('en-CA')}</dt><dd>searchable civil servants</dd></div>
         <div><dt>{people.length}</dt><dd>current elected officials</dd></div>
         <div><dt>{organizations.length - 3}</dt><dd>government organizations</dd></div>
-        <div><dt>1 click</dt><dd>to live civil-service records</dd></div>
       </dl>
 
       <aside class="scope-note">

@@ -1,6 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
+import { readFile } from 'node:fs/promises';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/paths';
+
+type EmployeeDirectoryMeta = {
+  checkedDate: string;
+  uniqueEmployees: number;
+};
+
+const employeeDirectory = JSON.parse(
+  await readFile(`${process.cwd()}/public/data/yukon-employees.json`, 'utf8'),
+) as EmployeeDirectoryMeta;
 
 const organizations = (await getCollection('organizations')).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const people = (await getCollection('people')).sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -14,6 +25,7 @@ const elections = organizationsById.get('elections-yukon')!;
 const dateFormat = new Intl.DateTimeFormat('en-CA', { dateStyle: 'long', timeZone: 'UTC' });
 const checkedDate = new Date(Math.max(...[...organizations, ...people].map((entry) => entry.data.checkedDate.getTime())));
 const officialEmployeeDirectory = 'https://find-employee.service.yukon.ca/en/find-employee';
+const employeeSource = withBase('/data/yukon-employees.json');
 const searchIndexForOrganization = (entry: (typeof organizations)[number]) => [
   entry.data.name,
   entry.data.shortName,
@@ -33,12 +45,12 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
 ].filter(Boolean).join(' ');
 ---
 
-<BaseLayout title="Yukon government directory" description="Search Yukon elected officials and government organizations, browse the organization chart, or continue to the official employee directory.">
-  <div class="directory-page" data-directory>
+<BaseLayout title="Yukon government directory" description="Search Yukon civil servants, elected officials and government organizations, then open the current official contact record.">
+  <div class="directory-page" data-directory data-employee-source={employeeSource}>
     <header class="directory-header shell">
       <p class="eyebrow">Yukon government directory</p>
       <h1>Find the person or office.</h1>
-      <p class="lede">Search by name, job title, department, portfolio, branch or electoral district.</p>
+      <p class="lede">Search {employeeDirectory.uniqueEmployees.toLocaleString('en-CA')} civil servants, current elected officials and government organizations by name, job title, department, branch, portfolio or district.</p>
 
       <form class="directory-search" role="search" action="" method="get">
         <label for="directory-query">Who or what are you looking for?</label>
@@ -50,6 +62,7 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
           <label for="directory-type">Show</label>
           <select id="directory-type">
             <option value="all">Everything</option>
+            <option value="employee">Civil servants</option>
             <option value="person">Elected officials</option>
             <option value="organization">Organizations</option>
           </select>
@@ -58,9 +71,9 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
       </form>
 
       <div class="coverage" aria-label="Directory coverage">
+        <span><strong>{employeeDirectory.uniqueEmployees.toLocaleString('en-CA')}</strong> civil servants</span>
         <span><strong>{people.length}</strong> current MLAs</span>
         <span><strong>{organizations.length - 3}</strong> government organizations</span>
-        <span><strong>Live handoff</strong> to the official staff directory</span>
       </div>
     </header>
 
@@ -71,7 +84,9 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
           <p class="result-count" role="status" aria-live="polite"></p>
         </div>
 
-        <ul class="result-list">
+        <p class="loading-state" role="status" hidden>Searching the civil-service roster…</p>
+        <ul class="result-list employee-result-list" data-employee-results></ul>
+        <ul class="result-list local-result-list">
           {people.map((person) => {
             const responsibilities = person.data.responsibilityIds.map((id) => organizationsById.get(id)!);
             return <li data-result data-result-type="person" data-search={searchIndexForPerson(person)}>
@@ -102,14 +117,16 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
           })}
         </ul>
 
+        <button class="show-more-results" type="button" hidden>Show 50 more</button>
+
         <div class="no-local-results" hidden>
-          <h3>No local match yet.</h3>
-          <p>The civil-service roster stays with the official source so job changes are not frozen into an old copy here.</p>
+          <h3>No snapshot match.</h3>
+          <p>Try fewer words, check the spelling or search the live official directory below.</p>
         </div>
 
         <aside class="official-search-card">
-          <div><p class="eyebrow">Civil servants</p><h3>Search the current official employee directory.</h3><p>Your search term carries over. The official service includes names, positions, branches, work email addresses and phone numbers.</p></div>
-          <a data-official-search href={officialEmployeeDirectory}>Open the official staff search <span aria-hidden="true">↗</span></a>
+          <div><p class="eyebrow">Official source</p><h3>Verify the current contact record.</h3><p>Your search term carries over to the Government of Yukon service, where current work email addresses and phone numbers are maintained.</p></div>
+          <a data-official-search href={officialEmployeeDirectory}>Open the official directory <span aria-hidden="true">↗</span></a>
         </aside>
       </section>
 
@@ -192,13 +209,30 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
       </div>
 
       <footer class="directory-note">
-        <p><strong>Coverage is explicit.</strong> The local roster covers all {people.length} current members of the 36th Legislative Assembly and Cabinet portfolio assignments. Civil-servant records remain in the live Government of Yukon directory. Organization and elected-role records checked {dateFormat.format(checkedDate)}.</p>
+        <p><strong>Coverage is explicit.</strong> The searchable snapshot contains {employeeDirectory.uniqueEmployees.toLocaleString('en-CA')} unique civil servants from all {organizations.length - 3} listed government organizations, checked {dateFormat.format(new Date(`${employeeDirectory.checkedDate}T00:00:00Z`))}. It stores names and job context, not phone numbers or email addresses; each result links to the current official contact record. The elected roster covers all {people.length} current members of the 36th Legislative Assembly and Cabinet portfolio assignments, checked {dateFormat.format(checkedDate)}.</p>
       </footer>
     </main>
   </div>
 </BaseLayout>
 
 <script>
+  type Employee = {
+    name: string;
+    title: string;
+    department: string;
+    division: string;
+    branch: string;
+    unit: string;
+    community: string;
+    organizationId: string;
+    officialUrl: string;
+  };
+
+  type EmployeeDirectory = {
+    uniqueEmployees: number;
+    employees: Employee[];
+  };
+
   const root = document.querySelector<HTMLElement>('[data-directory]');
   if (root) {
     const form = root.querySelector<HTMLFormElement>('.directory-search')!;
@@ -210,34 +244,123 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
     const results = root.querySelector<HTMLElement>('.search-results')!;
     const count = root.querySelector<HTMLElement>('.result-count')!;
     const empty = root.querySelector<HTMLElement>('.no-local-results')!;
+    const loading = root.querySelector<HTMLElement>('.loading-state')!;
+    const employeeResults = root.querySelector<HTMLUListElement>('[data-employee-results]')!;
+    const showMore = root.querySelector<HTMLButtonElement>('.show-more-results')!;
     const officialLink = root.querySelector<HTMLAnchorElement>('[data-official-search]')!;
     const items = [...root.querySelectorAll<HTMLElement>('[data-result]')];
     const officialRoot = 'https://find-employee.service.yukon.ca/en/find-employee';
+    const employeeSource = root.dataset.employeeSource!;
     const normalize = (value: string) => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+    const pageSize = 50;
+    let visibleEmployeeLimit = pageSize;
+    let employeeDirectoryPromise: Promise<EmployeeDirectory> | undefined;
+    let employeeMatches: Employee[] = [];
+    let updateNumber = 0;
 
-    const update = (push = false) => {
+    const loadEmployees = () => {
+      employeeDirectoryPromise ??= fetch(employeeSource).then(async (response) => {
+        if (!response.ok) throw new Error(`Employee directory request failed: ${response.status}`);
+        return response.json() as Promise<EmployeeDirectory>;
+      });
+      return employeeDirectoryPromise;
+    };
+
+    const employeeIndex = (employee: Employee) => normalize([
+      employee.name,
+      employee.title,
+      employee.department,
+      employee.division,
+      employee.branch,
+      employee.unit,
+      employee.community,
+    ].join(' '));
+
+    const employeeScore = (employee: Employee, query: string) => {
+      const name = normalize(employee.name);
+      const title = normalize(employee.title);
+      if (name === query) return 0;
+      if (name.startsWith(query)) return 1;
+      if (title === query) return 2;
+      if (title.startsWith(query)) return 3;
+      if (name.includes(query)) return 4;
+      if (title.includes(query)) return 5;
+      return 6;
+    };
+
+    const appendText = (parent: HTMLElement, tag: keyof HTMLElementTagNameMap, className: string, value: string) => {
+      const element = document.createElement(tag);
+      element.className = className;
+      element.textContent = value;
+      parent.append(element);
+      return element;
+    };
+
+    const renderEmployees = () => {
+      employeeResults.replaceChildren();
+      for (const employee of employeeMatches.slice(0, visibleEmployeeLimit)) {
+        const item = document.createElement('li');
+        const article = document.createElement('article');
+        article.className = 'result-card';
+        appendText(article, 'p', 'result-kind', 'Civil servant');
+        appendText(article, 'h3', '', employee.name);
+        appendText(article, 'p', 'result-role', employee.title);
+
+        const context = [employee.department, employee.branch || employee.division, employee.community]
+          .filter(Boolean)
+          .filter((value, index, values) => values.indexOf(value) === index)
+          .join(' · ');
+        appendText(article, 'p', 'result-meta', context);
+
+        const link = document.createElement('a');
+        link.href = employee.officialUrl;
+        link.textContent = 'Open current official contact record ↗';
+        article.append(link);
+        item.append(article);
+        employeeResults.append(item);
+      }
+      showMore.hidden = employeeMatches.length <= visibleEmployeeLimit;
+    };
+
+    const setCount = (employeeCount: number, localCount: number) => {
+      const parts = [];
+      if (employeeCount) parts.push(`${employeeCount.toLocaleString('en-CA')} civil ${employeeCount === 1 ? 'servant' : 'servants'}`);
+      if (localCount) parts.push(`${localCount} ${localCount === 1 ? 'other match' : 'other matches'}`);
+      count.textContent = parts.length ? parts.join(' · ') : 'No matches';
+    };
+
+    const update = async (push = false, resetLimit = true) => {
+      const thisUpdate = ++updateNumber;
       const query = input.value.trim();
-      const words = normalize(query).split(/\s+/).filter(Boolean);
+      const normalizedQuery = normalize(query);
+      const words = normalizedQuery.split(/\s+/).filter(Boolean);
       const filter = type.value;
-      let matches = 0;
+      let localMatches = 0;
+
+      if (resetLimit) visibleEmployeeLimit = pageSize;
 
       items.forEach((item) => {
         const index = normalize(item.dataset.search ?? '');
         const visible = words.length > 0 && (filter === 'all' || item.dataset.resultType === filter) && words.every((word) => index.includes(word));
         item.hidden = !visible;
-        if (visible) matches += 1;
+        if (visible) localMatches += 1;
       });
 
       const searching = words.length > 0;
+      const searchEmployees = searching && (filter === 'all' || filter === 'employee');
       root.classList.toggle('is-searching', searching);
       browser.hidden = searching;
       results.hidden = !searching;
       tools.hidden = !searching;
-      empty.hidden = !searching || matches > 0;
-      count.textContent = searching ? `${matches} local ${matches === 1 ? 'match' : 'matches'}` : '';
+      empty.hidden = true;
+      loading.hidden = !searchEmployees;
+      employeeResults.replaceChildren();
+      showMore.hidden = true;
+      employeeMatches = [];
+      count.textContent = searching ? (searchEmployees ? 'Searching civil servants…' : `${localMatches} ${localMatches === 1 ? 'match' : 'matches'}`) : '';
       const encoded = encodeURIComponent(query).replaceAll('%20', '.');
       officialLink.href = searching ? `${officialRoot}/search/keyword=${encoded}&department=any-department` : officialRoot;
-      officialLink.firstChild!.textContent = searching ? `Search official staff records for “${query}” ` : 'Open the official staff search ';
+      officialLink.firstChild!.textContent = searching ? `Verify “${query}” in the official directory ` : 'Open the official directory ';
 
       if (push) {
         const url = new URL(window.location.href);
@@ -245,21 +368,46 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
         if (filter !== 'all') url.searchParams.set('type', filter); else url.searchParams.delete('type');
         history.replaceState(null, '', url);
       }
+
+      if (!searchEmployees) {
+        loading.hidden = true;
+        empty.hidden = !searching || localMatches > 0;
+        return;
+      }
+
+      try {
+        const directory = await loadEmployees();
+        if (thisUpdate !== updateNumber) return;
+        employeeMatches = directory.employees
+          .filter((employee) => words.every((word) => employeeIndex(employee).includes(word)))
+          .sort((a, b) => employeeScore(a, normalizedQuery) - employeeScore(b, normalizedQuery) || a.name.localeCompare(b.name) || a.title.localeCompare(b.title));
+        renderEmployees();
+        loading.hidden = true;
+        empty.hidden = employeeMatches.length + localMatches > 0;
+        setCount(employeeMatches.length, localMatches);
+      } catch (error) {
+        if (thisUpdate !== updateNumber) return;
+        console.error(error);
+        loading.hidden = true;
+        empty.hidden = localMatches > 0;
+        count.textContent = localMatches ? `${localMatches} ${localMatches === 1 ? 'match' : 'matches'} · staff search unavailable` : 'Staff search unavailable';
+      }
     };
 
     const params = new URLSearchParams(window.location.search);
     input.value = params.get('q') ?? '';
     const requestedType = params.get('type');
     if (requestedType && [...type.options].some((option) => option.value === requestedType)) type.value = requestedType;
-    form.addEventListener('submit', (event) => { event.preventDefault(); update(true); });
-    input.addEventListener('input', () => update(true));
-    type.addEventListener('change', () => update(true));
-    clear.addEventListener('click', () => { input.value = ''; type.value = 'all'; update(true); input.focus(); });
+    form.addEventListener('submit', (event) => { event.preventDefault(); void update(true); });
+    input.addEventListener('input', () => { void update(true); });
+    type.addEventListener('change', () => { void update(true); });
+    clear.addEventListener('click', () => { input.value = ''; type.value = 'all'; void update(true); input.focus(); });
+    showMore.addEventListener('click', () => { visibleEmployeeLimit += pageSize; renderEmployees(); });
     window.addEventListener('keydown', (event) => {
       if (event.key === '/' && document.activeElement !== input) { event.preventDefault(); input.focus(); }
-      if (event.key === 'Escape' && document.activeElement === input && input.value) { input.value = ''; update(true); }
+      if (event.key === 'Escape' && document.activeElement === input && input.value) { input.value = ''; void update(true); }
     });
-    update(false);
+    void update(false);
   }
 </script>
 
@@ -328,6 +476,7 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
   .search-results { padding-top: 1.5rem; }
   .result-count { white-space: nowrap; }
   .result-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
+  .employee-result-list:not(:empty) { margin-bottom: 0.75rem; }
   .result-card { height: 100%; padding: 1.1rem; border: 1px solid #b4baaf; border-radius: 0.45rem; background: #fff; }
   .result-kind { margin: 0; color: #697269; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; }
   .result-card h3 { margin: 0.35rem 0 0; font-size: 1.25rem; letter-spacing: -0.025em; }
@@ -335,6 +484,10 @@ const searchIndexForPerson = (entry: (typeof people)[number]) => [
   .result-meta { color: #667066; font-size: 0.78rem; }
   .portfolios { color: #495249; font-size: 0.78rem; line-height: 1.5; }
   .portfolios span { display: block; color: #747c73; font-family: var(--mono); font-size: 0.63rem; text-transform: uppercase; }
+  .loading-state { margin: 0 0 0.75rem; color: #596259; font-size: 0.82rem; }
+  .show-more-results { display: block; min-height: 46px; margin: 1rem auto 0; padding: 0.65rem 1rem; border: 1px solid #697469; border-radius: 0.35rem; background: #fff; color: #1d281f; font: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+  .show-more-results[hidden] { display: none; }
+  .show-more-results:hover { background: #ebece5; }
   .no-local-results { padding: 1.2rem; border: 1px solid #b4baaf; background: #fff; }
   .no-local-results h3 { margin: 0; }
   .no-local-results p { margin-bottom: 0; color: #596259; }
